@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.HashMap;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,6 +15,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -55,7 +57,9 @@ public class BrowserFactory {
 			break;
 		case "IE":
 			WebDriverManager.iedriver().setup();
-			driver = new InternetExplorerDriver();
+			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+			capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			driver = new InternetExplorerDriver(capabilities);
 			driver.manage().window().maximize();
 			break;
 		case "EDGE":
@@ -99,7 +103,6 @@ public class BrowserFactory {
 			break;
 
 		case "BROWSERSTACK":
-
 			HashMap<String, String> bsLocalArgs = new HashMap<String, String>();
 			bsLocalArgs.put("key", AUTOMATE_KEY);
 			caps = new DesiredCapabilities();
