@@ -185,4 +185,45 @@ public class ConfigurationReader {
 	        else
 	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
 	    }
+	    
+	    public String postgressqlPort()
+	    {
+	        String value = properties.getProperty("ccs.postgres.port");
+	        if(value!= null)
+	            return value;
+	        else
+	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
+	    }
+	    public String postgressqlServer()
+	    {
+	        String value = properties.getProperty("ccs.postgres.server");
+	        if(value!= null)
+	            return value;
+	        else
+	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
+	    }
+	    public String postgressqlDataBaseName()
+	    {
+	        String value = properties.getProperty("ccs.postgres.database");
+	        if(value!= null)
+	            return value;
+	        else
+	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
+	    }
+	    public String postgressqlUser()
+	    {
+	        String value = properties.getProperty("ccs.postgres.user");
+	        if(value!= null)
+	            return value;
+	        else
+	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
+	    }
+	    public String postgressqlPassword()
+	    {
+	        String value = properties.getProperty("ccs.postgres.password");
+	        if(value!= null)
+	            return value;
+	        else
+	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
+	    }
 }
