@@ -3,7 +3,6 @@ Feature: This User story covers the ETE functionality from creating a product in
   @test
   Scenario: TC-TBD_Verify that newly created product from UI is available on Buyers Ui
     Given User logged in as "supplier" in admin panel
-    And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
     When User creates a product
