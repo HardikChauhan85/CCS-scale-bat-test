@@ -11,7 +11,7 @@ import cucumber.api.junit.Cucumber;
         glue={"com.scale.bat.stepdefs", "com.scale.bat.context"},
         monochrome = false,
         plugin = { "pretty", "html:target/cucumber-html-reports", "json:target/cucumber-html-reports/cucumber.json"}
-        , tags = "@a",dryRun = false)
+        , tags = "@test",dryRun = false)
 
 
 public class TestRunner {

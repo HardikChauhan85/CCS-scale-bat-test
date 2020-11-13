@@ -1,6 +1,7 @@
 package com.scale.bat.stepdefs;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.log4j.Logger;
 import com.scale.bat.businessPages.BuyersUIpage;
@@ -59,6 +60,19 @@ public class BuyerUiStepDefs {
 		case "Delete button":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().deleteButtonOnBasketElement());
 			break;
+		case "PLP image":
+			objectManager.getBuyersUIpage().navigateToPDPPage();
+			break;
+		case "Basket Link":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getBasketLink());
+			break;
+		case "Add to basket":
+			objectManager.getBuyersUIpage().addElementToBasket();
+			
+			break;
+		
+		
+
 		}
 	}
 
@@ -89,18 +103,20 @@ public class BuyerUiStepDefs {
 
 	@Then("verify the product details in buyers UI")
 	public void verify_the_product_details_in_buyers_UI() {
-		 objectManager.getBuyersUIpage().navigateToPDPPage();
-		 objectManager.getBuyersUIPDPPage().verifyProductDetails(scenarioContext.productDetails);
+		objectManager.getBuyersUIpage().navigateToPDPPage();
+		objectManager.getBuyersUIPDPPage().verifyProductDetails(scenarioContext.productDetails);
 	}
 
 	@Then("verify the product details should not be available on buyers UI")
 	public void verify_the_product_details_unavialable_on_buyers_UI() {
-		 objectManager.getBuyersUIpage().isElementPresent("0 results");
+		objectManager.getBuyersUIpage().isElementPresent("0 results");
 	}
-	
+
 	@Then("User Validate last updated product by supplier {string} is showing in PDP price table on buyers UI")
-	public void user_Validate_last_updated_product_by_supplier_is_showing_in_PDP_price_table_on_buyers_UI(String supplierName) {
-	    
-		objectManager.getBuyersUIPDPPage().verifyLastUpdatedProductDetails(scenarioContext.productDetails, supplierName);
+	public void user_Validate_last_updated_product_by_supplier_is_showing_in_PDP_price_table_on_buyers_UI(
+			String supplierName) {
+
+		objectManager.getBuyersUIPDPPage().verifyLastUpdatedProductDetails(scenarioContext.productDetails,
+				supplierName);
 	}
 }

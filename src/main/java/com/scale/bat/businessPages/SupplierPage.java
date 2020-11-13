@@ -29,10 +29,10 @@ public class SupplierPage extends Actions {
 	@FindBy(xpath = "//*[@id='vendor_name_field']/input")
 	private WebElement supplierName;
 	
-	@FindBy(xpath = "//*[@id='vendor_about_us']/textarea")
+	@FindBy(xpath = "//*[@id='vendor_about_us_field']")
 	private WebElement aboutUs;
 	
-	@FindBy(xpath = "//*[@id='vendor_contact_us']/textarea")
+	@FindBy(xpath = "//*[@id='vendor_contact_us_field']")
 	private WebElement contactUs;
 	
 	@FindBy(xpath = "//*[@id='s2id_vendor_state']")
@@ -45,15 +45,15 @@ public class SupplierPage extends Actions {
 
 	public void createSupplier() {
 		String date = new DateTimeUtils().dateWithSpecificFormatt("yyyyMMdd hhmmss");
-		clickElement(newSupplier);
 		assertTrue(newSupplier.isDisplayed());
+		clickElement(newSupplier);
 		enterText(supplierName, "Auto-".concat(date));
 		assertTrue(supplierName.isDisplayed());
 		clickElement(state);
+		clickElement(selectState);
 		assertTrue(state.isDisplayed());
 		assertTrue(aboutUs.isDisplayed());
 		assertTrue(contactUs.isDisplayed());
-		clickElement(selectState);
 		clickButton(createButton);
 		waitForSeconds(2);
 		log.info("Supplier created - " +"Auto-".concat(date));
