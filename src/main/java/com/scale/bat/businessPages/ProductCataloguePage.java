@@ -48,7 +48,7 @@ public class ProductCataloguePage extends Actions {
 	@FindBy(xpath = "//*[@id='s2id_product_tax_category_id']")
 	private WebElement taxCategory;
 
-	@FindBy(xpath = "//*[@id='select2-results-1']/li/div")
+	@FindBy(xpath = "//*[@id='select2-results-1']/li[2]/div")
 	private WebElement selectTaxCategory;
 
 	@FindBy(xpath = "//*[@id='product_available_on']")
