@@ -22,13 +22,16 @@ public class BuyersUIPDPPage extends Actions {
 	private Logger log = Log.getLogger(BuyersUIPDPPage.class);
 	private ConfigurationReader configReaderObj;
 	
-	@FindBy(xpath = "//*[@id='main-content']/div/div[2]/div[2]/p/span[2]")
+	//@FindBy(xpath = "//*[@id='main-content']/div/div[2]/div[2]/p/span[2]")
+	@FindBy(xpath ="//*[@class='bat-product__price--price']")
 	private WebElement priceOnPdP;
 	
-	@FindBy(xpath = "//*[@id='main-content']/div/div[2]/div[2]/p[3]/span[2]")
+	//@FindBy(xpath = "//*[@id='main-content']/div/div[2]/div[2]/p[3]/span[2]")
+	@FindBy(xpath = "//*[@class='bat-product__info--sku']")
 	private WebElement mpnNumber;
 	
-	@FindBy(xpath = "//*[@id='main-content']/div/div[2]/div[2]/p[3]/span[1]")
+	//@FindBy(xpath = "//*[@id='main-content']/div/div[2]/div[2]/p[3]/span[1]")
+	@FindBy(xpath = "//*[@class='bat-product__info--company']")
 	private WebElement manufaturer;
 
 	public BuyersUIPDPPage(WebDriver driver, Scenario scenario) {
@@ -40,7 +43,7 @@ public class BuyersUIPDPPage extends Actions {
 	}
 
 	public void verifyProductDetails(Map<String, Object> pDetails) {
-		assertTrue(getText(priceOnPdP).contains(pDetails.get("Price").toString()));
+		assertTrue(getText(priceOnPdP).replaceAll("[^a-zA-Z0-9]","").contains(pDetails.get("Price").toString().replaceAll("[^a-zA-Z0-9]","")));
 		assertEquals(getText(mpnNumber), pDetails.get("MPN").toString());
 		assertEquals(getText(manufaturer), pDetails.get("ManufacturerName").toString());
 		log.info("Validation completed on buyer UI");
@@ -56,6 +59,7 @@ public void verifyLastUpdatedProductDetails(Map<String, Object> pDetails, String
 		String StandardChargeProductUKMainland=pDetails.get("StandardChargeProductUKMainland").toString();
 		double TotalCostint=Double.parseDouble(Price);
 		double StandardChargeProductUKMainlandint=Double.parseDouble(StandardChargeProductUKMainland);
+		TotalCostint=TotalCostint+StandardChargeProductUKMainlandint;
 		String TotalCost= Double.toString(TotalCostint);
 		String LastUpdateProduct="//tbody[@class='govuk-table__body']/tr[1]/td[text()="+"'"+supplierName+"'"+"]"+"/following-sibling::td[2][text()="+"'"+SKU+"'"+"]"+"/following-sibling::td[text()="+"'"+Stock+"'"+"]"+"/following-sibling::td[contains (text(),"+"'"+Price+"')"+"]"+"/following-sibling::td[contains (text(),"+"'"+StandardChargeProductUKMainland+"')"+"]"+"/following-sibling::td[contains (text(),"+"'"+TotalCost+"')"+"]";
 		//Validate the latest updated Product price should be shown at the top of the price table if 2 products of the different supplier having cheapest price

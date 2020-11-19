@@ -109,7 +109,9 @@ public class BuyerUiStepDefs {
 
 	@Then("verify the product details should not be available on buyers UI")
 	public void verify_the_product_details_unavialable_on_buyers_UI() {
-		objectManager.getBuyersUIpage().isElementPresent("0 results");
+		//objectManager.getBuyersUIpage().isElementPresent("0 results");
+		objectManager.getBuyersUIpage().isElementPresent("No results found.");
+		
 	}
 
 	@Then("User Validate last updated product by supplier {string} is showing in PDP price table on buyers UI")
