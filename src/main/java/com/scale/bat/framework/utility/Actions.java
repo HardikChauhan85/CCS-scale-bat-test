@@ -20,6 +20,14 @@ public class Actions {
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 	}
+	
+	
+	
+	public void clickElementWithJavaScript(String xpath){
+        WebElement element = driver.findElement(By.xpath(xpath));
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
 
 	public void enterText(WebElement element, String text) {
 		waitForSeconds(1);
@@ -83,7 +91,7 @@ public class Actions {
 	}
 
 	public void selectItemFromDropDown(WebElement element, String itemName) {
-		wait.until(ExpectedConditions.elementToBeClickable(element));
+		//wait.until(ExpectedConditions.elementToBeClickable(element));
 		Select dropDown = new Select(element);
 		dropDown.selectByVisibleText(itemName);
 	}
@@ -124,6 +132,18 @@ public class Actions {
 	}
 
 	public void waitForLoad() {
+		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+			}
+		};
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(pageLoadCondition);
+	}
+	
+	
+	public void waitForLoad(WebDriver driver) {
 		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
 			@Override
 			public Boolean apply(WebDriver driver) {
@@ -228,6 +248,19 @@ public class Actions {
 			return false;
 		}
 	}
+	
+	public boolean isElementPresent(String fieldName, WebDriver driver ) {
+		waitForLoad(driver);
+		String XPATH = ".//*[contains(text(),'" + fieldName + "')]";
+		try {
+			driver.findElement(By.xpath(XPATH));
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+	
+	
 
 	public boolean isElementPresentByXpath(String xpath) {
 		waitForLoad();
@@ -269,6 +302,11 @@ public class Actions {
 	}
 
 	public void waitForAlert() {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.alertIsPresent());
+	}
+	
+	public void waitForAlert(WebDriver driver) {
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		wait.until(ExpectedConditions.alertIsPresent());
 	}

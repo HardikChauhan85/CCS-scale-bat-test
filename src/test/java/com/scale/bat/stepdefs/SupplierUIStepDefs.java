@@ -7,10 +7,12 @@ import com.scale.bat.framework.utility.PageObjectManager;
 import cucumber.api.java.en.Then;
 
 public class SupplierUIStepDefs {
+	
 	private PageObjectManager objectManager;
 	public ScenarioContext scenarioContext;
 
 	public SupplierUIStepDefs(TestContext testContextObj, ScenarioContext context) {
+		
 		testContextObj.getDriver();
 		this.objectManager = testContextObj.getObjectManager();
 		this.scenarioContext = context;
