@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -62,15 +64,29 @@ public class CSVUtils {
 		}
 		return content;
 	}
-	
-/*
- * First line starts as 1
- */
+
+	/*
+	 * First line starts as 1
+	 */
 	private void updateCSVForSpecificLine(int linNumber, List<String[]> csvBody, String[] lineToReplace)
 			throws IOException {
 		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
 			csvBody.set(linNumber - 1, lineToReplace);
 			writer.writeAll(csvBody);
+		}
+	}
+
+	public void createCSVfromResultSet(ResultSet rs) {
+		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
+
+			try {
+				writer.writeAll(rs, true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
