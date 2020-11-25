@@ -34,6 +34,13 @@ public class ProductCatalogueListPageStepDef {
 	public void user_clicks_on_show_link_to_view_products() {
 		objectManager.getProductCatalogueListPage().showProducts();
 	}
+	
+	@Given("Check if the product is present in a catalogue if yes then delete")
+	public void check_if_the_product_is_present_in_a_catalogue_if_yes_then_delete() {
+	    
+		objectManager.getProductCatalogueListPage().checkProductPresentInCatalogueIfYesThendelete();
+	}
+
 
 	@When("User creates a product")
 	public void user_creates_a_product() {

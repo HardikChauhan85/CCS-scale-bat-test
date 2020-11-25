@@ -20,6 +20,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import com.browserstack.local.Local;
+
 import cucumber.api.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -31,8 +33,8 @@ public class BrowserFactory {
 	public static final String URL = "";
 	String destination = null;
 	DesiredCapabilities caps = null;
-	public static final String USERNAME = "amolsharma2";
-	public static final String AUTOMATE_KEY = "ibXy5PxxuXNKSPNyvnXz";
+	public static final String USERNAME = "hardikchauhan5";
+	public static final String AUTOMATE_KEY = "T4pvSvoynQmmLRsWaayc";
 	public static final String browserStackURL = "https://" + USERNAME + ":" + AUTOMATE_KEY
 			+ "@hub-cloud.browserstack.com/wd/hub";
 
@@ -59,11 +61,16 @@ public class BrowserFactory {
 			WebDriverManager.iedriver().setup();
 			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
 			capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			capabilities.setCapability("ignoreZoomSetting", true);
+			capabilities.setCapability("ignoreProtectedModeSettings" , true);
 			driver = new InternetExplorerDriver(capabilities);
 			driver.manage().window().maximize();
 			break;
 		case "EDGE":
 			WebDriverManager.edgedriver().setup();
+			DesiredCapabilities capabilities1 = DesiredCapabilities.edge();
+			capabilities1.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 			EdgeDriverService service = EdgeDriverService.createDefaultService();
 			driver = new EdgeDriver(service);
 			driver.manage().window().maximize();
@@ -101,26 +108,177 @@ public class BrowserFactory {
 			driver = new ChromeDriver(options);
 			driver.manage().window().maximize();
 			break;
-
+		
 		case "BROWSERSTACK":
 			HashMap<String, String> bsLocalArgs = new HashMap<String, String>();
 			bsLocalArgs.put("key", AUTOMATE_KEY);
 			caps = new DesiredCapabilities();
-			caps.setCapability("os_version", "11");
+			
+			/*Local bsLocal = new Local();
+			try {
+				bsLocal.start(bsLocalArgs);
+				log.info(bsLocal.isRunning());
+				bsLocalArgs.put("forcelocal", "true");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+			
+				
+			
+			//Windows
+			
+			//BS Windows CHROME
+			caps.setCapability("os", "Windows");
+			caps.setCapability("os_version", "10");
+			caps.setCapability("browser", "Chrome");
+			caps.setCapability("browser_version", "latest");
+			caps.setCapability("browserstack.local", "false");
+			caps.setCapability("browserstack.selenium_version", "3.14.0");			
+			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			
+			
+			//BS Windows IE
+			
+			/*caps.setCapability("browserName", "IE");
+			caps.setCapability("browserVersion", "11.0");
+			HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+			browserstackOptions.put("os", "Windows");
+			browserstackOptions.put("osVersion", "10");
+			browserstackOptions.put("local", "false");
+			browserstackOptions.put("seleniumVersion", "3.5.2");
+			caps.setCapability("bstack:options", browserstackOptions);
+			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);*/
+			
+			
+			//BS Windows EDGE
+			/*caps.setCapability("browserName", "Edge");
+			caps.setCapability("browserVersion", "latest-beta");
+			HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+			browserstackOptions.put("os", "Windows");
+			browserstackOptions.put("osVersion", "10");
+			browserstackOptions.put("local", "false");
+			browserstackOptions.put("seleniumVersion", "3.5.2");
+			caps.setCapability("bstack:options", browserstackOptions);
+			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);*/
+			
+			
+			//BS Windows FIREFOX
+			/*caps.setCapability("browserName", "Firefox");
+			caps.setCapability("browserVersion", "latest-beta");
+			HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+			browserstackOptions.put("os", "Windows");
+			browserstackOptions.put("osVersion", "10");
+			browserstackOptions.put("local", "false");
+			browserstackOptions.put("seleniumVersion", "3.5.2");
+			caps.setCapability("bstack:options", browserstackOptions);
+			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);*/
+
+				
+			
+			//********************* MAC *********************************
+			
+						
+			//BS MAC SAFARI (Mojave)
+			/*caps.setCapability("browserName", "Safari");
+			caps.setCapability("browserVersion", "12.1");
+			HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+			browserstackOptions.put("os", "OS X");
+			browserstackOptions.put("osVersion", "Mojave");
+			browserstackOptions.put("local", "false");
+			browserstackOptions.put("seleniumVersion", "3.14.0");
+			caps.setCapability("bstack:options", browserstackOptions);
+			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);*/
+			
+			//BS MAC CHROME (Catalin)
+			/*caps.setCapability("browserName", "Chrome");
+			caps.setCapability("browserVersion", "latest-beta");
+			HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+			browserstackOptions.put("os", "OS X");
+			browserstackOptions.put("osVersion", "Catalina");
+			browserstackOptions.put("local", "false");
+			browserstackOptions.put("seleniumVersion", "3.14.0");
+			caps.setCapability("bstack:options", browserstackOptions);*/
+			
+			
+			//BS MAC FIREFOX (Catalin)
+			/*caps.setCapability("browserName", "Firefox");
+			caps.setCapability("browserVersion", "latest-beta");
+			HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+			browserstackOptions.put("os", "OS X");
+			browserstackOptions.put("osVersion", "Catalina");
+			browserstackOptions.put("local", "false");
+			browserstackOptions.put("seleniumVersion", "3.5.2");
+			caps.setCapability("bstack:options", browserstackOptions);
+			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);*/
+			
+			
+			//Mac Os
+			//BS MAC SAFARI (Catalina) NOT Working
+			/*caps.setCapability("browserName", "Safari");
+			caps.setCapability("browserVersion", "13.1");
+			HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+			browserstackOptions.put("os", "OS X");
+			browserstackOptions.put("osVersion", "Catalina");
+			browserstackOptions.put("local", "false");
+			browserstackOptions.put("seleniumVersion", "3.14.0");
+			caps.setCapability("bstack:options", browserstackOptions);
+			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);*/
+			
+			
+			
+					
+			//************ ANDROID ***********************************
+			
+			/*caps.setCapability("browser", "Chrome");
+			caps.setCapability("browser_version", "11.0");
+			caps.setCapability("os_version", "7.0");
+			caps.setCapability("device", "Samsung Galaxy S8");
+			caps.setCapability("real_mobile", "true");
+			caps.setCapability("browserstack.local", "false");*/
+		
+			//Android Samsung Galaxy S20 Chrome
+			/*caps.setCapability("os_version", "10.0");
+			caps.setCapability("device", "Samsung Galaxy S20");
+			caps.setCapability("real_mobile", "true");
+			caps.setCapability("browserstack.local", "false");*/
+			
+			//********************* IOS ******************************
+			
+			//Iphone8
+		/*	caps.setCapability("os_version", "11");
 			caps.setCapability("device", "iPhone 8 Plus");
 			caps.setCapability("real_mobile", "true");
+			caps.setCapability("browserstack.local", "false");*/
+			
+			//Iphone11
+			/*caps.setCapability("os_version", "13");
+			caps.setCapability("device", "iPhone 11");
+			caps.setCapability("real_mobile", "true");
 			caps.setCapability("browserstack.local", "false");
+			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);*/
+			
+			//***************************************************************
+			
+			
+
+			
+			//caps.setCapability("browserstack.local", "true");
 			caps.setCapability("name", scenario.getName());
 			caps.acceptInsecureCerts();
 			caps.setAcceptInsecureCerts(true);
 			driver = new RemoteWebDriver(new URL(browserStackURL), caps);
-			driver.manage().window().maximize();
+			//driver.manage().window().maximize();
+			
+
+			
 		}
 		return driver;
 	}
 
 	public void launchURL(String url) {
-		driver.get(url);
+		//driver.get(url);
+		driver.navigate().to(url);
 		log.info(URL + " launched");
 	}
 

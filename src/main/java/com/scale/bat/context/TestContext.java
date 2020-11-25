@@ -14,6 +14,8 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.assertthat.selenium_shutterbug.core.PageSnapshot;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
@@ -43,7 +45,9 @@ public class TestContext extends BrowserFactory {
 	public List<String> navigationButtonList;
 	public String allPageScreenshotFlag;
 	public ConfigurationReader configReader;
-
+	protected WebDriverWait wait;
+	
+	
 	@Before
 	public void setUp(Scenario scenario) throws MalformedURLException {
 		log.info("=================" + scenario.getName() + " execution starts" + "===================");
@@ -172,6 +176,8 @@ public class TestContext extends BrowserFactory {
 
 	@Given("User login to buyerUI")
 	public void user_login_to_BuyerUI() {
+		
+		objectManager.getBuyersUIpage().checkMenuButtonOnMobile();
 		objectManager.getBuyersUIpage().loginByuerUi(configReader.buyerUserName(), configReader.buyerpassword());
 	}
 
@@ -208,6 +214,7 @@ public class TestContext extends BrowserFactory {
 		return this.driver;
 	}
 
+	
 	public void takeSnapShot() {
 		// Code to take full page screenshot
 		ByteArrayOutputStream imageStream = new ByteArrayOutputStream();

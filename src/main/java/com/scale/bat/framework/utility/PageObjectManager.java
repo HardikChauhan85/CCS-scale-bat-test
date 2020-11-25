@@ -10,6 +10,8 @@ import com.scale.bat.businessPages.ProductCatalogueListPage;
 import com.scale.bat.businessPages.ProductCataloguePage;
 import com.scale.bat.businessPages.ProductDetailPage;
 import com.scale.bat.businessPages.SupplierPage;
+import com.scale.bat.context.TestContext;
+
 import cucumber.api.Scenario;
 
 public class PageObjectManager {
@@ -23,6 +25,7 @@ public class PageObjectManager {
 	private BuyersUIpage buyersUIpage;
 	private BuyersUIPDPPage buyersUIPDPPage;
 	private SupplierPage supplierPage;
+	private TakeScreenShot tekeScreenShot;
 
 	public PageObjectManager(WebDriver driver, Scenario scenario) {
 		this.driver = driver;
@@ -59,5 +62,9 @@ public class PageObjectManager {
 	
 	public SupplierPage getSupplierPage() {
 		return supplierPage == null ? supplierPage = new SupplierPage(driver,scenario) : supplierPage;
+	}
+	
+	public TakeScreenShot getScreeShot() {
+		return tekeScreenShot == null ? tekeScreenShot = new TakeScreenShot(driver,scenario) : tekeScreenShot;
 	}
 }
