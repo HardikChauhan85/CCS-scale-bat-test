@@ -9,10 +9,10 @@ import cucumber.api.junit.Cucumber;
         strict = false,
         features = {"src/test/resources/FeatureFiles/"},
         glue={"com.scale.bat.stepdefs", "com.scale.bat.context"},
-        monochrome = false,
+        monochrome = false,	
         plugin = { "pretty", "html:target/cucumber-html-reports", "json:target/cucumber-html-reports/cucumber.json"}
-        , tags = "@a",dryRun = false)
+        , tags = "@testSupplierFilterDone",dryRun = false)
 
-
+//plugin = {"json:Reports/cucumber-html-reports/cucumber.json"}
 public class TestRunner {
 }

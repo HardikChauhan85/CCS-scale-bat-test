@@ -53,6 +53,15 @@ public class BuyersUIpage extends Actions {
 	
 	@FindBy(xpath = "//*[@id='main-content']/div[2]/div[2]/ul/li/div/a/img")
 	private WebElement selectProduct;
+	
+	
+	@FindBy(xpath = "//*[@class='bat-header__menu-button bat-js-header-toggle']")
+	private WebElement mobileMenue;
+	
+	private String mobileMenueStr = "//*[@class='bat-header__menu-button bat-js-header-toggle']";
+	
+	
+	//*[@id="main-content"]/div/div[3]/div/h2
 
 	private Logger log = Log.getLogger(BuyersUIpage.class);
 
@@ -62,6 +71,17 @@ public class BuyersUIpage extends Actions {
 		PageFactory.initElements(driver, this);
 		this.wait = new WebDriverWait(super.driver, 30);
 	}
+	
+	public void checkMenuButtonOnMobile() {
+		
+		/*if(isElementPresentByXpath(mobileMenueStr)) {
+			clickElementXpath(mobileMenue);
+			log.info("User clicked on Menue button");
+		}*/
+		
+		
+	}
+	
 
 	public void loginByuerUi(String UserName, String Password) {
 		clickByLinkText(signIn);
@@ -86,6 +106,11 @@ public class BuyersUIpage extends Actions {
 	public void navigateToPLPPage() {
 		moveToelement(computing);
 		clickByLinkText(mobileDevices);
+	}
+	
+	public void addElementToBasket() {
+		clickElement(addToBasket);
+		isElementPresent("Item added to your basket");
 	}
 
 	public void addProductToBasket(int numberOfProducts) {
@@ -125,13 +150,18 @@ public class BuyersUIpage extends Actions {
 			break;
 
 		case "Basket":
-			assertTrue(isElementPresentByXpath(basketText));
+			assertTrue(isElementPresent(basketText));
 			log.info("Navigated to " + pageName);
 			break;
 
 		case "Confirmation screen":
 			waitForSeconds(2);
 			assertTrue((isElementPresentByXpath("//*[@class='bat-basket-item-added__buttons']/a")));
+			log.info("Navigated to " + pageName);
+			break;
+		case "PDP":
+			waitForSeconds(2);
+			assertTrue(isElementPresent("Marketing description"));
 			log.info("Navigated to " + pageName);
 			break;
 

@@ -18,6 +18,7 @@ import com.scale.bat.framework.utility.Actions;
 import com.scale.bat.framework.utility.Log;
 
 import cucumber.api.Scenario;
+import junit.framework.Assert;
 
 public class ProductCatalogueListPage extends Actions {
 
@@ -27,16 +28,18 @@ public class ProductCatalogueListPage extends Actions {
 	@FindBy(xpath = "//*[@class='actions']/a")
 	private WebElement show;
 
-	@FindBy(xpath = "//*[@id='s2id_q_vendor_name_eq']")
+	@FindBy(xpath = "//*[@id='s2id_q_vendor_name_eq']/following-sibling::select")
 	private WebElement supplierFilter;
 	
 	@FindBy(xpath = "//*[@id='select2-drop']/div/input")
+	//@FindBy(xpath = "//*[@id='s2id_q_vendor_name_eq']")
 	private WebElement supplierFilterTextBox;
 
 //	@FindBy(xpath = "//select[@id='q_vendor_name_eq']")
 //	private WebElement supplierFilter;
 
-	@FindBy(xpath = "//*[@id='s2id_q_lot_commercial_agreement_ref_eq']")
+	//@FindBy(xpath = "//*[@id='s2id_q_lot_commercial_agreement_ref_eq']")
+	@FindBy(xpath = "//*[@id='s2id_q_lot_commercial_agreement_ref_eq']/following-sibling::select")
 	private WebElement commercialAgreementRef;
 
 	@FindBy(xpath = "//*[@id='q_unpublished']")
@@ -82,7 +85,9 @@ public class ProductCatalogueListPage extends Actions {
 	@FindBy(xpath = "//*[@id='q_deleted_at_null']")
 	private WebElement deleteCheckBox;
 	
-
+	@FindBy(xpath = "//*[@id='content']/table/tbody/tr/td[7]/a[2]")
+	private WebElement deleteFirstProduct;
+	
 	
 	private String totalPaginationPageCountPLP="//ul[@class='pagination mt-4 ']/li";
 	private String lastPageButton="//li[@class='last next page-item']/a";
@@ -100,15 +105,48 @@ public class ProductCatalogueListPage extends Actions {
 	 */
 	public ProductCatalogueListPage(WebDriver driver, Scenario scenario) {
 		this.driver = driver;
+		//super.driver = driver;
 		this.scenario = scenario;
 		PageFactory.initElements(driver, this);
 		this.wait = new WebDriverWait(this.driver, 30);
+		
+		// New Line
+		//this.wait = new WebDriverWait(super.driver, 30);
+		//this.driver=super.driver;
 	}
+	
+	
 
 	public void showProducts() {
 		clickElement(show);
 		assertTrue("Header is different!! Please check vendor",getText(contentHeader).toLowerCase().contains("RM6147".toLowerCase()));
 		log.info("Supplier name is present on product catalogue header SCA-501");
+	}
+	
+	
+	public void checkProductPresentInCatalogueIfYesThendelete() {
+		
+		boolean element = isElementPresent("Add One", driver);
+		
+		System.out.println(element);
+		if(isElementPresent("Add One", driver)) {
+			
+			assertTrue("Product is not created successfully..", isElementPresent("Add One", driver));
+			log.info("Product is not present in the Supplier Catalouge");
+			
+		}else {
+			
+			clickElement(deleteFirstProduct);
+			waitForAlert(driver);
+			driver.switchTo().alert().accept();
+			waitForSeconds(2);
+			assertTrue("Product is not deleted successfully..", isElementPresent("Product has been deleted", driver));
+			
+			
+		}
+		
+		
+		
 	}
 
 	public void editProduct() {
@@ -127,28 +165,30 @@ public class ProductCatalogueListPage extends Actions {
 //			((JavascriptExecutor) driver).executeScript(
 //					"var select = arguments[0]; for(var i = 0; i < select.options.length; i++){ if(select.options[i].text == arguments[1]){ select.options[i].selected = true; } }",
 //					supplierFilter, value);
-			supplierFilter.click();
+			/*supplierFilter.click();
 			enterText(supplierFilterTextBox, value);
 			try {
 				new Robot().keyPress(KeyEvent.VK_ENTER);
 			} catch (AWTException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
+			
+			selectItemFromDropDownByJavascriptExecutor(driver,supplierFilter, value);
 			
 			break;
 		case "commercial agreement reference":
-			selectItemFromDropDown(commercialAgreementRef, value);
+			//selectItemFromDropDown(commercialAgreementRef, value);
+			selectItemFromDropDownByJavascriptExecutor(driver,commercialAgreementRefClick, value);
+			
+			
 			break;
-		case "unpulished":
+		case "unpublished":
 			clickElement(unpublishedCheckBox);
 			break;
 		case "published":
 			clickElement(publishedCheckBox);
 			break;
-			
-			
-			
 		case "publishedunpublished":
 			clickElement(publishedCheckBox);
 			clickElement(unpublishedCheckBox);
