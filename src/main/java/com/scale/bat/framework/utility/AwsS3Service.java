@@ -1,4 +1,4 @@
-/*package com.scale.bat.framework.utility;
+package com.scale.bat.framework.utility;
 
 import java.io.File;
 import java.util.List;
@@ -16,9 +16,9 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 public class AwsS3Service {
 	private Logger log = Log.getLogger(AwsS3Service.class);
-	//BasicAWSCredentials awsCred;
+	BasicAWSCredentials awsCred;
 	AmazonS3 s3Client;
-	//Regions clientRegion = Regions.EU_WEST_2;
+	Regions clientRegion = Regions.EU_WEST_2;
 
 	public AwsS3Service() {
 		awsCred = new BasicAWSCredentials("AKIAV2NOAX5T6QJZKTLQ", "fpek1pIuzeLG/g75w9BJM3EWxTXYlgTzpzWyxgmf");
@@ -27,9 +27,9 @@ public class AwsS3Service {
 	}
 
 	
-	 * bucketName - in which we will upload the file File - File from local
-	 * FileNameOnS3 - Name of the file which will be uploaded on S3 Folder - Folder
-	 * in bucket
+//	 * bucketName - in which we will upload the file File - File from local
+//	 * FileNameOnS3 - Name of the file which will be uploaded on S3 Folder - Folder
+//	 * in bucket
 	 
 	public void uploadFileToS3(String bucketName, String file, String fileNameOnS3, String folder) {
 
@@ -54,8 +54,8 @@ public class AwsS3Service {
 	}
 
 	
-	 * Deleting file from S3 bucket Bucket - Bucket name FileName - Name of the file
-	 * to be deleted
+//	 * Deleting file from S3 bucket Bucket - Bucket name FileName - Name of the file
+//	 * to be deleted
 	 
 	public void deleteFileFromS3(String bucket, String fileName, String folder) {
 		try {
@@ -66,7 +66,7 @@ public class AwsS3Service {
 	}
 
 	
-	 * Getting list of files in a bucket
+//	 * Getting list of files in a bucket
 	 
 	public List<S3ObjectSummary> listOfFiles(String bucket, String folderKey) {
 		ListObjectsRequest listObjectsRequest = new ListObjectsRequest().withBucketName(bucket).withPrefix(folderKey);
@@ -79,4 +79,3 @@ public class AwsS3Service {
 	}
 
 }
-*/

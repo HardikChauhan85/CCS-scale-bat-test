@@ -4,16 +4,17 @@ Feature: As a supplier, CCS administrator and Category manager,
 
 	#[US-291 (TC-SCA-425, SCA-426, SCA-427, SCA-428)], 
 	#[US-327(SCA-448, SCA-449, SCA-450, SCA-451, SCA-452, SCA-455, SCA-456, SCA-454, SCA-453, )]
-	@TestCSSAdminPCLP @Test1
+	@testAdminFilter
   Scenario Outline: CCS Admin should be able to filter products in product catalogue list page
     Given User logged in as "superadmin" in admin panel
-    And Authorisation dialoxg box is handled
+    #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
     And User counts the given filter value "<filterValue>" in the PCLP table "before" applying filter "<filter>"
     And User selects the value "<filterValue>" from the filter "<filter>"
     When User clicks on Search button
     Then User counts the given filter value "<filterValue>" in the PCLP table "after" applying filter "<filter>"
     And Verify the filter "<filter>" with result value "<filterValue>"
+    
     #And User logged out from the admin panel
     #And Close the browser
 		# New defect SCA-800
@@ -21,7 +22,7 @@ Feature: As a supplier, CCS administrator and Category manager,
 		
   Examples: 
   | filter   | filterValue |
-  | supplier | ShownTell  |
+  | supplier | cogautosupplier2  |
  	#|published|published|
   #|unpublished|unpublished|
   #|commercial agreement reference|RM6147|
@@ -35,11 +36,11 @@ Feature: As a supplier, CCS administrator and Category manager,
   
   
   
-  #[US-291 (TC-SCA-413, SCA-414, SCA-415, SCA-416)]
-  @TestSupplierPCLP @Test1
+  #[US-291 (TC-SCA-413, SCA-414, SCA-415, SCA-416)] Done
+  @testSupplierFilterDone
   Scenario Outline: Supplier should be able to filter products in product catalogue list page
-    Given User logged in as "supplier" in admin panel
-    And Authorisation dialoxg box is handled
+    Given User logged in as "supplier2" in admin panel
+    #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
     And User counts the given filter value "<filterValue>" in the PCLP table "before" applying filter "<filter>"
     And User selects the value "<filterValue>" from the filter "<filter>"
@@ -53,12 +54,12 @@ Feature: As a supplier, CCS administrator and Category manager,
       | published                      | published             |
       | unpublished                    | unpublished           |
       | publishedunpublished           | published&unpublished |
-      #| publishedCAR                   | published&RM6147      |
+      | publishedCAR                   | published&RM6147      |
       | unpublishedCAR                 | unpublished&RM6147    |
 
 
 	#[US-291 (TC-SCA-370, SCA-398, SCA-399, SCA-400, SCA-401, SCA-402, SCA-403)]
-  @TestCategoryManagerPCLP @Test1
+  @test
   Scenario Outline: Category Manager should be able to filter products in product catalogue list page
     Given User logged in as "categoryManager" in admin panel
     And Authorisation dialoxg box is handled
@@ -85,7 +86,7 @@ Feature: As a supplier, CCS administrator and Category manager,
 
 	#[US-291 (TC-SCA-429, SCA-430, SCA-431, SCA-435, SCA-432)]
   # PRODUCT CATALOGUE PAGE
-  @TestCSSAdminFilterInPCP @Test1
+  @test
   Scenario Outline: CCS Admin should be able to filter products in product catalogue page
     Given User logged in as "superadmin" in admin panel
     And Authorisation dialoxg box is handled
@@ -114,9 +115,9 @@ Feature: As a supplier, CCS administrator and Category manager,
   
   #Due to defect not able to test
   # PRODUCT CATALOGUE PAGE
-  @TestSupplierFilterInPCP
+  @test
   Scenario Outline: CCS Admin should be able to filter products in product catalogue page
-    Given User logged in as "supplier" in admin panel
+    Given User logged in as "supplier2" in admin panel
     And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
     #And User selects the value "<supplierValue>" from the filter "<supplierFilter>"
@@ -139,7 +140,7 @@ Feature: As a supplier, CCS administrator and Category manager,
       | supplier    | QACogTestSupplier  | publisheddelete | Published&Deleted   |
 
 	#[US-291 (TC-SCA-404, SCA-405, SCA-406, SCA-407, SCA-408)]
-  @TestCMFilterInPCP @Test1
+  @test
   Scenario Outline: CCS Admin should be able to filter products in product catalogue page
     Given User logged in as "categoryManager" in admin panel
     And Authorisation dialoxg box is handled

@@ -14,6 +14,8 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.assertthat.selenium_shutterbug.core.PageSnapshot;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
@@ -43,7 +45,9 @@ public class TestContext extends BrowserFactory {
 	public List<String> navigationButtonList;
 	public String allPageScreenshotFlag;
 	public ConfigurationReader configReader;
-
+	protected WebDriverWait wait;
+	
+	
 	@Before
 	public void setUp(Scenario scenario) throws MalformedURLException {
 		log.info("=================" + scenario.getName() + " execution starts" + "===================");
@@ -94,74 +98,74 @@ public class TestContext extends BrowserFactory {
 //		if ((configReader.get("browserName")).equals("BROWSERSTACK")) {
 //			launchURL(configReader.get("ccs.admin.panel.urlforAuth"));
 //		} else {
-//			// waitForSeconds();
-//			Thread.sleep(500);
-//			Robot robot = new Robot();
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_S);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_C);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_A);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_L);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_E);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_A);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_D);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_M);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_I);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_N);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_TAB);
-//			Thread.sleep(100);
-//
-//			robot.keyPress(KeyEvent.VK_S);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_P);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_A);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_R);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_K);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_SHIFT);
-//			robot.keyPress(KeyEvent.VK_S);
-//			robot.keyRelease(KeyEvent.VK_SHIFT);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_C);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_A);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_L);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_E);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_SHIFT);
-//			robot.keyPress(KeyEvent.VK_A);
-//			robot.keyRelease(KeyEvent.VK_SHIFT);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_I);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_R);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_SHIFT);
-//			robot.keyPress(KeyEvent.VK_3);
-//			robot.keyRelease(KeyEvent.VK_SHIFT);
-//			Thread.sleep(100);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_TAB);
-//			Thread.sleep(100);
-//			robot.keyPress(KeyEvent.VK_ENTER);
-//			Thread.sleep(100);
-//		}
-	}
+			// waitForSeconds();
+			Thread.sleep(500);
+			Robot robot = new Robot();
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_S);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_C);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_A);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_L);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_E);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_A);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_D);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_M);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_I);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_N);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_TAB);
+			Thread.sleep(100);
+
+			robot.keyPress(KeyEvent.VK_S);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_P);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_A);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_R);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_K);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_SHIFT);
+			robot.keyPress(KeyEvent.VK_S);
+			robot.keyRelease(KeyEvent.VK_SHIFT);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_C);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_A);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_L);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_E);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_SHIFT);
+			robot.keyPress(KeyEvent.VK_A);
+			robot.keyRelease(KeyEvent.VK_SHIFT);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_I);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_R);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_SHIFT);
+			robot.keyPress(KeyEvent.VK_3);
+			robot.keyRelease(KeyEvent.VK_SHIFT);
+			Thread.sleep(100);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_TAB);
+			Thread.sleep(100);
+			robot.keyPress(KeyEvent.VK_ENTER);
+			Thread.sleep(100);
+		}
+	
 
 	@Given("User navigates to BuyerUI")
 	public void user_navigates_to_BuyerUI() throws IOException, AWTException, InterruptedException {
@@ -172,6 +176,8 @@ public class TestContext extends BrowserFactory {
 
 	@Given("User login to buyerUI")
 	public void user_login_to_BuyerUI() {
+		
+		objectManager.getBuyersUIpage().checkMenuButtonOnMobile();
 		objectManager.getBuyersUIpage().loginByuerUi(configReader.buyerUserName(), configReader.buyerpassword());
 	}
 
@@ -208,6 +214,7 @@ public class TestContext extends BrowserFactory {
 		return this.driver;
 	}
 
+	
 	public void takeSnapShot() {
 		// Code to take full page screenshot
 		ByteArrayOutputStream imageStream = new ByteArrayOutputStream();

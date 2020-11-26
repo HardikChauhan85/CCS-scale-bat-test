@@ -46,10 +46,16 @@ public class ProductCataloguePage extends Actions {
 	private WebElement SKU;
 
 	@FindBy(xpath = "//*[@id='s2id_product_tax_category_id']")
+	//@FindBy(xpath = "//*[@id='s2id_product_tax_category_id']/a/span[2]")
 	private WebElement taxCategory;
+	
+	//private String taxCategoryStr = "//*[@id='s2id_product_tax_category_id']/a/span[2]";
+	private String taxCategoryStr = "//*[@id='s2id_product_tax_category_id']";
 
-	@FindBy(xpath = "//*[@id='select2-results-1']/li/div")
+	@FindBy(xpath = "//*[@id='select2-results-1']/li[2]/div")
 	private WebElement selectTaxCategory;
+	
+	//private String selectTaxCategoryStr = "//*[@id='select2-results-1']/li[2]/div";
 
 	@FindBy(xpath = "//*[@id='product_available_on']")
 	private WebElement publishFromDate;
@@ -99,10 +105,11 @@ public class ProductCataloguePage extends Actions {
 	public void createNewProduct(JSONObject jObj) {
 		clickElement(newProductButton);
 		enterText(mpnNumberTextBox, jObj.getString("MPN"));
+		waitForSeconds(2);
 		clickElement(manufacturerName);
-		waitForSeconds(2);
+		waitForSeconds(3);
 		enterText(manufacturerNameInput, jObj.getString("ManufacturerName"));
-		waitForSeconds(2);
+		waitForSeconds(3);
 		selectManufacturer(jObj.getString("ManufacturerName"));
 		waitForSeconds(2);
 		clickElement(findButtonOnNewProduct);
@@ -113,12 +120,20 @@ public class ProductCataloguePage extends Actions {
 		//enterText(SKU, "SKU00");
 		//clickElement(standardDeliveryCheckBox);
 		enterText(StandardChargeProductUKMainland, jObj.getString("StandardChargeProductUKMainland"));
-		enterText(StandardChargeBasket, jObj.getString("StandardChargeBasket"));
+		
 		enterText(nextDayChargeProduct, jObj.getString("nextDayChargeProduct"));
 		enterText(nextDayChargeBasket, jObj.getString("nextDayChargeBasket"));
 		enterText(publishFromDate, new DateTimeUtils().dateWithSpecificFormatt("yyyy/MM/dd"));
+		enterText(StandardChargeBasket, jObj.getString("StandardChargeBasket"));
+		waitForSeconds(2);
 		clickElement(taxCategory);
+		//clickElementWithJavaScript(taxCategoryStr);
+		waitForSeconds(2);
+		
+		
 		clickElement(selectTaxCategory);
+		//clickElementWithJavaScript(selectTaxCategoryStr);
+		
 		enterText(StandardChargeProductUKNonMainland, jObj.getString("StandardChargeProductUKNonMainland"));
 		enterText(StandardDeliveryTimeIndays, jObj.getString("StandardDeliveryTimeIndays"));
 		clickElement(createProductButton);

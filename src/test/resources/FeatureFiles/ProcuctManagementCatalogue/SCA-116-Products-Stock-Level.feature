@@ -3,7 +3,7 @@ Feature: As a Supplier,
   I MUST be able to maintain (create, delete, update) my local product stock levels, 
   So that potential buyers know how much of the product they can order from me
 
-  @a
+  @test
   Scenario: SCA-384_Verify that supplier is able to update the stock of newly created product
   #Need to add a script to add new product
     Given User logged in as "supplier" in admin panel
