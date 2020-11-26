@@ -69,12 +69,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.browserstack</groupId>
-			<artifactId>browserstack-local-java</artifactId>
-			<version>1.0.6</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
 			<version>${selenium.webdriver.version}</version>
@@ -112,6 +106,12 @@
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-core</artifactId>
 			<version>${cucumber.version}</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>4.2.2</version>
 		</dependency>
 
 		<dependency>
@@ -201,11 +201,7 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.10.0.pr1</version>
 		</dependency>
-		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>4.2.2</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
