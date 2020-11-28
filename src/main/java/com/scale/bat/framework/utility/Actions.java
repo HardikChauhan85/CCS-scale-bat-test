@@ -90,6 +90,12 @@ public class Actions {
 		return elementList;
 	}
 
+	public WebElement getWebElementByXpath(String elementClassName) {
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementClassName)));
+		WebElement elementList = driver.findElement(By.xpath(elementClassName));
+		return elementList;
+	}
+	
 	public void selectItemFromDropDown(WebElement element, String itemName) {
 		//wait.until(ExpectedConditions.elementToBeClickable(element));
 		Select dropDown = new Select(element);

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.scale.bat.businessPages.BuyersUIpage;
 import com.scale.bat.context.ScenarioContext;
 import com.scale.bat.context.TestContext;
+import com.scale.bat.framework.utility.ConfigurationReader;
 import com.scale.bat.framework.utility.DateTimeUtils;
 import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
@@ -23,11 +24,13 @@ public class ProductCatalogueListPageStepDef {
 	private PageObjectManager objectManager;
 	public ScenarioContext scenarioContext;
 	private Logger log = Log.getLogger(BuyersUIpage.class);
+	private ConfigurationReader configReaderObj;
 
 	public ProductCatalogueListPageStepDef(TestContext testContextObj, ScenarioContext context) {
 		testContextObj.getDriver();
 		objectManager = testContextObj.getObjectManager();
 		this.scenarioContext = context;
+		configReaderObj = new ConfigurationReader();
 	}
 
 	@And("User clicks on show link to view products")
@@ -133,7 +136,9 @@ public class ProductCatalogueListPageStepDef {
 	// Hardcoded value is provided for now. Hard code value will be removed later
 	@Then("User filter the catalogue list page using filter \"([^\"]*)\"")
 	public void filter_product_catalogue_list_page(String filtertype) {
-		scenarioContext.setKeyValue(filtertype, "Vendor 4.0");
+		String SupplierName=configReaderObj.adminPanelSupplierName(filtertype);
+		scenarioContext.setKeyValue(filtertype, SupplierName);
+		//properties.getProperty("ccs.admin.panel.username.userrolename."+filtertype.toLowerCase();
 		objectManager.getProductCatalogueListPage().filterData(filtertype, scenarioContext.getContext(filtertype));
 	}
 

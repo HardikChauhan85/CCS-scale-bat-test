@@ -145,10 +145,10 @@ Feature: This User story covers the ETE functionality from creating a product in
     Then verify the product details should not be available on buyers UI
     
     
-  #[US-291
+  #[US-291] # PRODUCT CATALOGUE LIST PAGE
   @testE2E
-  Scenario Outline: Supplier should be able to filter products in product catalogue list page
-    Given User logged in as "supplier2" in admin panel
+  Scenario Outline: CCS Admin should be able to filter products in product catalogue list page
+    Given User logged in as "superadmin" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
     And User counts the given filter value "<filterValue>" in the PCLP table "before" applying filter "<filter>"
@@ -158,8 +158,39 @@ Feature: This User story covers the ETE functionality from creating a product in
     And Verify the filter "<filter>" with result value "<filterValue>"
 
     Examples: 
-      | filter                         | filterValue           |
-      | published                      | published             |
-      | unpublished                    | unpublished           |
+      | filter      | filterValue      |
+      | supplier    | cogautosupplier2 |
+      | published   | published        |
+      | unpublished | unpublished      |
+      
+      
+  #[US-291] # PRODUCT CATALOGUE PAGE
+  @testE2E
+  Scenario Outline: CCS Admin should be able to filter products in product catalogue page
+    Given User logged in as "superadmin" in admin panel
+    #And Authorisation dialoxg box is handled
+    And User click on "productcatalogues" link on main sidebar
+    And User selects the value "<supplierValue>" from the filter "<supplierFilter>"
+    When User clicks on Search button
+    And User clicks on show link to view products
+    #And User selects the per page count "125"
+    And User checks the count of filter value "<filterValue>" present in the PCP result list "before" applying filter "<filter>"
+    And User selects the value "<filterValue>" from the filter "<filter>"
+    When User clicks on Search button
+    #And User selects the per page count "125"
+    And User checks the count of filter value "<filterValue>" present in the PCP result list "after" applying filter "<filter>"
+    And Verify the filter "<filter>" with result value "<supplierValue>" 
+
+    Examples: 
+     |supplierFilter| supplierValue   | filter    | filterValue |
+     |supplier      |cogautosupplier2	|published 	| published   |
+		 |supplier			|cogautosupplier2 |unpublished|unpublished|
+		 |supplier			|cogautosupplier2 |MPN				|DT-740|
+		 |supplier			|cogautosupplier2 |SKU				|SKU22|
+  	 |supplier    	|cogautosupplier2 | productname | Kyocera FS-7002 Plus - Printer|
+  
+      
+      
+      
      
     

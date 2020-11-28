@@ -59,9 +59,9 @@ public class BuyersUIpage extends Actions {
 	private WebElement mobileMenue;
 	
 	private String mobileMenueStr = "//*[@class='bat-header__menu-button bat-js-header-toggle']";
+	private String totalNoOfProductInBasket="//li[@class='bat-basket__item']";
 	
 	
-	//*[@id="main-content"]/div/div[3]/div/h2
 
 	private Logger log = Log.getLogger(BuyersUIpage.class);
 
@@ -126,7 +126,20 @@ public class BuyersUIpage extends Actions {
 
 		} while (i <= numberOfProducts);
 	}
-
+	
+	
+	public void removeProductsFromTheBasket() {
+		clickElement(basketLink);
+		int getTotalNoOfProductInBasket=getElementsSizeByXpath(totalNoOfProductInBasket,super.driver);
+		for(int i=1; i<=getTotalNoOfProductInBasket;i++) {
+			if (isElementPresentByXpath("//li[@class='bat-basket__item'][" + i + "]//div[@class='bat-basket-item__actions']/button[2]")) {
+				WebElement abc = getWebElementByXpath("//li[@class='bat-basket__item'][" + i + "]//div[@class='bat-basket-item__actions']/button[2]");
+				clickElement(abc);
+			}
+		}
+	}
+	
+	
 	public void compareProducts(int numberOfProducts) {
 		navigateToPLPPage();
 		List<WebElement> listOfProducts = super.driver.findElements(
