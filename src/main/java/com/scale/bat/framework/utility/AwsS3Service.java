@@ -1,4 +1,4 @@
-package com.scale.bat.framework.utility;
+/*package com.scale.bat.framework.utility;
 
 import java.io.File;
 import java.util.List;
@@ -79,3 +79,4 @@ public class AwsS3Service {
 	}
 
 }
+*/

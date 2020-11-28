@@ -120,7 +120,6 @@ public class ProductCataloguePage extends Actions {
 		//enterText(SKU, "SKU00");
 		//clickElement(standardDeliveryCheckBox);
 		enterText(StandardChargeProductUKMainland, jObj.getString("StandardChargeProductUKMainland"));
-		
 		enterText(nextDayChargeProduct, jObj.getString("nextDayChargeProduct"));
 		enterText(nextDayChargeBasket, jObj.getString("nextDayChargeBasket"));
 		enterText(publishFromDate, new DateTimeUtils().dateWithSpecificFormatt("yyyy/MM/dd"));

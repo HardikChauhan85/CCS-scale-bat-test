@@ -30,6 +30,12 @@ public class BuyerUiStepDefs {
 	public void user_add_product_in_basket(int numberOfProducts) {
 		objectManager.getBuyersUIpage().addProductToBasket(numberOfProducts);
 	}
+	
+	@And("User removes all the products from the basket")
+	public void user_removes_all_the_products_from_the_basket() {
+	    
+		objectManager.getBuyersUIpage().removeProductsFromTheBasket();
+	}
 
 	@When("User add {int} products to compare")
 	public void user_add_product_to_compare(int numberOfProducts) {

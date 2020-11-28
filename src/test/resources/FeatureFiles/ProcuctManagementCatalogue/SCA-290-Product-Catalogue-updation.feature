@@ -3,10 +3,10 @@ Feature: As a supplier,
   after I have updated a product or a product catalogue, I should be informed that a product/product catalogue is not published
   So that I know that the changes I’ve made are not live.
 
-  @test
+  @confidence
   Scenario: SCA-524_Verify that product updated successfully message is displayed after updating a product
     Given User logged in as "supplier" in admin panel
-    And Authorisation dialoxg box is handled
+    #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
     And User clicks on edit button to view product details
@@ -14,10 +14,10 @@ Feature: As a supplier,
     #Assert the values in database
     Then A successful message should be displayed
 
-  @test
+  @confidence
   Scenario: SCA-525_Verify that error message is displayed when a empty field is updated on a mandatory field
     Given User logged in as "supplier" in admin panel
-    And Authorisation dialoxg box is handled
+    #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
     And User clicks on edit button to view product details
