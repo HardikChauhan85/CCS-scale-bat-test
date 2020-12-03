@@ -28,6 +28,7 @@ import com.scale.bat.framework.utility.PageObjectManager;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
+import cucumber.api.java.AfterStep;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;

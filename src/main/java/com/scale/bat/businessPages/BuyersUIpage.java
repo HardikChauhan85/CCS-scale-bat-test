@@ -97,6 +97,7 @@ public class BuyersUIpage extends Actions {
 		enterText(search, product);
 		waitForSeconds(1);
 		clickElement(searchButton);
+		waitForSeconds(2);
 	}
 
 	public void navigateToPDPPage() {
