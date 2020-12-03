@@ -113,6 +113,7 @@ public class ProductCataloguePage extends Actions {
 		selectManufacturer(jObj.getString("ManufacturerName"));
 		waitForSeconds(2);
 		clickElement(findButtonOnNewProduct);
+		waitForSeconds(1);
 		enterText(price, jObj.getString("Price"));
 		enterText(lockStockVolume, jObj.getString("LocalStockVolume"));
 		enterText(UNSPSC, "UNSPSC-Num");

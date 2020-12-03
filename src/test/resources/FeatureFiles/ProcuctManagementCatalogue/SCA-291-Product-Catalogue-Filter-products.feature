@@ -129,13 +129,13 @@ Feature: As a supplier, CCS administrator and Category manager,
     And Verify the filter "<filter>" with result value "<supplierValue>"
 
     Examples: 
-      | supplierFilter | supplierValue | filter | filterValue |
-      |supplier			|cogautosupplier2	|published	|published	|
-      |supplier			|cogautosupplier2	|unpublished	|unpublished|
-      |supplier			|cogautosupplier2	|publishedunpublished	|Published&Unpublished|
-      |supplier			|cogautosupplier2	|MPN	|DT-740|
-      | supplier    | cogautosupplier2   | SKU    | SKU22       |
-      | supplier    | cogautosupplier2  | publisheddelete | Published&Deleted   |
+      |supplierFilter | supplierValue 	| filter | filterValue |
+      |supplier				|cogautosupplier2	|published	|published	|
+      |supplier				|cogautosupplier2	|unpublished	|unpublished|
+      |supplier				|cogautosupplier2	|publishedunpublished	|Published&Unpublished|
+      |supplier				|cogautosupplier2	|MPN	|DT-740|
+      |supplier    		|cogautosupplier2 | SKU    | SKU22       |
+      |supplier    		|cogautosupplier2  | publisheddelete | Published&Deleted   |
 
 	#[US-291 (TC-SCA-404, SCA-405, SCA-406, SCA-407, SCA-408)]
   @confidence
