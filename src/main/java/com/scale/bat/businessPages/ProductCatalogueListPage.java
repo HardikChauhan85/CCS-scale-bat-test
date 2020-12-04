@@ -118,6 +118,7 @@ public class ProductCatalogueListPage extends Actions {
 	
 
 	public void showProducts() {
+		waitForSeconds(2);
 		clickElement(show);
 		assertTrue("Header is different!! Please check vendor",getText(contentHeader).toLowerCase().contains("RM6147".toLowerCase()));
 		log.info("Supplier name is present on product catalogue header SCA-501");
@@ -125,7 +126,7 @@ public class ProductCatalogueListPage extends Actions {
 	
 	
 	public void checkProductPresentInCatalogueIfYesThendelete() {
-		
+		waitForSeconds(2);
 		boolean element = isElementPresent("Add One", driver);
 		
 		System.out.println(element);
@@ -135,7 +136,7 @@ public class ProductCatalogueListPage extends Actions {
 			log.info("Product is not present in the Supplier Catalouge");
 			
 		}else {
-			
+			waitForSeconds(1);
 			clickElement(deleteFirstProduct);
 			waitForAlert(driver);
 			driver.switchTo().alert().accept();

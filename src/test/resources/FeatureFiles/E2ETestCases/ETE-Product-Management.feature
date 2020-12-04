@@ -1,7 +1,7 @@
 Feature: This User story covers the ETE functionality from creating a product in admin UI to validating the product in Buyer's UI#
 
   @testE2E
-  Scenario: TC-TBD_Verify that product should not be available in the catalogue of the supplier1 in supplier admin
+  Scenario: TC-TBD_Verify that product should not be available in the catalogue of the supplier1 in supplier admin_1
     Given User logged in as "supplier" in admin panel
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
@@ -9,7 +9,7 @@ Feature: This User story covers the ETE functionality from creating a product in
     And User log off and close the application
 
   @testE2E
-  Scenario: TC-TBD_Verify that product should not be available in the catalogue of the supplier2 in supplier admin
+  Scenario: TC-TBD_Verify that product should not be available in the catalogue of the supplier2 in supplier admin_2
     Given User logged in as "supplier1" in admin panel
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
@@ -17,7 +17,7 @@ Feature: This User story covers the ETE functionality from creating a product in
     And User log off and close the application
 
   @testE2E
-  Scenario: TC-TBD_Verify that newly created product by Supplier1 from UI is available on Buyers Ui
+  Scenario: TC-TBD_Verify that newly created product by Supplier1 from UI is available on Buyers Ui_3
     Given User logged in as "supplier" in admin panel
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
@@ -39,7 +39,7 @@ Feature: This User story covers the ETE functionality from creating a product in
 
   #
   @testE2E
-  Scenario: TC-TBD_Verify that newly created product by Supplier2 from UI is available on Buyers Ui
+  Scenario: TC-TBD_Verify that newly created product by Supplier2 from UI is available on Buyers Ui_4
     Given User logged in as "supplier1" in admin panel
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
@@ -64,7 +64,7 @@ Feature: This User story covers the ETE functionality from creating a product in
   #
   #
   @testE2E
-  Scenario: TC-TBD_Verify that Supplier1 updated product from UI is available on Buyers Ui with updates
+  Scenario: TC-TBD_Verify that Supplier1 updated product from UI is available on Buyers Ui with updates_5
     Given User logged in as "supplier" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
@@ -101,7 +101,7 @@ Feature: This User story covers the ETE functionality from creating a product in
   #Then verify the product details in buyers UI
   #
   @testE2E
-  Scenario: TC-TBD_Verify that Supplier1 unpublished product from UI is available on Buyers Ui with updates
+  Scenario: TC-TBD_Verify that Supplier1 unpublished product from UI is available on Buyers Ui with updates_6
     Given User logged in as "supplier" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
@@ -118,7 +118,7 @@ Feature: This User story covers the ETE functionality from creating a product in
 
   #
   @testE2E
-  Scenario: TC-TBD_Verify that Supplier1 deleted product from UI is not available on Buyers Ui with updates
+  Scenario: TC-TBD_Verify that Supplier1 deleted product from UI is not available on Buyers Ui with updates_7
     Given User logged in as "supplier" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
@@ -135,7 +135,7 @@ Feature: This User story covers the ETE functionality from creating a product in
   #
   #To Delete the Supplier1 product not a part of E2E TC
   @testE2E
-  Scenario: TC-TBD_Verify that Supplier2 deleted product from UI is not available on Buyers Ui with updates
+  Scenario: TC-TBD_Verify that Supplier2 deleted product from UI is not available on Buyers Ui with updates_8
     Given User logged in as "supplier1" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
@@ -151,7 +151,7 @@ Feature: This User story covers the ETE functionality from creating a product in
 
   #[US-291] # PRODUCT CATALOGUE LIST PAGE
   @testE2E
-  Scenario Outline: CCS Admin should be able to filter products in product catalogue list page
+  Scenario Outline: CCS Admin should be able to filter products in product catalogue list page_9
     Given User logged in as "superadmin" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
@@ -169,7 +169,7 @@ Feature: This User story covers the ETE functionality from creating a product in
 
   #[US-291] # PRODUCT CATALOGUE PAGE
   @testE2E
-  Scenario Outline: CCS Admin should be able to filter products in product catalogue page
+  Scenario Outline: CCS Admin should be able to filter products in product catalogue page_10
     Given User logged in as "superadmin" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
