@@ -31,8 +31,8 @@ public class BrowserFactory {
 	public static final String URL = "";
 	String destination = null;
 	DesiredCapabilities caps = null;
-	public static final String USERNAME = "hardikchauhan5";
-	public static final String AUTOMATE_KEY = "T4pvSvoynQmmLRsWaayc";
+	public static final String USERNAME = "";
+	public static final String AUTOMATE_KEY = "";
 	public static final String browserStackURL = "https://" + USERNAME + ":" + AUTOMATE_KEY
 			+ "@hub-cloud.browserstack.com/wd/hub";
 
