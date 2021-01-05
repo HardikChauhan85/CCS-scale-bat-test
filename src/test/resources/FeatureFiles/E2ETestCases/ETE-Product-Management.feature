@@ -20,7 +20,7 @@ Feature: This User story covers the ETE functionality from creating a product in
   
    
   
-  @testE2E
+  @testE2E @New
   Scenario: TC-TBD_Verify that newly created product by Supplier1 from UI is available on Buyers Ui
     Given User logged in as "supplier" in admin panel
     #And Authorisation dialoxg box is handled
