@@ -31,8 +31,8 @@ public class BrowserFactory {
 	public static final String URL = "";
 	String destination = null;
 	DesiredCapabilities caps = null;
-	public static final String USERNAME = "hardikchauhan5";
-	public static final String AUTOMATE_KEY = "T4pvSvoynQmmLRsWaayc";
+	public static final String USERNAME = "";
+	public static final String AUTOMATE_KEY = "";
 	public static final String browserStackURL = "https://" + USERNAME + ":" + AUTOMATE_KEY
 			+ "@hub-cloud.browserstack.com/wd/hub";
 
@@ -131,9 +131,13 @@ public class BrowserFactory {
 			caps.setCapability("os_version", "10");
 			caps.setCapability("browser", "Chrome");
 			caps.setCapability("browser_version", "latest");
+			caps.setCapability("resolution", "1280x800");
 			caps.setCapability("browserstack.local", "false");
 			caps.setCapability("browserstack.selenium_version", "3.14.0");			
 			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			
+			
+			
 			
 			
 			//BS Windows IE

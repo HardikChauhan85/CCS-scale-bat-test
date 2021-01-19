@@ -43,11 +43,16 @@ public class BuyersUIPDPPage extends Actions {
 	}
 
 	public void verifyProductDetails(Map<String, Object> pDetails) {
+		waitForSeconds(2);
 		assertTrue(getText(priceOnPdP).replaceAll("[^a-zA-Z0-9]","").contains(pDetails.get("Price").toString().replaceAll("[^a-zA-Z0-9]","")));
 		assertEquals(getText(mpnNumber), pDetails.get("MPN").toString());
 		assertEquals(getText(manufaturer), pDetails.get("ManufacturerName").toString());
 		log.info("Validation completed on buyer UI");
 	}
+	
+	
+	
+	
 	
 public void verifyLastUpdatedProductDetails(Map<String, Object> pDetails, String Supplier) {
 		
