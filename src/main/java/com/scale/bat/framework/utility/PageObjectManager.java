@@ -31,7 +31,7 @@ public class PageObjectManager {
 	private BuyersUIPDPPage buyersUIPage;
 	private BuyersUIMyListPage buyersUIMyListPage;
 	private BuyersUIBasketPage buyersUIBasketPage;
-
+	
 	public PageObjectManager(WebDriver driver, Scenario scenario) {
 		this.driver = driver;
 		this.scenario = scenario;
