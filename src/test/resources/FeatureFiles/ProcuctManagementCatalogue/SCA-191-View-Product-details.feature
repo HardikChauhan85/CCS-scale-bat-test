@@ -31,7 +31,7 @@ Feature: As an End User,
   And User clicks on "Basket Link" in buyers UI
   Then "Basket" is shown to the buyer
   
-  @confidence 
+  @confidence
   Scenario: TC-1038_Verify that User is able to view product details on cliking image or text from confirmation page
     Given User navigates to BuyerUI
     #And Authorisation dialoxg box is handled

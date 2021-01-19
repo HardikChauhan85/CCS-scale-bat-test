@@ -77,6 +77,13 @@ public class Actions {
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(XPATH)));
 		return element.getText();
 	}
+	
+	public String getTextXpath(String fieldName) {
+		String XPATH = fieldName;
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(XPATH)));
+		return element.getText();
+	}
+	
 
 	public String getText(WebElement fieldName) {
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(fieldName));
@@ -161,6 +168,7 @@ public class Actions {
 	}
 
 	public void clickElement(String elementName) {
+		waitForSeconds(2);
 		String XPATH = ".//*[contains(text(),'" + elementName + "')]";
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(XPATH)));
 		element.click();
@@ -318,7 +326,6 @@ public class Actions {
 	}
 	
 	
-	// Hardik Added
 		public int getElementsSizeByXpath(String xpath, WebDriver driver) {
 	    	int elementSize=0;
 	        try {

@@ -50,6 +50,10 @@ public class BuyersUIPDPPage extends Actions {
 		log.info("Validation completed on buyer UI");
 	}
 	
+	
+	
+	
+	
 public void verifyLastUpdatedProductDetails(Map<String, Object> pDetails, String Supplier) {
 		
 		String supplierName=configReaderObj.adminPanelSupplierName(Supplier);

@@ -42,9 +42,12 @@ public class ProductdetailsPageStepDefs {
 
 	@When("User clicks on \"([^\"]*)\" button on product details page")
 	public void user_clicks_on_button_on_product_details_page(String string) {
+		
 		objectManager.getproductDetailsPage().clickButton(string);
-		objectManager.getproductDetailsPage().isElementPresent("Unpublished successfully");
-		assertTrue(objectManager.getproductDetailsPage().isElementPresent("Unpublished successfully"));
+		/*objectManager.getproductDetailsPage().isElementPresent("Unpublished successfully");
+		assertTrue(objectManager.getproductDetailsPage().isElementPresent("Unpublished successfully"));*/
+		objectManager.getproductDetailsPage().isElementPresent("successfully");
+		assertTrue(objectManager.getproductDetailsPage().isElementPresent("successfully"));
 		
 		JSONObject jObj = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePath));
 		JSONObject details =jObj.getJSONObject("ProductCreation").getJSONObject("FromUi");
@@ -70,7 +73,7 @@ public class ProductdetailsPageStepDefs {
 
 	@Then("Product should be in {string} state")
 	public void product_should_be_in_state(String string) {
-		throw new cucumber.api.PendingException();
+		//throw new cucumber.api.PendingException();
 	}
 
 	@And("A successful message should be displayed")

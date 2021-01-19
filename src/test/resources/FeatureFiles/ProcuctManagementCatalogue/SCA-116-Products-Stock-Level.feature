@@ -4,11 +4,14 @@ Feature: As a Supplier,
   So that potential buyers know how much of the product they can order from me
 
 	#@Supplier
-	@confidence 	
+	@confidence	
   Scenario: SCA-384_Verify that supplier is able to update the stock of newly created product
   #Need to add a script to add new product
  		Given User logged in as "supplier" in admin panel
     #And Authorisation dialoxg box is handled
+    And User click on "productcatalogues" link on main sidebar
+    And User clicks on show link to view products
+    And Check if the product is present in a catalogue if yes then delete
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
     When User creates a product

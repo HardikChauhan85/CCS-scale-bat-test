@@ -2,6 +2,8 @@ package com.scale.bat.framework.utility;
 
 import org.openqa.selenium.WebDriver;
 
+import com.scale.bat.businessPages.BuyersUIBasketPage;
+import com.scale.bat.businessPages.BuyersUIMyListPage;
 import com.scale.bat.businessPages.BuyersUIPDPPage;
 import com.scale.bat.businessPages.BuyersUIpage;
 import com.scale.bat.businessPages.CCSHomePage;
@@ -26,6 +28,9 @@ public class PageObjectManager {
 	private BuyersUIPDPPage buyersUIPDPPage;
 	private SupplierPage supplierPage;
 	private TakeScreenShot tekeScreenShot;
+	private BuyersUIPDPPage buyersUIPage;
+	private BuyersUIMyListPage buyersUIMyListPage;
+	private BuyersUIBasketPage buyersUIBasketPage;
 
 	public PageObjectManager(WebDriver driver, Scenario scenario) {
 		this.driver = driver;
@@ -54,6 +59,14 @@ public class PageObjectManager {
 	
 	public BuyersUIpage getBuyersUIpage() {
 		return buyersUIpage == null ? buyersUIpage = new BuyersUIpage(driver,scenario) : buyersUIpage;
+	}
+	
+	public BuyersUIMyListPage getBuyersUIMyListpage() {
+		return buyersUIMyListPage == null ? buyersUIMyListPage = new BuyersUIMyListPage(driver,scenario) : buyersUIMyListPage;
+	}
+	
+	public BuyersUIBasketPage getBuyersUIBasketpage() {
+		return buyersUIBasketPage == null ? buyersUIBasketPage = new BuyersUIBasketPage(driver,scenario) : buyersUIBasketPage;
 	}
 	
 	public BuyersUIPDPPage getBuyersUIPDPPage() {

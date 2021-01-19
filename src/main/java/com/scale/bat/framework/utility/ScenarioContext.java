@@ -1,4 +1,4 @@
-package com.scale.bat.context;
+package com.scale.bat.framework.utility;
 
 import java.util.HashMap;
 import java.util.Map;

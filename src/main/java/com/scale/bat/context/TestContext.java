@@ -25,7 +25,6 @@ import com.scale.bat.framework.utility.ConfigurationReader;
 import com.scale.bat.framework.utility.JSONUtility;
 import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.PageObjectManager;
-
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.AfterStep;
@@ -53,6 +52,8 @@ public class TestContext extends BrowserFactory {
 	public void setUp(Scenario scenario) throws MalformedURLException {
 		log.info("=================" + scenario.getName() + " execution starts" + "===================");
 		this.scenario = scenario;
+		scenarioContext = new ScenarioContext();
+		jsonUtilityObj =new JSONUtility();
 		configReader = new ConfigurationReader();
 		allPageScreenshotFlag = configReader.get("allPageScreenshot");
 		long threadId = Thread.currentThread().getId();
@@ -235,6 +236,14 @@ public class TestContext extends BrowserFactory {
 
 	public JSONUtility getJsonUtilityObj() {
 		return jsonUtilityObj;
+	}
+	
+	
+	
+	@Given("^User has environment setup for ([^\"]*)$")
+	public void user_has_environment_setup_for(String scenarioID) throws Throwable {
+	    scenarioContext.setContext(jsonUtilityObj.convertJSONtoMAP(scenarioID));
+	    scenario.write("validating response when " + scenarioContext.getContext("scenarioID"));
 	}
 
 }
