@@ -36,7 +36,8 @@ public class ProductDetailPage extends Actions {
 
 	private String updateButton = "Update";
 
-	private String successfulMessage = "//*[@id='main-part']/div[2]/div[1]/div";
+	//private String successfulMessage = "//*[@id='main-part']/div[2]/div[1]/div";
+	private String successfulMessage = "//*[@class='alert alert-success mx-2']";
 	
 	@FindBy(xpath = "//*[@id='content']/form/div/div/a")
 	private WebElement cancelButton;

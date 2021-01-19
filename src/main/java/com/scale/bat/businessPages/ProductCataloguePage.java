@@ -90,7 +90,8 @@ public class ProductCataloguePage extends Actions {
 	@FindBy(xpath = "//*[@id='product_delivery_charges_attributes_standard_delivery_time']")
 	private WebElement StandardDeliveryTimeIndays;
 	
-	@FindBy(xpath = "//*[@id='admin_new_product']")
+	//@FindBy(xpath = "//*[@id='admin_new_product']")
+	@FindBy(xpath = "//*[@class='row align-items-center  border-bottom']/div[1]/form/button")
 	private WebElement PublishButton;
 	
 	

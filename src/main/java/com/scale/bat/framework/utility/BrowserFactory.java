@@ -131,9 +131,13 @@ public class BrowserFactory {
 			caps.setCapability("os_version", "10");
 			caps.setCapability("browser", "Chrome");
 			caps.setCapability("browser_version", "latest");
+			caps.setCapability("resolution", "1280x800");
 			caps.setCapability("browserstack.local", "false");
 			caps.setCapability("browserstack.selenium_version", "3.14.0");			
 			caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			
+			
+			
 			
 			
 			//BS Windows IE

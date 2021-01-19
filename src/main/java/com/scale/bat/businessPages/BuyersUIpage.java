@@ -23,8 +23,9 @@ public class BuyersUIpage extends Actions {
 	private String PLPScreenText = "products";
 	private String basketText = "Basket";
 	private String basketLink = "Basket";
+	private String myAccountLink="account";
 
-	private String continueShoppingLinkOnBasketPage = "Continue Shopping";
+	private String continueShoppingLinkOnBasketPage = "Continue shopping";
 	private String addToBasket = "  Add ";
 
 	@FindBy(xpath = "//*[@class='bat-basket-item-added__buttons']/a")
@@ -58,10 +59,18 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "//*[@class='bat-header__menu-button bat-js-header-toggle']")
 	private WebElement mobileMenue;
 	
+	@FindBy(xpath = "//*[@id='main-content']/div[2]/div[3]/a")
+	private WebElement myListVisitButton;
+	
 	private String mobileMenueStr = "//*[@class='bat-header__menu-button bat-js-header-toggle']";
 	private String totalNoOfProductInBasket="//li[@class='bat-basket__item']";
+	private String checkBasketIsEmpty="//*[@class='govuk-heading-m']";
+	private String getTotalProductsInBasket="//*[@class='bat-basket__items']/ul/li";
+	private String checkMyListIsEmpty="//*[@class='govuk-body govuk-!-govuk-!-margin-bottom-6']";
+	private String getTotalProductsInMyList="//*[@id='main-content']/div[1]/div/ul/li";
 	
 	
+		
 
 	private Logger log = Log.getLogger(BuyersUIpage.class);
 
@@ -98,6 +107,41 @@ public class BuyersUIpage extends Actions {
 		waitForSeconds(1);
 		clickElement(searchButton);
 		waitForSeconds(2);
+	}
+	
+	
+	public void clearBasket() {
+		
+		if (!isElementPresentByXpath(checkBasketIsEmpty)) {
+			
+			int totalProducts = getElementsSizeByXpath(getTotalProductsInBasket, driver);
+			
+			for(int i=totalProducts;i==totalProducts;i--) {
+								
+				clickElementWithJavaScript("//*[@class='bat-basket__items']/ul/li[" + i +"]/div/form/div/div[5]/button[2]");
+			}
+	}
+		
+		
+	}
+	
+	public void clearMyList() {
+		
+		if (!isElementPresentByXpath(checkMyListIsEmpty)) {
+			
+			int totalProducts = getElementsSizeByXpath(getTotalProductsInMyList, driver);
+			
+			for(int i=totalProducts;i==totalProducts;i--) {
+								
+				clickElementWithJavaScript("//*[@id='main-content']/div[1]/div/ul/li[" + i +"]/div/form[2]/button");
+			}
+	}
+		
+		
+	}
+	
+	public void clickOnMyListVisitButton() {
+		clickElement(myListVisitButton);
 	}
 
 	public void navigateToPDPPage() {
@@ -206,6 +250,10 @@ public class BuyersUIpage extends Actions {
 
 	public String getBasketLink() {
 		return basketLink;
+	}
+	
+	public String getMyAccountLink() {
+		return myAccountLink;
 	}
 
 }

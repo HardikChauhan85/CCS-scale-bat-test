@@ -51,7 +51,9 @@ public class ProductCatalogueListPage extends Actions {
 	@FindBy(xpath = "//*[@id='content']/table/tbody/tr/td[7]")
 	private WebElement editLink;
 
-	@FindBy(xpath = "//*[@id='main-part']/div[1]/div/h1")
+	//@FindBy(xpath = "//*[@id='main-part']/div[1]/div/h1")
+	@FindBy(xpath = "//h1[@class='contextual-title px-0 mb-0 col']")
+	//@FindBy(xpath = "//*[@id='content']/table/tbody/tr/td[1]")
 	private WebElement contentHeader;
 
 	private String search = "Search";
@@ -118,7 +120,7 @@ public class ProductCatalogueListPage extends Actions {
 	
 
 	public void showProducts() {
-		waitForSeconds(2);
+		waitForSeconds(5);
 		clickElement(show);
 		assertTrue("Header is different!! Please check vendor",getText(contentHeader).toLowerCase().contains("RM6147".toLowerCase()));
 		log.info("Supplier name is present on product catalogue header SCA-501");

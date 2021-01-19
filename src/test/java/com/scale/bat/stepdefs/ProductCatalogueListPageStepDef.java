@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.scale.bat.businessPages.BuyersUIpage;
@@ -53,6 +54,83 @@ public class ProductCatalogueListPageStepDef {
 		scenarioContext.productDetails = jObj.toMap();
 		log.info(scenarioContext.productDetails);
 		log.info("Product is created!!");
+	}
+	
+	
+	@Given("User reads the {string} details")
+	public void user_reads_the_details(String string) {
+	    
+		/*JSONObject jObj = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.SCA161FilePath))
+				.getJSONObject("FromUi");
+		scenarioContext.productDetails = jObj.toMap();
+		log.info(scenarioContext.productDetails);
+		log.info("Reads the supplier details from JSON!!");*/
+		
+		/*JSONObject jObj = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.SCA161FilePathNew))
+				.getJSONObject("id");*/
+		
+		JSONObject jObj = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.SCA161OneProductFilePathNew));
+		
+		//Retrieving the array
+        JSONArray jsonArray = (JSONArray) jObj.getJSONArray("data");
+        for(int i=0;i<jsonArray.length();i++) {
+        	       	
+        	//JSONObject attributes=new JSONObject(jsonArray.getJSONObject(i).getJSONObject("attributes"));
+        	//String name=attributes.getString("name");
+        	
+        	//JSONObject attributes=new JSONObject(jsonArray.getJSONObject(i).getJSONObject("attributes"));
+        	//System.out.println(name);
+        	
+        	JSONObject obj=jsonArray.getJSONObject(i);
+        	JSONObject attributes=obj.getJSONObject("attributes");
+        	String productName=attributes.getString("name");
+        	System.out.println("Name "+ i + " => " + productName);
+        	
+        	String mpn=attributes.getString("mpn_number");
+        	System.out.println("mpn "+ i + " => " + mpn);
+        	       	
+        	String price=attributes.getString("display_price");
+        	System.out.println("price "+ i + " => " + price);
+        	
+        	String manufacturer=attributes.getString("manufacturer");
+        	System.out.println("manufacturer "+ i + " => " + manufacturer);
+        	
+        	
+        	
+        }
+        
+
+		/*scenarioContext.productDetails = jObj.toMap();
+		log.info(scenarioContext.productDetails);
+		log.info("Reads the supplier details from JSON!!");*/
+		
+		
+		
+		
+		/*JSONObject jObj = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePath));
+
+		JSONObject fromUiObj = jObj.getJSONObject("ProductCreation").getJSONObject("FromUi");
+		String UpdatedPrice = new DateTimeUtils().dateWithSpecificFormatt("dd");
+		fromUiObj.put("Price", UpdatedPrice);
+		fromUiObj.put("UNSPSC", fromUiObj.getString("UNSPSC") + UpdatedPrice);
+		fromUiObj.put("SKU", fromUiObj.getString("SKU") + UpdatedPrice);
+
+		jObj.put("FromUi", fromUiObj);
+
+		Map<String, Object> pDetails = fromUiObj.toMap();
+		objectManager.getproductDetailsPage().updateProduct(pDetails);
+		scenarioContext.productDetails = pDetails;
+		scenarioContext.jsonParser.writeJsonFile(jObj, scenarioContext.ScenarioDataFilePath);
+
+		log.info(scenarioContext.productDetails);
+		log.info("Product is Updated!!");*/
+		
+	}
+
+	@When("User adds  the products to My list")
+	public void user_adds_the_products_to_My_list() {
+	    
+		
 	}
 
 	/*@When("User delete a product")

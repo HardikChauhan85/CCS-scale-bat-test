@@ -42,6 +42,7 @@ public class CCSHomePage extends Actions {
 	}
 
 	public void navigateToProductCatalogues() {
+		
 		clickElement(mainSideBar_ProductCatalogues);
 	}
 	
