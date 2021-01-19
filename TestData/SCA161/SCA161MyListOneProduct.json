@@ -1,0 +1,1040 @@
+{
+	"data": [
+		{
+			"id": "44788",
+			"type": "product",
+			"attributes": {
+				"name": "Matrox Millennium G400 - Graphics card - MGA G400 - 32 MB SGRAM - AGP 4x - retail",
+				"description": "The Adaptec SCSI Card 29160 is tailored for entry to mid-range server environments. It delivers the maximum throughput for a single channel Ultra160 SCSI card by using a 64-bit PCI interface. The Adaptec SCSI Card 29160 provides the ideal connection to Ultra160 SCSI (LVD) hard disks and devices (internally and externally) and legacy devices (internally).",
+				"active": false,
+				"created_at": "2020-10-13T00:04:39.159+01:00",
+				"updated_at": "2020-12-09T19:35:02.742+00:00",
+				"currency": "GBP",
+				"available": true,
+				"total_on_hand": 8,
+				"display_price": "£10.00",
+				"display_delivery_included_price": "£19.99",
+				"in_stock": true,
+				"purchasable": true,
+				"backorderable": false,
+				"key_selling_points": null,
+				"unspsc": null,
+				"manufacturer": "Matrox Graphics",
+				"cnet_id": "S0160403",
+				"slug": "00db2e7b-84d2-4eef-9082-df2c2fe70131",
+				"mpn_number": "G4+MDHA32GR",
+				"available_on": "2020-11-30T11:19:57.000+00:00",
+				"price": "10.99",
+				"delivery_included_price": "19.99",
+				"image_id": "39051",
+				"default_variant_id": "68013",
+				"SKU": "SKU5370",
+				"StandardChargeProduct(UKMainland)": "2",
+				"StandardDeliveryTime": "5",
+				"SupplierName": "cogautosupplier2"
+			},
+			"relationships": {
+				"image": {
+					"data": null
+				}
+			}
+		}
+	],
+	"meta": {
+		"count": 24,
+		"total_count": 10000,
+		"total_pages": 417,
+		"filters": {
+			"taxons": [
+				{
+					"id": 2,
+					"name": "Hardware",
+					"taxonomy_id": 1,
+					"parent_id": 1,
+					"count": 35911
+				},
+				{
+					"id": 561,
+					"name": "Software",
+					"taxonomy_id": 1,
+					"parent_id": 1,
+					"count": 11056
+				},
+				{
+					"id": 853,
+					"name": "Electronics",
+					"taxonomy_id": 1,
+					"parent_id": 1,
+					"count": 458
+				},
+				{
+					"id": 1163,
+					"name": "Appliances",
+					"taxonomy_id": 1,
+					"parent_id": 1,
+					"count": 1
+				},
+				{
+					"id": 1338,
+					"name": "Office Supplies",
+					"taxonomy_id": 1,
+					"parent_id": 1,
+					"count": 2001
+				},
+				{
+					"id": 2359,
+					"name": "Furniture",
+					"taxonomy_id": 1,
+					"parent_id": 1,
+					"count": 10
+				}
+			],
+			"manufacturers": [
+				{
+					"id": 29,
+					"name": "HP Inc.",
+					"count": 5086
+				},
+				{
+					"id": 42,
+					"name": "Microsoft",
+					"count": 4401
+				},
+				{
+					"id": 30,
+					"name": "IBM",
+					"count": 3150
+				},
+				{
+					"id": 15,
+					"name": "Compaq",
+					"count": 2596
+				},
+				{
+					"id": 33,
+					"name": "Kingston",
+					"count": 2498
+				},
+				{
+					"id": 276,
+					"name": "Viking Technology",
+					"count": 1998
+				},
+				{
+					"id": 29391,
+					"name": "Hewlett Packard Enterprise",
+					"count": 1989
+				},
+				{
+					"id": 91,
+					"name": "Cisco",
+					"count": 1839
+				},
+				{
+					"id": 605,
+					"name": "SimpleTech",
+					"count": 1129
+				},
+				{
+					"id": 161,
+					"name": "Belkin",
+					"count": 945
+				},
+				{
+					"id": 269,
+					"name": "3Com",
+					"count": 886
+				},
+				{
+					"id": 23,
+					"name": "Epson",
+					"count": 831
+				},
+				{
+					"id": 43301,
+					"name": "NortonLifeLock",
+					"count": 785
+				},
+				{
+					"id": 36,
+					"name": "Lexmark",
+					"count": 710
+				},
+				{
+					"id": 58,
+					"name": "Symantec",
+					"count": 700
+				},
+				{
+					"id": 31,
+					"name": "Intel",
+					"count": 544
+				},
+				{
+					"id": 49,
+					"name": "Micro Focus",
+					"count": 538
+				},
+				{
+					"id": 60,
+					"name": "Toshiba",
+					"count": 533
+				},
+				{
+					"id": 38,
+					"name": "Lotus Development",
+					"count": 498
+				},
+				{
+					"id": 197,
+					"name": "Apple",
+					"count": 490
+				},
+				{
+					"id": 64,
+					"name": "Xircom",
+					"count": 459
+				},
+				{
+					"id": 196,
+					"name": "Adobe",
+					"count": 451
+				},
+				{
+					"id": 12,
+					"name": "Canon",
+					"count": 407
+				},
+				{
+					"id": 190,
+					"name": "Schneider Electric",
+					"count": 406
+				},
+				{
+					"id": 188,
+					"name": "Xerox",
+					"count": 322
+				},
+				{
+					"id": 13,
+					"name": "CA Technologies",
+					"count": 312
+				},
+				{
+					"id": 35,
+					"name": "Kyocera",
+					"count": 286
+				},
+				{
+					"id": 9,
+					"name": "Nortel",
+					"count": 281
+				},
+				{
+					"id": 17,
+					"name": "Corel",
+					"count": 269
+				},
+				{
+					"id": 173,
+					"name": "Imation",
+					"count": 266
+				},
+				{
+					"id": 45,
+					"name": "NEC",
+					"count": 263
+				},
+				{
+					"id": 195,
+					"name": "Microchip Technology",
+					"count": 260
+				},
+				{
+					"id": 26588,
+					"name": "Arcserve",
+					"count": 255
+				},
+				{
+					"id": 19,
+					"name": "D-Link",
+					"count": 235
+				},
+				{
+					"id": 79,
+					"name": "Sun",
+					"count": 232
+				},
+				{
+					"id": 76,
+					"name": "Sony",
+					"count": 231
+				},
+				{
+					"id": 85,
+					"name": "Fujitsu",
+					"count": 227
+				},
+				{
+					"id": 11,
+					"name": "Brother",
+					"count": 213
+				},
+				{
+					"id": 109,
+					"name": "Allied Telesis",
+					"count": 193
+				},
+				{
+					"id": 106,
+					"name": "Zenith Data Systems",
+					"count": 192
+				},
+				{
+					"id": 55,
+					"name": "Seagate",
+					"count": 191
+				},
+				{
+					"id": 6052,
+					"name": "Konica Minolta",
+					"count": 187
+				},
+				{
+					"id": 191,
+					"name": "Tektronix",
+					"count": 175
+				},
+				{
+					"id": 184,
+					"name": "Tripp Lite",
+					"count": 153
+				},
+				{
+					"id": 70,
+					"name": "LenovoEMC",
+					"count": 147
+				},
+				{
+					"id": 714,
+					"name": "Fellowes",
+					"count": 145
+				},
+				{
+					"id": 123,
+					"name": "McAfee",
+					"count": 142
+				},
+				{
+					"id": 53,
+					"name": "Quantum",
+					"count": 141
+				},
+				{
+					"id": 71,
+					"name": "Panasonic",
+					"count": 141
+				},
+				{
+					"id": 107,
+					"name": "OKI",
+					"count": 138
+				},
+				{
+					"id": 10,
+					"name": "Borland",
+					"count": 137
+				},
+				{
+					"id": 17451,
+					"name": "SMC Networks",
+					"count": 136
+				},
+				{
+					"id": 32,
+					"name": "Kensington",
+					"count": 134
+				},
+				{
+					"id": 712,
+					"name": "Condusiv",
+					"count": 131
+				},
+				{
+					"id": 59,
+					"name": "Targus",
+					"count": 127
+				},
+				{
+					"id": 941,
+					"name": "Option Wireless Technology",
+					"count": 124
+				},
+				{
+					"id": 37,
+					"name": "Logitech",
+					"count": 123
+				},
+				{
+					"id": 114,
+					"name": "Kodak",
+					"count": 118
+				},
+				{
+					"id": 335,
+					"name": "Fujifilm",
+					"count": 113
+				},
+				{
+					"id": 40854,
+					"name": "Dynabook",
+					"count": 109
+				},
+				{
+					"id": 2015,
+					"name": "NEC Display Solutions",
+					"count": 107
+				},
+				{
+					"id": 87,
+					"name": "Tandberg Data",
+					"count": 105
+				},
+				{
+					"id": 193,
+					"name": "3M",
+					"count": 103
+				},
+				{
+					"id": 41,
+					"name": "Micrografx",
+					"count": 101
+				},
+				{
+					"id": 82,
+					"name": "InFocus",
+					"count": 101
+				},
+				{
+					"id": 110,
+					"name": "Multi-Tech",
+					"count": 100
+				},
+				{
+					"id": 120,
+					"name": "Madge",
+					"count": 97
+				},
+				{
+					"id": 26,
+					"name": "Genicom",
+					"count": 95
+				},
+				{
+					"id": 102,
+					"name": "Eicon",
+					"count": 95
+				},
+				{
+					"id": 62,
+					"name": "Verbatim",
+					"count": 90
+				},
+				{
+					"id": 1684,
+					"name": "Vertiv",
+					"count": 88
+				},
+				{
+					"id": 808,
+					"name": "StarTech.com",
+					"count": 86
+				},
+				{
+					"id": 216,
+					"name": "Psion Teklogix",
+					"count": 85
+				},
+				{
+					"id": 72,
+					"name": "Philips",
+					"count": 82
+				},
+				{
+					"id": 827,
+					"name": "Veritas",
+					"count": 81
+				},
+				{
+					"id": 18,
+					"name": "Creative Technology",
+					"count": 77
+				},
+				{
+					"id": 940,
+					"name": "Memory Card Technology",
+					"count": 76
+				},
+				{
+					"id": 2954,
+					"name": "Enterasys",
+					"count": 75
+				},
+				{
+					"id": 1234,
+					"name": "Logic 3",
+					"count": 70
+				},
+				{
+					"id": 9227,
+					"name": "Lenovo",
+					"count": 69
+				},
+				{
+					"id": 178,
+					"name": "PowerQuest",
+					"count": 68
+				},
+				{
+					"id": 63,
+					"name": "Visio",
+					"count": 67
+				},
+				{
+					"id": 80,
+					"name": "Digi",
+					"count": 66
+				},
+				{
+					"id": 270,
+					"name": "Western Digital",
+					"count": 66
+				},
+				{
+					"id": 3455,
+					"name": "NETGEAR",
+					"count": 66
+				},
+				{
+					"id": 739,
+					"name": "Linksys",
+					"count": 64
+				},
+				{
+					"id": 776,
+					"name": "Poly",
+					"count": 64
+				},
+				{
+					"id": 94,
+					"name": "Maxell",
+					"count": 63
+				},
+				{
+					"id": 275,
+					"name": "Vertical Communications",
+					"count": 63
+				},
+				{
+					"id": 326,
+					"name": "Minolta",
+					"count": 63
+				},
+				{
+					"id": 113,
+					"name": "ViewSonic",
+					"count": 61
+				},
+				{
+					"id": 671,
+					"name": "Eaton",
+					"count": 61
+				},
+				{
+					"id": 682,
+					"name": "Case Logic",
+					"count": 55
+				},
+				{
+					"id": 65,
+					"name": "Accton",
+					"count": 54
+				},
+				{
+					"id": 4094,
+					"name": "Advantech",
+					"count": 52
+				},
+				{
+					"id": 51,
+					"name": "PNY",
+					"count": 51
+				},
+				{
+					"id": 1232,
+					"name": "Xinuos",
+					"count": 48
+				},
+				{
+					"id": 8,
+					"name": "ATI",
+					"count": 47
+				},
+				{
+					"id": 74,
+					"name": "Samsung",
+					"count": 47
+				},
+				{
+					"id": 811,
+					"name": "Super Micro",
+					"count": 47
+				}
+			],
+			"properties": [
+				{
+					"id": 37,
+					"name": "Service & Support",
+					"count": 3700,
+					"values": [
+						{
+							"name": "1-year warranty",
+							"count": 454
+						},
+						{
+							"name": "Limited warranty - parts - 1 year - carry-in",
+							"count": 413
+						},
+						{
+							"name": "Limited warranty - parts and labour - 1 year - carry-in",
+							"count": 283
+						},
+						{
+							"name": "Limited warranty - parts and labour - 3 years - carry-in",
+							"count": 229
+						},
+						{
+							"name": "Limited lifetime warranty",
+							"count": 154
+						},
+						{
+							"name": "Limited warranty - parts and labour - 3 years - on-site",
+							"count": 144
+						},
+						{
+							"name": "Limited warranty - replacement - 1 year - carry-in",
+							"count": 133
+						},
+						{
+							"name": "Limited warranty - parts and labour - lifetime - carry-in",
+							"count": 125
+						},
+						{
+							"name": "Limited warranty - parts and labour - 1 year - on-site",
+							"count": 104
+						},
+						{
+							"name": "3-year warranty",
+							"count": 102
+						}
+					]
+				},
+				{
+					"id": 1,
+					"name": "Type",
+					"count": 2414,
+					"values": [
+						{
+							"name": "DRAM",
+							"count": 382
+						},
+						{
+							"name": "Integrated",
+							"count": 224
+						},
+						{
+							"name": "Mouse, keyboard",
+							"count": 180
+						},
+						{
+							"name": "Phone consulting - unlimited",
+							"count": 127
+						},
+						{
+							"name": "Plug-in card",
+							"count": 113
+						},
+						{
+							"name": "Keyboard, TrackPoint",
+							"count": 86
+						},
+						{
+							"name": "Pipeline Burst",
+							"count": 85
+						},
+						{
+							"name": "Pay phone consulting - unlimited",
+							"count": 64
+						},
+						{
+							"name": "Documentation kit",
+							"count": 50
+						},
+						{
+							"name": "Keyboard, touchpad",
+							"count": 45
+						}
+					]
+				},
+				{
+					"id": 104,
+					"name": "Device Type",
+					"count": 2149,
+					"values": [
+						{
+							"name": "Power supply",
+							"count": 516
+						},
+						{
+							"name": "Network adapter",
+							"count": 274
+						},
+						{
+							"name": "Hard drive - internal",
+							"count": 126
+						},
+						{
+							"name": "Hard drive - hot-swap",
+							"count": 55
+						},
+						{
+							"name": "Laptop battery",
+							"count": 48
+						},
+						{
+							"name": "Network adapter - 1 ports",
+							"count": 47
+						},
+						{
+							"name": "Storage enclosure",
+							"count": 45
+						},
+						{
+							"name": "Expansion module",
+							"count": 39
+						},
+						{
+							"name": "Keyboard",
+							"count": 38
+						},
+						{
+							"name": "Tape drive - DAT",
+							"count": 36
+						}
+					]
+				},
+				{
+					"id": 81,
+					"name": "Max Operating Temperature",
+					"count": 1911,
+					"values": [
+						{
+							"name": "35 °C",
+							"count": 591
+						},
+						{
+							"name": "40 °C",
+							"count": 407
+						},
+						{
+							"name": "55 °C",
+							"count": 312
+						},
+						{
+							"name": "32 °C",
+							"count": 235
+						},
+						{
+							"name": "50 °C",
+							"count": 113
+						},
+						{
+							"name": "31.3 °C",
+							"count": 58
+						},
+						{
+							"name": "70 °C",
+							"count": 58
+						},
+						{
+							"name": "45 °C",
+							"count": 52
+						},
+						{
+							"name": "75 °C",
+							"count": 22
+						},
+						{
+							"name": "65 °C",
+							"count": 12
+						}
+					]
+				},
+				{
+					"id": 80,
+					"name": "Min Operating Temperature",
+					"count": 1908,
+					"values": [
+						{
+							"name": "10 °C",
+							"count": 932
+						},
+						{
+							"name": "0 °C",
+							"count": 485
+						},
+						{
+							"name": "5 °C",
+							"count": 458
+						},
+						{
+							"name": "15 °C",
+							"count": 11
+						},
+						{
+							"name": "16 °C",
+							"count": 10
+						},
+						{
+							"name": "-15 °C",
+							"count": 5
+						},
+						{
+							"name": "3 °C",
+							"count": 3
+						},
+						{
+							"name": "-10 °C",
+							"count": 1
+						},
+						{
+							"name": "-20 °C",
+							"count": 1
+						},
+						{
+							"name": "-5 °C",
+							"count": 1
+						}
+					]
+				},
+				{
+					"id": 12,
+					"name": "Form Factor",
+					"count": 1905,
+					"values": [
+						{
+							"name": "DIMM 168-PIN",
+							"count": 669
+						},
+						{
+							"name": "Plug-in card",
+							"count": 295
+						},
+						{
+							"name": "SO-DIMM 144-pin",
+							"count": 185
+						},
+						{
+							"name": "Plug-in module",
+							"count": 164
+						},
+						{
+							"name": "SIMM 72-PIN",
+							"count": 139
+						},
+						{
+							"name": "3.5\" x 1/3H",
+							"count": 92
+						},
+						{
+							"name": "Desktop",
+							"count": 71
+						},
+						{
+							"name": "Stationary",
+							"count": 70
+						},
+						{
+							"name": "Internal",
+							"count": 54
+						},
+						{
+							"name": "External",
+							"count": 48
+						}
+					]
+				},
+				{
+					"id": 148,
+					"name": "Package Type",
+					"count": 1836,
+					"values": [
+						{
+							"name": "Retail",
+							"count": 1644
+						},
+						{
+							"name": "Bulk",
+							"count": 151
+						},
+						{
+							"name": "OEM",
+							"count": 39
+						},
+						{
+							"name": "Intel Boxed",
+							"count": 1
+						},
+						{
+							"name": "Jewel case",
+							"count": 1
+						}
+					]
+				},
+				{
+					"id": 32,
+					"name": "Interfaces",
+					"count": 1760,
+					"values": [
+						{
+							"name": "1 x 100Base-TX - RJ-45 - female - 1",
+							"count": 82
+						},
+						{
+							"name": "1 x 10Base-T - RJ-45 - female - 1",
+							"count": 44
+						},
+						{
+							"name": "1 x Token Ring - RJ-45 - female - 1 ¦ 1 x Token Ring - 9 pin D-Sub (DB-9) - female - 1",
+							"count": 38
+						},
+						{
+							"name": "1 x parallel ¦ 2 x serial ¦ 1 x USB ¦ 1 x PS/2 keyboard ¦ 1 x VGA ¦ 1 x PS/2 mouse",
+							"count": 30
+						},
+						{
+							"name": "1 x VGA ¦ 1 x PS/2 keyboard ¦ 1 x PS/2 mouse ¦ 1 x parallel ¦ 2 x serial ¦ 1 x USB",
+							"count": 22
+						},
+						{
+							"name": "1 x mouse - generic - 6 pin mini-DIN (PS/2 style)",
+							"count": 18
+						},
+						{
+							"name": "1 x VGA ¦ 1 x PS/2 keyboard ¦ 1 x PS/2 mouse ¦ 1 x parallel ¦ 2 x serial ¦ 1 x LAN ¦ 1 x storage - Ultra Wide SCSI",
+							"count": 14
+						},
+						{
+							"name": "1 x 10Base-T - RJ-45 - female - 1 ¦ 1 x 10Base-2 - BNC - female - 1",
+							"count": 13
+						},
+						{
+							"name": "1 x Ethernet 100 - RJ-45 - female - 1",
+							"count": 13
+						},
+						{
+							"name": "1 x management (RS-232) - 9 pin D-Sub (DB-9)",
+							"count": 11
+						}
+					]
+				},
+				{
+					"id": 85,
+					"name": "Depth",
+					"count": 1740,
+					"values": [
+						{
+							"name": "45 cm",
+							"count": 93
+						},
+						{
+							"name": "8.6 cm",
+							"count": 78
+						},
+						{
+							"name": "14.6 cm",
+							"count": 62
+						},
+						{
+							"name": "15 cm",
+							"count": 16
+						},
+						{
+							"name": "30.5 cm",
+							"count": 16
+						},
+						{
+							"name": "42 cm",
+							"count": 16
+						}
+					]
+				},
+				{
+					"id": 86,
+					"name": "Height",
+					"count": 1740,
+					"values": [
+						{
+							"name": "12.8 cm",
+							"count": 93
+						},
+						{
+							"name": "2.5 cm",
+							"count": 70
+						},
+						{
+							"name": "0.5 cm",
+							"count": 59
+						},
+						{
+							"name": "4.4 cm",
+							"count": 57
+						},
+						{
+							"name": "12.7 cm",
+							"count": 44
+						},
+						{
+							"name": "16.8 cm",
+							"count": 44
+						},
+						{
+							"name": "4.1 cm",
+							"count": 40
+						},
+						{
+							"name": "49.2 cm",
+							"count": 35
+						},
+						{
+							"name": "14.9 cm",
+							"count": 32
+						},
+						{
+							"name": "4.3 cm",
+							"count": 27
+						}
+					]
+				}
+			]
+		},
+		"breadcrumbs": null
+	},
+	"links": {
+		"self": "https://int.scale-bat-backend.alb.crowncommercial.gov.uk/api/v2/storefront/products?sort_by=available_on&per_page=24",
+		"next": "https://int.scale-bat-backend.alb.crowncommercial.gov.uk/api/v2/storefront/products?page=2&per_page=24",
+		"prev": "https://int.scale-bat-backend.alb.crowncommercial.gov.uk/api/v2/storefront/products?page=1&per_page=24",
+		"last": "https://int.scale-bat-backend.alb.crowncommercial.gov.uk/api/v2/storefront/products?page=417&per_page=24",
+		"first": "https://int.scale-bat-backend.alb.crowncommercial.gov.uk/api/v2/storefront/products?page=1&per_page=24"
+	}
+}

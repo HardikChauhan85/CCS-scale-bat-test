@@ -4,6 +4,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
+
 import com.scale.bat.businessPages.BuyersUIpage;
 import com.scale.bat.context.ScenarioContext;
 import com.scale.bat.context.TestContext;
@@ -29,6 +31,12 @@ public class BuyerUiStepDefs {
 	@When("User add {int} product in basket")
 	public void user_add_product_in_basket(int numberOfProducts) {
 		objectManager.getBuyersUIpage().addProductToBasket(numberOfProducts);
+	}
+	
+	@And("User removes all the products from the basket")
+	public void user_removes_all_the_products_from_the_basket() {
+	    
+		objectManager.getBuyersUIpage().removeProductsFromTheBasket();
 	}
 
 	@When("User add {int} products to compare")
@@ -68,7 +76,9 @@ public class BuyerUiStepDefs {
 			break;
 		case "Add to basket":
 			objectManager.getBuyersUIpage().addElementToBasket();
-			
+		case "My Account link":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getMyAccountLink());
+						
 			break;
 		
 		
@@ -100,6 +110,98 @@ public class BuyerUiStepDefs {
 		log.info(scenarioContext.productDetails);
 		objectManager.getBuyersUIpage().searchProduct(scenarioContext.productDetails.get("SKU").toString());
 	}
+	
+	@And("User clears the basket")
+	public void user_clears_the_basket() {
+	    
+		objectManager.getBuyersUIpage().clearBasket();
+			
+	}
+	
+	@And("User clicks on My List Visit button")
+	public void user_clicks_on_My_List_Visit_button() {
+	    
+		objectManager.getBuyersUIpage().clickOnMyListVisitButton();
+	}
+	
+
+	@And("User clears the Mylist")
+	public void user_clears_the_Mylist() {
+	    
+		objectManager.getBuyersUIpage().clearMyList();
+	}
+	
+	@And("User validates the products detail in My List page")
+	public void user_validates_the_products_detail_in_My_List_page() {
+	    
+		//objectManager.getBuyersUIMyListpage().verifyProductDetailsOnMyListPage(scenarioContext.productDetails,scenarioContext.SCA161OneProductFilePathNew);
+		objectManager.getBuyersUIMyListpage().verifyProductDetailsOnMyListPage(scenarioContext.SCA161OneProductFilePathNew);
+	}
+	
+	
+	@And("User Validates the more than one products details in My List page")
+	public void user_Validates_the_more_than_one_products_details_in_My_List_page() {
+		
+		objectManager.getBuyersUIMyListpage().verifyProductDetailsOnMyListPage(scenarioContext.SCA161TwoProductsFilePathNew);
+	    
+	}
+
+	@And("User Clicks on AddToBasket button of the selected product on My List page")
+	public void user_Clicks_on_AddToBasket_button_of_the_selected_product_on_My_List_page() {
+	    
+		objectManager.getBuyersUIMyListpage().clickOnAddtoBasketButton();
+		
+	}
+	
+	@And("User Clicks on Clear my basket and add these items button")
+	public void user_Clicks_on_Clear_my_basket_and_add_these_items_button() {
+	    
+		objectManager.getBuyersUIMyListpage().clickOnClearMyBasketAndAddTheseItemsbutton();
+		
+	}
+	
+	@And("User Clicks on Add these items to current basket button")
+	public void user_Clicks_on_Add_these_items_to_current_basket_button() {
+	    
+		objectManager.getBuyersUIMyListpage().clickOnAddTheseItemsToCurrentBasketbutton();
+	}
+
+
+	@And("User Validated the product details on basket page")
+	public void user_Validated_the_product_details_on_basket_page() {
+		
+		
+		objectManager.getBuyersUIBasketpage().verifyProductDetailsOnBasketPage(scenarioContext.SCA161OneProductFilePathNew);
+	    
+	}
+	
+	
+	@And("User Validated the more than one products details on basket page")
+	public void user_Validated_the_more_than_one_products_details_on_basket_page() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyProductDetailsOnBasketPage(scenarioContext.SCA161TwoProductsFilePathNew);
+	}
+	
+	
+	@And("User validates the product message Product added to your basket")
+	public void user_validates_the_product_message_Product_added_to_your_basket() {
+	 
+		objectManager.getBuyersUIBasketpage().verifyMessageProductAddToBasketMsg();
+	}
+	
+	@And("User validates the product message You cannot add the selected product to the basket Its out of stock")
+	public void user_validates_the_product_message_You_cannot_add_the_selected_product_to_the_basket_Its_out_of_stock() {
+	 
+		objectManager.getBuyersUIBasketpage().VerifyMessageItsOutOfStock();
+	}
+	
+	@And("User validates the product message All products were added to your basket")
+	public void user_validates_the_product_message_All_products_were_added_to_your_basket() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyMessageAllProductsWereAddedToYourBasket();
+	}
+
+
 
 	@Then("verify the product details in buyers UI")
 	public void verify_the_product_details_in_buyers_UI() {
