@@ -19,13 +19,18 @@ import com.scale.bat.framework.utility.Actions;
 import com.scale.bat.framework.utility.ConfigurationReader;
 import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
+import com.scale.bat.framework.utility.API.APIBase;
+import com.scale.bat.webservice.WishListServiceStepDefs;
 
 import cucumber.api.Scenario;
+import io.restassured.response.Response;
 
 public class BuyersUIBasketPage  extends Actions{
 	
 	private Logger log = Log.getLogger(BuyersUIPDPPage.class);
 	private ConfigurationReader configReaderObj;
+	APIBase apiBase=new APIBase();
+	//WishListServiceStepDefs wishListServiceStepDefs=new WishListServiceStepDefs();
 
 	public BuyersUIBasketPage(WebDriver driver, Scenario scenario) {
 		super.driver = driver;
@@ -55,14 +60,51 @@ public class BuyersUIBasketPage  extends Actions{
 	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/div/table/tbody/tr/td[4]")
 	private WebElement qtyBasket;
 			
-	@FindBy(xpath ="//*[@id='confirmation-message-title']")
+	@FindBy(xpath ="//*[@class='govuk-notification-banner__heading']")
 	private WebElement productAddToBasketMsg;
 	
-	@FindBy(xpath ="//*[@class='bat-confirmation-message__title']")
+	@FindBy(xpath ="//*[@class='govuk-notification-banner__content']/p")
 	private WebElement allProductsWereAddedToYourBasket;
 	
 	@FindBy(xpath ="//*[@class='govuk-warning-text__text']")
 	private WebElement YouCannotAddTheSelectedProductToTheBasketItsOutOfStockMsg;
+	
+	
+	//My Basket Page Locators
+	//PRODUCT 1
+	
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/form/div/div[2]/a")
+	private WebElement productName;
+	
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/form/div/div[2]/span")
+	private WebElement mpn;
+	
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/div/table/tbody/tr/td[5]")
+	private WebElement productPrice;
+	
+	
+	//PRODUCT 2
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[2]/div/form/div/div[2]/a")
+	private WebElement productName2;
+	
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[2]/div/form/div/div[2]/span")
+	private WebElement mpn2;
+	
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[2]/div/div/table/tbody/tr/td[5]")
+	private WebElement productPrice2;
+	
+	
+	
+	//PRODUCT 3 
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[3]/div/form/div/div[2]/a")
+	private WebElement productName3;
+		
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[3]/div/form/div/div[2]/span")
+	private WebElement mpn3;
+		
+	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[3]/div/div/table/tbody/tr/td[5]")
+	private WebElement productPrice3;
+
 	
 	
 	
@@ -79,18 +121,6 @@ public class BuyersUIBasketPage  extends Actions{
         	JSONObject obj=jsonArray.getJSONObject(i);
         	JSONObject attributes=obj.getJSONObject("attributes");
         	int j=i+1;
-        	
-        	
-        	System.out.println("productPriceUI = " + getTextXpath("//*[@id='main-content']/div/div/div/div[1]/ul/li["+j+"]/div/div/table/tbody/tr/td[5]").replaceAll("[^a-zA-Z0-9]","") + " jsonPrice = " + attributes.getString("display_price").replaceAll("[^a-zA-Z0-9]",""));
-        	
-        	System.out.println("productNameUI = " + getTextXpath("//*[@id='main-content']/div/div/div/div[1]/ul/li["+j+"]/div/form/div/div[2]/a") + " jsonproductName = " + attributes.getString("name"));
-        	
-        	System.out.println("skuUI = " + getTextXpath("//*[@id='main-content']/div/div/div/div[1]/ul/li["+j+"]/div/div/table/tbody/tr/td[2]") + " jsonsku = " + attributes.getString("SKU"));
-        	
-        	System.out.println("MPNUI = " + getTextXpath("//*[@id='main-content']/div/div/div/div[1]/ul/li["+j+"]/div/form/div/div[2]/span") + " jsonMPN = " + attributes.getString("mpn_number"));
-        	
-        	
-        	
         	//Product Price UI
         	assertTrue(getTextXpath("//*[@id='main-content']/div/div/div/div[1]/ul/li["+j+"]/div/div/table/tbody/tr/td[5]").replaceAll("[^a-zA-Z0-9]","").contains(attributes.getString("display_price").replaceAll("[^a-zA-Z0-9]","")));
         	
@@ -109,6 +139,129 @@ public class BuyersUIBasketPage  extends Actions{
 		
 	}
 
+	}
+	
+	
+	public void verifyMultipleProductsDetailsOnBasketPage() {
+		waitForSeconds(2);
+				
+			int productNamelength = getText(productName).length();
+			String productName1 = getText(productName).substring(17,productNamelength);
+			//System.out.println("product1NameUI = " + productName + " jsonproductName = " + apiBase.getvaluefromresponse("data[1].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse));
+			int mpnlength=getText(mpn).length();
+			String mpn1 = getText(mpn).substring(5,mpnlength);
+			
+			//Product1 Price UI
+        	//assertTrue(getText(productPrice).equals(apiBase.getvaluefromresponse("data[1].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        	//Product1 Name Validation
+        	assertTrue(productName1.equals(apiBase.getvaluefromresponse("data[1].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        	//Product1 MPN
+        	assertTrue(mpn1.equals(apiBase.getvaluefromresponse("data[1].attributes.mpn_number", WishListServiceStepDefs.jsonAllProductsResponse)));
+        
+        	
+        	// Second Product Validation
+        	int product2Namelength = getText(productName2).length();
+			String product2Name = getText(productName2).substring(17,product2Namelength);
+			    	
+			int product2mpnlength=getText(mpn2).length();
+			String product2mpn = getText(mpn2).substring(5,product2mpnlength);
+		     	
+        	//Product2 Price UI
+        	assertTrue(getText(productPrice2).equals(apiBase.getvaluefromresponse("data[2].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        	//Product2 Name Validation
+        	assertTrue(product2Name.equals(apiBase.getvaluefromresponse("data[2].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        	//Product2 MPN
+        	assertTrue(product2mpn.equals(apiBase.getvaluefromresponse("data[2].attributes.mpn_number", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        	log.info("Validation completed on Basket Page UI");
+            
+	}
+	
+	
+	public void verifyMultipleProductsDetailsOnBasketPageAfterAddTheseItemsButton() {
+		waitForSeconds(2);
+		
+		int productNamelength = getText(productName).length();
+		String productName1 = getText(productName).substring(17,productNamelength);
+		//System.out.println("productNameUI = " + productName + " jsonproductName = " + apiBase.getvaluefromresponse("data[0].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse));
+		
+		int mpnlength=getText(mpn).length();
+		String mpn1 = getText(mpn).substring(5,mpnlength);
+		
+    	
+    	//Product1 Price UI
+    	assertTrue(getText(productPrice).equals(apiBase.getvaluefromresponse("data[0].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+    	
+    	//Product1 Name Validation
+    	assertTrue(productName1.equals(apiBase.getvaluefromresponse("data[0].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
+    	
+    	//MPN1
+    	assertTrue(mpn1.equals(apiBase.getvaluefromresponse("data[0].attributes.mpn_number", WishListServiceStepDefs.jsonAllProductsResponse)));
+    
+		
+		//PRODUCT2 Validation
+		int product1Namelength = getText(productName2).length();
+		String product1Name = getText(productName2).substring(17,product1Namelength);
+			
+		int product1mpnlength=getText(mpn2).length();
+		String product1mpn = getText(mpn2).substring(5,product1mpnlength);
+			
+			
+        //Product2 Price UI
+      	assertTrue(getText(productPrice2).equals(apiBase.getvaluefromresponse("data[1].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        //Product2 Name Validation
+        assertTrue(product1Name.equals(apiBase.getvaluefromresponse("data[1].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        //Product2 MPN
+        assertTrue(product1mpn.equals(apiBase.getvaluefromresponse("data[1].attributes.mpn_number", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        	
+        //PRODUCT3  Validation
+       	int product2Namelength = getText(productName3).length();
+		String product2Name = getText(productName3).substring(17,product2Namelength);
+				
+		int product2mpnlength=getText(mpn3).length();
+		String product2mpn = getText(mpn3).substring(5,product2mpnlength);
+		 	
+        //Product3 Price UI
+       	assertTrue(getText(productPrice3).equals(apiBase.getvaluefromresponse("data[2].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+       	//Product3 Name Validation
+       	assertTrue(product2Name.equals(apiBase.getvaluefromresponse("data[2].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        //Product3 MPN
+        assertTrue(product2mpn.equals(apiBase.getvaluefromresponse("data[2].attributes.mpn_number", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+       	log.info("Validation completed on Basket Page UI");
+            
+	}
+	
+	public void verifyProductDetailsOnBasketPage() {
+		waitForSeconds(2);
+		
+			int productNamelength = getText(productName).length();
+			String productNames = getText(productName).substring(17,productNamelength);
+			//System.out.println("productNameUI = " + productName + " jsonproductName = " + apiBase.getvaluefromresponse("data[0].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse));
+			
+			int mpnlength=getText(mpn).length();
+			String mpns = getText(mpn).substring(5,mpnlength);
+			
+		 	//Product Price UI
+        	assertTrue(getText(productPrice).equals(apiBase.getvaluefromresponse("data[0].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        	//Product Name Validation
+        	assertTrue(productNames.equals(apiBase.getvaluefromresponse("data[0].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	
+        	//MPN
+        	assertTrue(mpns.equals(apiBase.getvaluefromresponse("data[0].attributes.mpn_number", WishListServiceStepDefs.jsonAllProductsResponse)));
+        
+        	log.info("Validation completed on Basket Page UI");
+            
 	}
 	
 	

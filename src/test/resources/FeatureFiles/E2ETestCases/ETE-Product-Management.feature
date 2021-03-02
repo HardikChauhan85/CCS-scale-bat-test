@@ -1,6 +1,6 @@
 Feature: This User story covers the ETE functionality from creating a product in admin UI to validating the product in Buyer's UI#
 
-  @testE2E1234
+  @testE2E
   Scenario: TC-TBD_Verify that product should not be available in the catalogue of the supplier1 in supplier admin_1
     Given User logged in as "supplier" in admin panel
     And User click on "productcatalogues" link on main sidebar
