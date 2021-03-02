@@ -13,6 +13,7 @@ import com.scale.bat.businessPages.ProductCataloguePage;
 import com.scale.bat.businessPages.ProductDetailPage;
 import com.scale.bat.businessPages.SupplierPage;
 import com.scale.bat.context.TestContext;
+import com.scale.bat.framework.utility.API.Auth;
 
 import cucumber.api.Scenario;
 
@@ -31,6 +32,7 @@ public class PageObjectManager {
 	private BuyersUIPDPPage buyersUIPage;
 	private BuyersUIMyListPage buyersUIMyListPage;
 	private BuyersUIBasketPage buyersUIBasketPage;
+	private Auth auth;
 	
 	public PageObjectManager(WebDriver driver, Scenario scenario) {
 		this.driver = driver;
@@ -80,4 +82,12 @@ public class PageObjectManager {
 	public TakeScreenShot getScreeShot() {
 		return tekeScreenShot == null ? tekeScreenShot = new TakeScreenShot(driver,scenario) : tekeScreenShot;
 	}
+	
+	//API
+	/*public Auth getAuth() {
+		return auth == null ? auth = new Auth(driver,scenario) : auth;
+	}*/
+	
+	
+	
 }

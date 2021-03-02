@@ -47,7 +47,7 @@ public class BuyersUIMyListPage extends Actions  {
 		@FindBy(xpath ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div[2]/div/span[2]")
 		private WebElement skuMyList;
 		
-		@FindBy(xpath ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div[4]/form/button")
+		@FindBy(xpath ="//*[@class='govuk-button govuk-button govuk-button--secondary bat-wished-product__add-to-basket__button']")
 		private WebElement addToBasketButton;
 		
 		@FindBy(xpath ="//*[@class='govuk-button govuk-button--secondary']")
