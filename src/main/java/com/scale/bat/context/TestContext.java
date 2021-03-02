@@ -182,6 +182,16 @@ public class TestContext extends BrowserFactory {
 		objectManager.getBuyersUIpage().checkMenuButtonOnMobile();
 		objectManager.getBuyersUIpage().loginByuerUi(configReader.buyerUserName(), configReader.buyerpassword());
 	}
+	
+	
+	@Given("User login to buyerUI with API User")
+	public void user_login_to_buyerUI_with_API_User() {
+	    
+		objectManager.getBuyersUIpage().checkMenuButtonOnMobile();
+		objectManager.getBuyersUIpage().loginByuerUi(configReader.apiUserName("supplier"), configReader.apiUserPassword("supplier"));
+	}
+
+
 
 	@After
 	public void cleanUp() throws Exception {

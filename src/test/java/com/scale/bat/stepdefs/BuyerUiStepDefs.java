@@ -13,6 +13,7 @@ import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.PageObjectManager;
 
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -175,11 +176,29 @@ public class BuyerUiStepDefs {
 	    
 	}
 	
+	@And("User Validated a product details on basket page")
+	public void user_Validated_a_product_details_on_basket_page() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyProductDetailsOnBasketPage();
+	}
+	
+	@And("User Validated multiple products details on basket page")
+	public void user_Validated_multiple_products_details_on_basket_page() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyMultipleProductsDetailsOnBasketPage();
+	}
+	
+	@And("User Validates products details after clicking on Add these items to current basket button")
+	public void user_Validates_products_details_after_clicking_on_Add_these_items_to_current_basket_button() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyMultipleProductsDetailsOnBasketPageAfterAddTheseItemsButton();
+	}
+	
 	
 	@And("User Validated the more than one products details on basket page")
 	public void user_Validated_the_more_than_one_products_details_on_basket_page() {
 	    
-		objectManager.getBuyersUIBasketpage().verifyProductDetailsOnBasketPage(scenarioContext.SCA161TwoProductsFilePathNew);
+		objectManager.getBuyersUIBasketpage().verifyProductDetailsOnBasketPage();
 	}
 	
 	
