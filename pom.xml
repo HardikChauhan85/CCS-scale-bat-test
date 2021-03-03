@@ -36,8 +36,45 @@
 		<aws-java-sdk-s3>1.11.852</aws-java-sdk-s3>
 		<postgresql.driver.version>42.2.18</postgresql.driver.version>
 	</properties>
+	
+	
+	
+	
 
 	<dependencies>
+	<!-- https://mvnrepository.com/artifact/org.bitbucket.cowwoc/ToJsonString -->
+<dependency>
+    <groupId>org.bitbucket.cowwoc</groupId>
+    <artifactId>ToJsonString</artifactId>
+    <version>1.2</version>
+</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/io.rest-assured/json-path -->
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>json-path</artifactId>
+        <version>4.3.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>4.3.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
+    
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>4.3.0</version>
+        <scope>compile</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.github.dzieciou.testing/curl-logger -->
+    <dependency>
+        <groupId>com.github.dzieciou.testing</groupId>
+        <artifactId>curl-logger</artifactId>
+        <version>1.0.3</version>
+    </dependency>
+	
 		<!-- https://mvnrepository.com/artifact/com.browserstack/browserstack-local-java -->
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
 		<dependency>
@@ -45,7 +82,7 @@
 			<artifactId>aws-java-sdk-s3</artifactId>
 			<version>${aws-java-sdk-s3}</version>
 		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/com.browserstack/automate-maven-plugin -->
 		<dependency>
 			<groupId>com.browserstack</groupId>
@@ -67,6 +104,7 @@
 			<artifactId>selenium-chrome-driver</artifactId>
 			<version>${selenium.webdriver.version}</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>

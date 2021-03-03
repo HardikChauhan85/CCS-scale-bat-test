@@ -2,6 +2,8 @@ package com.scale.bat.framework.utility;
 
 import org.openqa.selenium.WebDriver;
 
+import com.scale.bat.businessPages.BuyersUIBasketPage;
+import com.scale.bat.businessPages.BuyersUIMyListPage;
 import com.scale.bat.businessPages.BuyersUIPDPPage;
 import com.scale.bat.businessPages.BuyersUIpage;
 import com.scale.bat.businessPages.CCSHomePage;
@@ -11,6 +13,7 @@ import com.scale.bat.businessPages.ProductCataloguePage;
 import com.scale.bat.businessPages.ProductDetailPage;
 import com.scale.bat.businessPages.SupplierPage;
 import com.scale.bat.context.TestContext;
+import com.scale.bat.framework.utility.API.Auth;
 
 import cucumber.api.Scenario;
 
@@ -26,7 +29,11 @@ public class PageObjectManager {
 	private BuyersUIPDPPage buyersUIPDPPage;
 	private SupplierPage supplierPage;
 	private TakeScreenShot tekeScreenShot;
-
+	private BuyersUIPDPPage buyersUIPage;
+	private BuyersUIMyListPage buyersUIMyListPage;
+	private BuyersUIBasketPage buyersUIBasketPage;
+	private Auth auth;
+	
 	public PageObjectManager(WebDriver driver, Scenario scenario) {
 		this.driver = driver;
 		this.scenario = scenario;
@@ -56,6 +63,14 @@ public class PageObjectManager {
 		return buyersUIpage == null ? buyersUIpage = new BuyersUIpage(driver,scenario) : buyersUIpage;
 	}
 	
+	public BuyersUIMyListPage getBuyersUIMyListpage() {
+		return buyersUIMyListPage == null ? buyersUIMyListPage = new BuyersUIMyListPage(driver,scenario) : buyersUIMyListPage;
+	}
+	
+	public BuyersUIBasketPage getBuyersUIBasketpage() {
+		return buyersUIBasketPage == null ? buyersUIBasketPage = new BuyersUIBasketPage(driver,scenario) : buyersUIBasketPage;
+	}
+	
 	public BuyersUIPDPPage getBuyersUIPDPPage() {
 		return buyersUIPDPPage == null ? buyersUIPDPPage = new BuyersUIPDPPage(driver,scenario) : buyersUIPDPPage;
 	}
@@ -67,4 +82,12 @@ public class PageObjectManager {
 	public TakeScreenShot getScreeShot() {
 		return tekeScreenShot == null ? tekeScreenShot = new TakeScreenShot(driver,scenario) : tekeScreenShot;
 	}
+	
+	//API
+	/*public Auth getAuth() {
+		return auth == null ? auth = new Auth(driver,scenario) : auth;
+	}*/
+	
+	
+	
 }

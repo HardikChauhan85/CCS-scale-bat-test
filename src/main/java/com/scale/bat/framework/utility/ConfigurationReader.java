@@ -226,4 +226,24 @@ public class ConfigurationReader {
 	        else
 	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
 	    }
+	    
+	    //API UserName
+	    public String apiUserName(String role)
+	    {
+	        String value = properties.getProperty("ccs.admin.panel.apiusername.userrole."+role.toLowerCase());
+	        if(value!= null)
+	            return value;
+	        else
+	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
+	    }
+	    //API User Password
+	    public String apiUserPassword(String role)
+	    {
+	        String value = properties.getProperty("ccs.admin.panel.password.userrole."+role.toLowerCase());
+	        if(value!= null)
+	            return value;
+	        else
+	            throw new RuntimeException(" Key not specified in the ApplicationConfig.properties file.");
+	    }
+	    
 }

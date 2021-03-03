@@ -1,0 +1,42 @@
+{
+  "FromUi": {
+    "LocalStockVolume": "8",
+    "StandardChargeProductUKMainland": "2",
+    "ManufacturerName": "Matrox Graphics",
+    "StandardChargeBasket": "5",
+    "StandardChargeProductUKNonMainland": "5",
+    "nextDayChargeBasket": "8",
+    "MPN": "G4+MDHA32GR",
+    "taxCategory": "Standard",
+    "Price": "10.00",
+    "LastUpdatedTestCase": "",
+    "StandardDeliveryTimeIndays": "1",
+    "UNSPSC": "TestAutomation",
+    "nextDayChargeProduct": "1",
+    "SKU": "SKU5370",
+    "ProductDescription": "Matrox Millennium G400 - Graphics card - MGA G400 - 32 MB SGRAM - AGP 4x - retail",
+    "PublishedFromDate": ""
+  },
+  "SKU": "SKU01",
+  "ProductCreation": {
+    "FromSFTP": {},
+    "FromUi": {
+      "LocalStockVolume": "5",
+      "StandardChargeProductUKMainland": "0",
+      "ManufacturerName": "InfoPrint",
+      "StandardChargeBasket": "0",
+      "StandardChargeProductUKNonMainland": "1",
+      "nextDayChargeBasket": "1",
+      "MPN": "90H3571",
+      "taxCategory": "Standard",
+      "Price": "913.0",
+      "LastUpdatedTestCase": "",
+      "StandardDeliveryTimeIndays": "1",
+      "UNSPSC": "TestAutomation",
+      "nextDayChargeProduct": "1",
+      "SKU": "SKU012",
+      "ProductDescription": "Matrox Millennium G400 - Graphics card - MGA G400 - 32 MB SGRAM - AGP 4x - retail",
+      "PublishedFromDate": ""
+    }
+  }
+}

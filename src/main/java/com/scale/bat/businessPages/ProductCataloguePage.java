@@ -90,7 +90,8 @@ public class ProductCataloguePage extends Actions {
 	@FindBy(xpath = "//*[@id='product_delivery_charges_attributes_standard_delivery_time']")
 	private WebElement StandardDeliveryTimeIndays;
 	
-	@FindBy(xpath = "//*[@id='admin_new_product']")
+	//@FindBy(xpath = "//*[@id='admin_new_product']")
+	@FindBy(xpath = "//*[@class='row align-items-center  border-bottom']/div[1]/form/button")
 	private WebElement PublishButton;
 	
 	
@@ -113,6 +114,7 @@ public class ProductCataloguePage extends Actions {
 		selectManufacturer(jObj.getString("ManufacturerName"));
 		waitForSeconds(2);
 		clickElement(findButtonOnNewProduct);
+		waitForSeconds(1);
 		enterText(price, jObj.getString("Price"));
 		enterText(lockStockVolume, jObj.getString("LocalStockVolume"));
 		enterText(UNSPSC, "UNSPSC-Num");
@@ -120,7 +122,6 @@ public class ProductCataloguePage extends Actions {
 		//enterText(SKU, "SKU00");
 		//clickElement(standardDeliveryCheckBox);
 		enterText(StandardChargeProductUKMainland, jObj.getString("StandardChargeProductUKMainland"));
-		
 		enterText(nextDayChargeProduct, jObj.getString("nextDayChargeProduct"));
 		enterText(nextDayChargeBasket, jObj.getString("nextDayChargeBasket"));
 		enterText(publishFromDate, new DateTimeUtils().dateWithSpecificFormatt("yyyy/MM/dd"));

@@ -24,10 +24,16 @@ public class JSONUtility {
 	/***************
 	 * Path to store all excel files and generated json files
 	 *****************/
-	private static String excelPath = "src/main/resources/data/";
-	private static String jsonPath = "src/main/resources/data/JSONs/";
-	private static String JSONPath = "src/main/resources/data/JSONs/";
-	private static String fcoJSONPath = "src/main/resources/data/fco/";
+	/*private static String excelPath = "src/main/resources/TestData/";
+	private static String jsonPath = "src/main/resources/TestData/ApiJson/";
+	private static String JSONPath = "src/main/resources/TestData/ApiJson/";
+	private static String fcoJSONPath = "src/main/resources/TestData/fco/";*/
+	
+    private static String excelPath = "TestData/";
+	//private static String excelPath = "TestData/ServiceTestdata.xlsx";
+	private static String jsonPath = "TestData/ApiJson/";
+	private static String JSONPath = "TestData/ApiJson/";
+	private static String fcoJSONPath = "src/main/resources/TestData/fco/";
 
 	public static void main(String[] args) throws Exception {
 		JSONUtility obj = new JSONUtility();

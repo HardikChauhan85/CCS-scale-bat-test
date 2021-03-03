@@ -25,9 +25,9 @@ import com.scale.bat.framework.utility.ConfigurationReader;
 import com.scale.bat.framework.utility.JSONUtility;
 import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.PageObjectManager;
-
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
+import cucumber.api.java.AfterStep;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -52,6 +52,8 @@ public class TestContext extends BrowserFactory {
 	public void setUp(Scenario scenario) throws MalformedURLException {
 		log.info("=================" + scenario.getName() + " execution starts" + "===================");
 		this.scenario = scenario;
+		scenarioContext = new ScenarioContext();
+		jsonUtilityObj =new JSONUtility();
 		configReader = new ConfigurationReader();
 		allPageScreenshotFlag = configReader.get("allPageScreenshot");
 		long threadId = Thread.currentThread().getId();
@@ -180,6 +182,16 @@ public class TestContext extends BrowserFactory {
 		objectManager.getBuyersUIpage().checkMenuButtonOnMobile();
 		objectManager.getBuyersUIpage().loginByuerUi(configReader.buyerUserName(), configReader.buyerpassword());
 	}
+	
+	
+	@Given("User login to buyerUI with API User")
+	public void user_login_to_buyerUI_with_API_User() {
+	    
+		objectManager.getBuyersUIpage().checkMenuButtonOnMobile();
+		objectManager.getBuyersUIpage().loginByuerUi(configReader.apiUserName("supplier"), configReader.apiUserPassword("supplier"));
+	}
+
+
 
 	@After
 	public void cleanUp() throws Exception {
@@ -234,6 +246,14 @@ public class TestContext extends BrowserFactory {
 
 	public JSONUtility getJsonUtilityObj() {
 		return jsonUtilityObj;
+	}
+	
+	
+	
+	@Given("^User has environment setup for ([^\"]*)$")
+	public void user_has_environment_setup_for(String scenarioID) throws Throwable {
+	    scenarioContext.setContext(jsonUtilityObj.convertJSONtoMAP(scenarioID));
+	    scenario.write("validating response when " + scenarioContext.getContext("scenarioID"));
 	}
 
 }
