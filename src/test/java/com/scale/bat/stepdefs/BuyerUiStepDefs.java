@@ -79,7 +79,9 @@ public class BuyerUiStepDefs {
 			objectManager.getBuyersUIpage().addElementToBasket();
 		case "My Account link":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getMyAccountLink());
-						
+			break;
+		case "Clear basket":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getclearBasketLink());
 			break;
 		
 		
@@ -176,11 +178,27 @@ public class BuyerUiStepDefs {
 	    
 	}
 	
+	
+	
 	@And("User Validated a product details on basket page")
 	public void user_Validated_a_product_details_on_basket_page() {
 	    
 		objectManager.getBuyersUIBasketpage().verifyProductDetailsOnBasketPage();
 	}
+	
+	@Given("User validates the message after Clear basket button clicked")
+	public void user_validates_the_message_after_Clear_basket_button_clicked() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyProductMessageOnBasketPage();
+	}
+	
+
+	@Given("User validates the Clear basket button and {string} message on basket page")
+	public void user_validates_the_Clear_basket_button_and_message_on_basket_page(String Msg) {
+    
+		objectManager.getBuyersUIBasketpage().verifyProductMessageAndClearBasketButttonOnBasketPage(Msg);
+	}
+
 	
 	@And("User Validated multiple products details on basket page")
 	public void user_Validated_multiple_products_details_on_basket_page() {
