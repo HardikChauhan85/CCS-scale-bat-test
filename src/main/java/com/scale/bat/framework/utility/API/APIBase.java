@@ -53,18 +53,7 @@ public class APIBase extends ConfigurationReader {
         return response;
     }
     
-    public String getAccessHash(String URL) {
-    	response=null;
-        String token=null;
-        response = RestAssured.given().spec(setBaseURI()).header("Authorization", "Bearer "+new Auth().Authenticaion()).contentType(setContentType())
-                .when().get(URL);
-       // System.out.println("second"+response.getBody().asString());
-         access_hash = response.then().extract().path("data.attributes.access_hash");
-        System.out.println("access_hash: "+ access_hash);
-        //scenario.write(response.toString());
-    return access_hash;
-    }
-
+    
     public Response Requestpost(String URL, File filepath,String ordertoken){
             response=null;
             String token=null;
@@ -91,16 +80,7 @@ public class APIBase extends ConfigurationReader {
         return response;
    }
 
-    public Response Requestpost1(String URL, File file,String param){
-    	
-         response=RestAssured.given().spec(setBaseURI()).header("Authorization", "Bearer "+new Auth().Authenticaion())
-        		.contentType(setContentType()).pathParams("access_hash",param).body(file).when().post(URL);
-        //scenario.write(response.toString());
-        //System.out.println("Requestpost response:== " + response.getStatusCode());
-        //System.out.println("Requestpost response:== " + response.getBody().asString());
-         return response;
-    }
-
+    
     public Response Requestdel(String URL, File filepath){
         response=null;
         response=RestAssured.given().spec(setBaseURI()).contentType(setContentType()).body(filepath).header("Authorization", "Bearer "+new Auth().Authenticaion())
@@ -119,7 +99,7 @@ public class APIBase extends ConfigurationReader {
     }
     
     
-    public Response patchRequest(String URL) {
+    public Response Requestpatch(String URL) {
         response=null;
         response = RestAssured.given().spec(setBaseURI()).header("Authorization", "Bearer "+new Auth().Authenticaion()).contentType(setContentType()).patch(URL);
         //log.info(response.prettyPrint().toString());
