@@ -21,8 +21,6 @@ public class Actions {
 		element.click();
 	}
 	
-	
-	
 	public void clickElementWithJavaScript(String xpath){
         WebElement element = driver.findElement(By.xpath(xpath));
         JavascriptExecutor executor = (JavascriptExecutor)driver;

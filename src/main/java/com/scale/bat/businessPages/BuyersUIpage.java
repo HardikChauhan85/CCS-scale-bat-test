@@ -24,6 +24,7 @@ public class BuyersUIpage extends Actions {
 	private String basketText = "Basket";
 	private String basketLink = "Basket";
 	private String myAccountLink="account";
+	private String clearBasketLink="Clear basket";
 
 	private String continueShoppingLinkOnBasketPage = "Continue shopping";
 	private String addToBasket = "  Add ";
@@ -255,5 +256,11 @@ public class BuyersUIpage extends Actions {
 	public String getMyAccountLink() {
 		return myAccountLink;
 	}
+	
+	public String getclearBasketLink() {
+		return clearBasketLink;
+	}
+	
+	
 
 }

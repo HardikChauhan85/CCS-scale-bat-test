@@ -1,7 +1,7 @@
 Feature: This User story covers the My List related scenarios
 	
 	#[US-161 (TC01)]
-  @testE2EMyList
+  @testE2E
   Scenario: TC-TBD_Verify the buyer can add a product to the basket from the My list page	New
   	#API Steps
   	Given user access the webservice of GetWishList
@@ -25,7 +25,7 @@ Feature: This User story covers the My List related scenarios
 		
 				 		
 	#[US-161 (TC06)]
-	@testE2EMyList
+	@testE2E
   Scenario: TC-TBD_Verify Buyer can add all products after clicking Clear my basket and add these items button in the My list page clears the basket and adds all products in the My list page to the basket New 
   Given user clears the basket
   And user gets all the available products list
@@ -50,7 +50,7 @@ Feature: This User story covers the My List related scenarios
   
   
   #[US-161 (TC08)]
-	@testE2EMyList
+	@testE2E
   Scenario: TC-TBD_Verify after clicking Add these items to current basket button in My list page DOES NOT deletes and clear the basket before adding wish list items to basket New
   Given user clears the basket
   And user gets all the available products list
