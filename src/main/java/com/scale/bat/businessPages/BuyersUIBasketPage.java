@@ -20,7 +20,7 @@ import com.scale.bat.framework.utility.ConfigurationReader;
 import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.API.APIBase;
-import com.scale.bat.webservice.WishListServiceStepDefs;
+import com.scale.bat.businessPages.WishListServiceStepDefs;
 
 import cucumber.api.Scenario;
 import io.restassured.response.Response;
@@ -105,7 +105,17 @@ public class BuyersUIBasketPage  extends Actions{
 	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[3]/div/div/table/tbody/tr/td[5]")
 	private WebElement productPrice3;
 
+	//Basket page
+	@FindBy(xpath ="//*[@class='govuk-notification-banner__heading']")
+	private WebElement basketPageMsgAfterClearBasket;
 	
+	String checkProductPresentOrNot ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/form/div/div[2]/a";
+	
+	@FindBy(xpath ="//*[@class='govuk-heading-m']")
+	private WebElement basketPageYourbasketIsEmptyMsg;
+	
+	String checkClearBasketBtn ="//*[@name='_csrf']/following-sibling::button";
+
 	
 	
 	
@@ -159,8 +169,7 @@ public class BuyersUIBasketPage  extends Actions{
         	
         	//Product1 MPN
         	assertTrue(mpn1.equals(apiBase.getvaluefromresponse("data[1].attributes.mpn_number", WishListServiceStepDefs.jsonAllProductsResponse)));
-        
-        	
+                	
         	// Second Product Validation
         	int product2Namelength = getText(productName2).length();
 			String product2Name = getText(productName2).substring(17,product2Namelength);
@@ -251,6 +260,7 @@ public class BuyersUIBasketPage  extends Actions{
 			int mpnlength=getText(mpn).length();
 			String mpns = getText(mpn).substring(5,mpnlength);
 			
+			System.out.println("JSON Body Validation: " + WishListServiceStepDefs.jsonAllProductsResponse.getBody().asString());
 		 	//Product Price UI
         	assertTrue(getText(productPrice).equals(apiBase.getvaluefromresponse("data[0].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
         	
@@ -262,6 +272,37 @@ public class BuyersUIBasketPage  extends Actions{
         
         	log.info("Validation completed on Basket Page UI");
             
+	}
+	
+	
+	public void verifyProductMessageOnBasketPage() {
+		waitForSeconds(2);
+			//Product Price UI
+        	assertTrue(getText(basketPageMsgAfterClearBasket).equals("All products were removed from the basket."));
+        	 boolean checkProductNotPresent = isElementPresentByXpath(checkProductPresentOrNot);
+        	 
+        	 if(checkProductNotPresent==false) {
+        		 assertTrue("All Products are cleared from basket", true);
+        	 }else {
+        		 
+        		 assertTrue("All Products are Not cleared from basket", false);
+        	 }
+        	
+               	       
+	}
+	
+	public void verifyProductMessageAndClearBasketButttonOnBasketPage(String msg) {
+		waitForSeconds(2);
+			
+        	assertTrue(getText(basketPageYourbasketIsEmptyMsg).equals(msg));
+        	 boolean checkClearBasketBtnNotPresent = isElementPresentByXpath(checkClearBasketBtn);
+        	 
+        	 if(checkClearBasketBtnNotPresent==false) {
+        		 assertTrue("Clear Basket button is not visible on basket page", true);
+        	 }else {
+        		 
+        		 assertTrue("Clear Basket button is visible on basket page", false);
+        	 }       
 	}
 	
 	

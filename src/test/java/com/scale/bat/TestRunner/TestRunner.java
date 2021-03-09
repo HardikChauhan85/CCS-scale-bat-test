@@ -8,11 +8,11 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
         strict = false,
         features = {"src/test/resources/FeatureFiles"},
-        glue={"com.scale.bat.stepdefs","com.scale.bat.webservice", "com.scale.bat.context"},
+        glue={"com.scale.bat.stepdefs","com.scale.bat.webservice", "com.scale.bat.context","com.scale.bat.businessPages"},
         monochrome = false,	
         plugin = { "pretty", "html:target/cucumber-html-reports", "json:target/cucumber-html-reports/cucumber.json"}
        // , tags = "@confidence, @testE2E",dryRun = false)
-        , tags = "@testE2EMyList",dryRun = false)
+        , tags = "@testE2EBasketItrTC02",dryRun = false)
 
 //plugin = {"json:Reports/cucumber-html-reports/cucumber.json"}
 public class TestRunner {
