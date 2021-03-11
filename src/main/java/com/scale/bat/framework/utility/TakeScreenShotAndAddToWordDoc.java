@@ -85,7 +85,6 @@ public class TakeScreenShotAndAddToWordDoc {
         
         allImageDetails.add(dirPath + screenshot_name);
         imagePath++;
-        System.out.println();
 	}
 	
 	public static void writeScreenShot() {
