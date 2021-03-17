@@ -3,6 +3,7 @@ package com.scale.bat.businessPages;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.apache.commons.math3.geometry.euclidean.twod.Line;
@@ -19,6 +20,7 @@ import com.scale.bat.framework.utility.Actions;
 import com.scale.bat.framework.utility.ConfigurationReader;
 import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
+import com.scale.bat.framework.utility.TakeScreenShotAndAddToWordDoc;
 import com.scale.bat.framework.utility.API.APIBase;
 import com.scale.bat.businessPages.WishListServiceStepDefs;
 
@@ -271,11 +273,13 @@ public class BuyersUIBasketPage  extends Actions{
         	assertTrue(mpns.equals(apiBase.getvaluefromresponse("data[0].attributes.mpn_number", WishListServiceStepDefs.jsonAllProductsResponse)));
         
         	log.info("Validation completed on Basket Page UI");
+        	
+        	TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
             
 	}
 	
 	
-	public void verifyProductMessageOnBasketPage() {
+	public void verifyProductMessageOnBasketPage() throws IOException {
 		waitForSeconds(2);
 			//Product Price UI
         	assertTrue(getText(basketPageMsgAfterClearBasket).equals("All products were removed from the basket."));
@@ -287,8 +291,11 @@ public class BuyersUIBasketPage  extends Actions{
         		 
         		 assertTrue("All Products are Not cleared from basket", false);
         	 }
-        	
-               	       
+        	 
+        	 TakeScreenShotAndAddToWordDoc.captureScreenShotNew();   
+        	 TakeScreenShotAndAddToWordDoc.writeScreenShot();
+        	 TakeScreenShotAndAddToWordDoc.writeDoc();
+        	 waitForSeconds(2);
 	}
 	
 	public void verifyProductMessageAndClearBasketButttonOnBasketPage(String msg) {
@@ -324,6 +331,17 @@ public class BuyersUIBasketPage  extends Actions{
 		System.out.println("OUT Of Stock MGS " + getText(YouCannotAddTheSelectedProductToTheBasketItsOutOfStockMsg));
 		
 		assertEquals(lines[1], "You cannot add the selected product to the basket. It's out of stock.");
+	}
+	
+	public void verifyProductPriceAndStandardDeliveryCostDetails(Map<String, Object> pDetails) {
+		waitForSeconds(2);
+		
+		System.out.println("JSON PRODUCT PRICE : "+pDetails.get("Price").toString());
+		System.out.println("UI PRODUCT PRICE : "+getText(productPrice).replaceAll("[^a-zA-Z0-9]",""));
+		assertTrue(getText(productPrice).replaceAll("[^a-zA-Z0-9]","").contains(pDetails.get("Price").toString().replaceAll("[^a-zA-Z0-9]","")));
+		/*assertEquals(getText(mpnNumber), pDetails.get("MPN").toString());
+		assertEquals(getText(manufaturer), pDetails.get("ManufacturerName").toString());*/
+		log.info("Validation completed for Price on buyer UI");
 	}
 	
 	

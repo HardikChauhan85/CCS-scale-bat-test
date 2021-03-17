@@ -22,7 +22,7 @@ public class CCSHomePageStefDef {
 		switch (linkText.toLowerCase()) {
 		case "productcatalogues":
 			objectManager.getCCSHomePage().navigateToProductCatalogues();
-			objectManager.getScreeShot().takeSnapShot1();
+			//objectManager.getScreeShot().takeSnapShot1();
 			break;
 		case "orders":
 			objectManager.getCCSHomePage().navigateToOrders();

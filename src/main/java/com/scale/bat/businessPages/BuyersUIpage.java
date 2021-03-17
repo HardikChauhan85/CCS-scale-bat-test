@@ -13,13 +13,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.scale.bat.framework.utility.Actions;
 import com.scale.bat.framework.utility.Log;
+import com.scale.bat.framework.utility.TakeScreenShotAndAddToWordDoc;
+
 import cucumber.api.Scenario;
 
 public class BuyersUIpage extends Actions {
 
 	private String signIn = "Sign in";
 	private String logInButton = "Log in";
-	private String mobileDevices = "Mobile Devices";
+	private String mobileDevices = "Output Accessories";
 	private String PLPScreenText = "products";
 	private String basketText = "Basket";
 	private String basketLink = "Basket";
@@ -53,9 +55,12 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "/html/body/header/div/div[2]/div/div/form/div/button")
 	private WebElement searchButton;
 	
-	@FindBy(xpath = "//*[@id='main-content']/div[2]/div[2]/ul/li/div/a/img")
+	private String searchButtonStr= "/html/body/header/div/div[2]/div/div/form/div/button";
+	
+	@FindBy(xpath = "//*[@id='main-content']/div[2]/div[2]/ul/li/div/div[1]/a/img")
 	private WebElement selectProduct;
 	
+	private String selectProductStr="//*[@id='main-content']/div[2]/div[2]/ul/li/div/div[1]/a/img";
 	
 	@FindBy(xpath = "//*[@class='bat-header__menu-button bat-js-header-toggle']")
 	private WebElement mobileMenue;
@@ -98,6 +103,7 @@ public class BuyersUIpage extends Actions {
 		enterText(userName, UserName);
 		enterText(password, Password);
 		waitForSeconds(1);
+		TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 		clickButton(logInButton);
 		log.info("Logged in to buyers Ui");
 	}
@@ -105,8 +111,9 @@ public class BuyersUIpage extends Actions {
 	public void searchProduct(String product) {
 		waitForSeconds(1);
 		enterText(search, product);
-		waitForSeconds(1);
-		clickElement(searchButton);
+		waitForSeconds(2);
+		//clickElement(searchButton);
+		clickElementWithJavaScript(searchButtonStr);
 		waitForSeconds(2);
 	}
 	
@@ -146,7 +153,7 @@ public class BuyersUIpage extends Actions {
 	}
 
 	public void navigateToPDPPage() {
-		clickElement(selectProduct);
+		clickElementWithJavaScript(selectProductStr);
 	}
 	
 	public void navigateToPLPPage() {
