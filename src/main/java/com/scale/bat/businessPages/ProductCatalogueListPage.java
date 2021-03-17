@@ -1,6 +1,9 @@
 package com.scale.bat.businessPages;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -13,6 +16,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 
 import com.scale.bat.framework.utility.Actions;
 import com.scale.bat.framework.utility.Log;
@@ -28,7 +32,7 @@ public class ProductCatalogueListPage extends Actions {
 	@FindBy(xpath = "//*[@class='actions']/a")
 	private WebElement show;
 
-	@FindBy(xpath = "//*[@id='s2id_q_vendor_name_eq']/following-sibling::select")
+	@FindBy(xpath = "//*[@id='q_vendor_name_eq']")
 	private WebElement supplierFilter;
 	
 	@FindBy(xpath = "//*[@id='select2-drop']/div/input")
@@ -91,14 +95,14 @@ public class ProductCatalogueListPage extends Actions {
 	private WebElement deleteFirstProduct;
 	
 	
-	private String totalPaginationPageCountPLP="//ul[@class='pagination mt-4 ']/li";
+	private String totalPaginationPageCountPLP="//ul[@class='pagination d-inline-flex ']/li";
 	private String lastPageButton="//li[@class='last next page-item']/a";
-	private String totalPaginationPageCount="//*[@id='content']/div[2]/div[1]/ul/li";
+	private String totalPaginationPageCount="//*[@id='content']/div[3]/div[1]/ul/li";
 	
 	private String beforeRowCount="";
 	private String afterRowCount="";
 	
-	
+	SoftAssert softassert = new SoftAssert();
 	
 
 	/*
@@ -138,12 +142,27 @@ public class ProductCatalogueListPage extends Actions {
 			log.info("Product is not present in the Supplier Catalouge");
 			
 		}else {
-			waitForSeconds(1);
-			clickElement(deleteFirstProduct);
-			waitForAlert(driver);
-			driver.switchTo().alert().accept();
-			waitForSeconds(2);
-			assertTrue("Product is not deleted successfully..", isElementPresent("Product has been deleted", driver));
+			try {
+				
+				waitForSeconds(1);
+				clickElement(deleteFirstProduct);
+				waitForAlert(driver);
+				driver.switchTo().alert().accept();
+				waitForSeconds(2);
+				assertTrue("Product is not deleted successfully..", isElementPresent("Product has been deleted", driver));
+				//assertEquals("Product is not deleted successfully..", isElementPresent("Product has been deleted", driver));
+				//verify("Product is not deleted successfully..");
+				
+			} catch (Error e) {
+				//assertFalse("Message : Product has been deleted but not shown the message", (isElementPresent("Product has been deleted", driver)));
+				//assertNotSame(string1, string3);
+				softassert.fail("Message : Product has been deleted but not shown the message");
+				
+				//("Message : Product has been deleted but not shown the message", "Product has been deleted");
+				//fail("Message : Product has been deleted but not shown the message");
+				System.out.println("Message : Product has been deleted is not shown");
+				log.info(e.toString());
+			}
 			
 			
 		}

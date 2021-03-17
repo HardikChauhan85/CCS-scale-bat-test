@@ -20,7 +20,7 @@ public class LogInAdminPanel extends Actions{
     @FindBy(xpath = "//*[@id='spree_user_password']")
     private WebElement enterPassword;
   
-    @FindBy(xpath = "//*[@class='btn btn-primary btn-block spree-btn mt-2']")
+    @FindBy(xpath = "//*[@class='btn btn-primary btn-block']")
     private WebElement loginButton;
 
     public LogInAdminPanel(WebDriver driver, Scenario scenario) {
