@@ -66,7 +66,8 @@ public void verifyLastUpdatedProductDetails(Map<String, Object> pDetails, String
 		double StandardChargeProductUKMainlandint=Double.parseDouble(StandardChargeProductUKMainland);
 		TotalCostint=TotalCostint+StandardChargeProductUKMainlandint;
 		String TotalCost= Double.toString(TotalCostint);
-		String LastUpdateProduct="//tbody[@class='govuk-table__body']/tr[1]/td[text()="+"'"+supplierName+"'"+"]"+"/following-sibling::td[2][text()="+"'"+SKU+"'"+"]"+"/following-sibling::td[text()="+"'"+Stock+"'"+"]"+"/following-sibling::td[contains (text(),"+"'"+Price+"')"+"]"+"/following-sibling::td[contains (text(),"+"'"+StandardChargeProductUKMainland+"')"+"]"+"/following-sibling::td[contains (text(),"+"'"+TotalCost+"')"+"]";
+		//String LastUpdateProduct="//tbody[@class='govuk-table__body']/tr[1]/td[text()="+"'"+supplierName+"'"+"]"+"/following-sibling::td[2][text()="+"'"+SKU+"'"+"]"+"/following-sibling::td[text()="+"'"+Stock+"'"+"]"+"/following-sibling::td[contains (text(),"+"'"+Price+"')"+"]"+"/following-sibling::td[contains (text(),"+"'"+StandardChargeProductUKMainland+"')"+"]"+"/following-sibling::td[contains (text(),"+"'"+TotalCost+"')"+"]";
+		String LastUpdateProduct="//tbody[@class='govuk-table__body']/tr[1]/td[1]"+"/following-sibling::td[2][text()="+"'"+SKU+"'"+"]"+"/following-sibling::td[text()="+"'"+Stock+"'"+"]"+"/following-sibling::td[contains (text(),"+"'"+Price+"')"+"]"+"/following-sibling::td[contains (text(),"+"'"+StandardChargeProductUKMainland+"')"+"]"+"/following-sibling::td[contains (text(),"+"'"+TotalCost+"')"+"]";
 		//Validate the latest updated Product price should be shown at the top of the price table if 2 products of the different supplier having cheapest price
 		assertTrue("Last Updated Product having cheapest Price table is not visible in top of the price table",existsElement(LastUpdateProduct));
 		log.info("Validation of Last Updated Product having cheapest Price is visible in top of the price table is successful");

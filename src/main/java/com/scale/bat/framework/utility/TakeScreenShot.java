@@ -1,11 +1,17 @@
 package com.scale.bat.framework.utility;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,6 +51,19 @@ public class TakeScreenShot extends Actions {
 		}
 		byte[] source = imageStream.toByteArray();
 		scenario.embed(source, "image/png");
+	}
+	
+	
+	public void screenShot() throws IOException, InterruptedException
+	{
+	    File scr=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+	    File dest= new File("filPath/screenshot_"+timestamp()+".png");
+	    FileUtils.copyFile(scr, dest);
+	}
+
+	public String timestamp() {
+	    return new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
 	}
 	
 }

@@ -3,6 +3,8 @@ package com.scale.bat.stepdefs;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
@@ -11,6 +13,7 @@ import com.scale.bat.context.ScenarioContext;
 import com.scale.bat.context.TestContext;
 import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.PageObjectManager;
+import com.scale.bat.framework.utility.TakeScreenShotAndAddToWordDoc;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -51,7 +54,7 @@ public class BuyerUiStepDefs {
 	}
 
 	@And("User clicks on {string} in buyers UI")
-	public void user_clicks_on_button_on_buyers_UI(String button) {
+	public void user_clicks_on_button_on_buyers_UI(String button) throws InterruptedException {
 		switch (button) {
 		case "Continue Shopping":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getContinueShoppingElement());
@@ -74,16 +77,20 @@ public class BuyerUiStepDefs {
 			break;
 		case "Basket Link":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getBasketLink());
+			Thread.sleep(2000);
+			TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 			break;
 		case "Add to basket":
 			objectManager.getBuyersUIpage().addElementToBasket();
+			break;
 		case "My Account link":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getMyAccountLink());
 			break;
 		case "Clear basket":
+			TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getclearBasketLink());
+			Thread.sleep(2000);
 			break;
-		
 		
 
 		}
@@ -187,7 +194,7 @@ public class BuyerUiStepDefs {
 	}
 	
 	@Given("User validates the message after Clear basket button clicked")
-	public void user_validates_the_message_after_Clear_basket_button_clicked() {
+	public void user_validates_the_message_after_Clear_basket_button_clicked() throws IOException {
 	    
 		objectManager.getBuyersUIBasketpage().verifyProductMessageOnBasketPage();
 	}
@@ -236,6 +243,12 @@ public class BuyerUiStepDefs {
 	public void user_validates_the_product_message_All_products_were_added_to_your_basket() {
 	    
 		objectManager.getBuyersUIBasketpage().verifyMessageAllProductsWereAddedToYourBasket();
+	}
+	
+	@When("User validates the product price on basket page")
+	public void user_validates_the_product_price_on_basket_page() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyProductPriceAndStandardDeliveryCostDetails(scenarioContext.productDetails);
 	}
 
 

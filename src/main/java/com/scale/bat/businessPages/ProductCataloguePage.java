@@ -24,10 +24,10 @@ public class ProductCataloguePage extends Actions {
 	@FindBy(xpath = "//*[@id='new_product']/div/input")
 	private WebElement createProductButton;
 
-	@FindBy(xpath = "//*[@id='product_manufacturer_id_field']/div")
+	@FindBy(xpath = "//*[@class='select2-selection select2-selection--single']")
 	private WebElement manufacturerName;
 
-	@FindBy(xpath = "//*[@id='s2id_autogen1_search']")
+	@FindBy(xpath = "//*[@class='select2-search__field']")
 	private WebElement manufacturerNameInput;
 
 	@FindBy(xpath = "//*[@id='product_name']")
@@ -45,19 +45,20 @@ public class ProductCataloguePage extends Actions {
 	@FindBy(xpath = "//*[@id='product_sku']")
 	private WebElement SKU;
 
-	@FindBy(xpath = "//*[@id='s2id_product_tax_category_id']")
+	//@FindBy(xpath = "//*[@id='select2-product_tax_category_id-container']")
+	@FindBy(xpath = "//*[@class='select2-selection select2-selection--single']")
 	//@FindBy(xpath = "//*[@id='s2id_product_tax_category_id']/a/span[2]")
 	private WebElement taxCategory;
 	
 	//private String taxCategoryStr = "//*[@id='s2id_product_tax_category_id']/a/span[2]";
 	private String taxCategoryStr = "//*[@id='s2id_product_tax_category_id']";
 
-	@FindBy(xpath = "//*[@id='select2-results-1']/li[2]/div")
+	@FindBy(xpath = "//li[contains(text(),'VAT 0%')]")
 	private WebElement selectTaxCategory;
 	
 	//private String selectTaxCategoryStr = "//*[@id='select2-results-1']/li[2]/div";
 
-	@FindBy(xpath = "//*[@id='product_available_on']")
+	@FindBy(xpath = "//*[@class='datepicker form-control flatpickr-alt-input active']")
 	private WebElement publishFromDate;
 
 	@FindBy(xpath = "//input[@class='btn btn-primary']")
@@ -65,6 +66,10 @@ public class ProductCataloguePage extends Actions {
 
 	@FindBy(xpath = "//*[@id='product_delivery_charges_attributes_standard_delivery_available']")
 	private WebElement standardDeliveryCheckBox;
+	
+	@FindBy(xpath = "//*[@id='product_delivery_charges_attributes_next_day_available']")
+	private WebElement nextDayDeliveryAvailableCheckBox;
+	
 
 	@FindBy(xpath = "//*[@id='product_delivery_charges_attributes_next_day_charge_product_uk_mainland']")
 	private WebElement nextDayChargeProduct;
@@ -122,9 +127,11 @@ public class ProductCataloguePage extends Actions {
 		//enterText(SKU, "SKU00");
 		//clickElement(standardDeliveryCheckBox);
 		enterText(StandardChargeProductUKMainland, jObj.getString("StandardChargeProductUKMainland"));
+		clickElement(nextDayDeliveryAvailableCheckBox);
+		
 		enterText(nextDayChargeProduct, jObj.getString("nextDayChargeProduct"));
 		enterText(nextDayChargeBasket, jObj.getString("nextDayChargeBasket"));
-		enterText(publishFromDate, new DateTimeUtils().dateWithSpecificFormatt("yyyy/MM/dd"));
+		//enterText(publishFromDate, new DateTimeUtils().dateWithSpecificFormatt("yyyy/MM/dd"));
 		enterText(StandardChargeBasket, jObj.getString("StandardChargeBasket"));
 		waitForSeconds(2);
 		clickElement(taxCategory);
@@ -157,12 +164,13 @@ public class ProductCataloguePage extends Actions {
 		waitForAlert();
 		driver.switchTo().alert().accept();
 		waitForSeconds(2);
-		assertTrue("Product is not deleted successfully..", isElementPresent("Product has been deleted"));
+		//assertTrue("Product is not deleted successfully..", isElementPresent("Product has been deleted"));
 	}
 
 	public void selectManufacturer(String manufacturerName) {
 		waitForSeconds(2);
-		String XPATH = "//div[@class='select2-result-label']/span[contains(text(),'" + manufacturerName + "')]";
+		//String XPATH = "//div[@class='select2-result-label']/span[contains(text(),'" + manufacturerName + "')]";
+		String XPATH = "//ul[@class='select2-results__options']/li[contains(text(),'" + manufacturerName + "')]";
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(XPATH)));
 		element.click();
 		// log.info("User is ble to select the Manufacturer" + manufacturerName + " ");

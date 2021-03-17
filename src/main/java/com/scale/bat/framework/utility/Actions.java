@@ -375,14 +375,14 @@ public class Actions {
 		
 		
 		public void selectItemFromDropDownByJavascriptExecutor(WebDriver driver, WebElement supplierFilter, String value) {
-			 try {
+			 //try {
 				  ((JavascriptExecutor) driver).executeScript(
 							"var select = arguments[0]; for(var i = 0; i < select.options.length; i++){ if(select.options[i].text == arguments[1]){ select.options[i].selected = true; } }",
 							supplierFilter, value);
 				 
-			} catch (Exception e) {
+			/*} catch (Exception e) {
 				
-			}
+			}*/
 			 
 			}
 		 
