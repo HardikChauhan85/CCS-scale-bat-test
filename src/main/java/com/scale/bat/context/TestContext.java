@@ -12,7 +12,9 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,12 +27,15 @@ import com.scale.bat.framework.utility.ConfigurationReader;
 import com.scale.bat.framework.utility.JSONUtility;
 import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.PageObjectManager;
+import com.scale.bat.framework.utility.TakeScreenShotAndAddToWordDoc;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.AfterStep;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 
 
 public class TestContext extends BrowserFactory {
@@ -46,6 +51,7 @@ public class TestContext extends BrowserFactory {
 	public String allPageScreenshotFlag;
 	public ConfigurationReader configReader;
 	protected WebDriverWait wait;
+	
 	
 	
 	@Before
@@ -74,6 +80,14 @@ public class TestContext extends BrowserFactory {
 	@And("User log off and close the application")
 	public void user_log_off_from_the_application() {
 		objectManager.getCCSHomePage().logOffAndClose();
+		driver.quit();
+		driver = null;
+	}
+	
+	
+	@When("User log off and close the buyer UI")
+	public void user_log_off_and_close_the_buyer_UI() {
+	    
 		driver.quit();
 		driver = null;
 	}
@@ -174,6 +188,8 @@ public class TestContext extends BrowserFactory {
 		this.driver = initiateDriver(configReader.getBrowserName(),scenario);
 		launchURL(configReader.buyerUIUrl());
 		objectManager = new PageObjectManager(this.driver, scenario);
+		//TakeScreenShotAndAddToWordDoc.createWordFile();
+		//TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 	}
 
 	@Given("User login to buyerUI")
@@ -181,6 +197,25 @@ public class TestContext extends BrowserFactory {
 		
 		objectManager.getBuyersUIpage().checkMenuButtonOnMobile();
 		objectManager.getBuyersUIpage().loginByuerUi(configReader.buyerUserName(), configReader.buyerpassword());
+		
+		// To zoom out 3 times
+				/*for(int i=0; i<1; i++){
+					driver.findElement(By.tagName("html")).sendKeys(Keys.chord(Keys.CONTROL,Keys.SUBTRACT));
+				}
+				Robot robot = null;
+				try {
+					robot = new Robot();
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				for (int i = 0; i < 1; i++) {
+					robot.keyPress(KeyEvent.VK_CONTROL);
+					robot.keyPress(KeyEvent.VK_SUBTRACT);
+					robot.keyRelease(KeyEvent.VK_SUBTRACT);
+					robot.keyRelease(KeyEvent.VK_CONTROL);
+				}*/
+		
 	}
 	
 	

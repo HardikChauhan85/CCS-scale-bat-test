@@ -42,7 +42,8 @@ public class ProductDetailPage extends Actions {
 	@FindBy(xpath = "//*[@id='content']/form/div/div/a")
 	private WebElement cancelButton;
 
-	@FindBy(xpath = "//*[@id='product_discontinue_on_field']/input")
+//	@FindBy(xpath = "//*[@id='product_discontinue_on_field']/input")
+	@FindBy(xpath = "//*[@id='product_discontinue_on']")
 	private WebElement discontinueOn;
 
 	@FindBy(xpath = "//*[@id='product_available_on_field']/input")

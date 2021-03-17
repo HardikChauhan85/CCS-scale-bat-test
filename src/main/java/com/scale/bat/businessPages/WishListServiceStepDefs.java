@@ -139,6 +139,7 @@ public class WishListServiceStepDefs {
 		
 		String strjsonProduct2 ="{\"wished_product\":{\"variant_id\":"+thirdProductVariantID+",\"quantity\":1,\"remark\":\"test\"}}";
 		Response strjsonProduct2Status=apibase.Requestpost("/api/v2/storefront/wishlists/{access_hash}/wished_products", strjsonProduct2, access_hash);
+		System.out.println();
 	}
 
 
