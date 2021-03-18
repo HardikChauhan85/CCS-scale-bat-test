@@ -1,5 +1,6 @@
 package com.scale.bat.stepdefs;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -78,7 +79,7 @@ public class BuyerUiStepDefs {
 		case "Basket Link":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getBasketLink());
 			Thread.sleep(2000);
-			TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
+			//TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 			break;
 		case "Add to basket":
 			objectManager.getBuyersUIpage().addElementToBasket();
@@ -87,12 +88,56 @@ public class BuyerUiStepDefs {
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getMyAccountLink());
 			break;
 		case "Clear basket":
-			TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
+			//TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getclearBasketLink());
 			Thread.sleep(2000);
 			break;
-		
-
+		case "Add to list":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getaddToList());
+			assertEquals(objectManager.getBuyersUIpage().getaddToListMsg(), "The product was successfully added to the wish list");
+			Thread.sleep(2000);
+			break;
+			
+		case "View list":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getviewListLink());
+			Thread.sleep(2000);
+			break;
+			
+		case "Compare button":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getcompareButton());
+			assertEquals(objectManager.getBuyersUIpage().getproductAddedToComparePageMsg(), "Product added for comparison");
+			Thread.sleep(2000);
+			break;
+			
+		case "Add to list Compare Page":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getaddToListBtnComparePage());
+			assertEquals(objectManager.getBuyersUIpage().getaddToListMsg(), "The product was successfully added to the wish list");
+			Thread.sleep(2000);
+			break;
+			
+		case "back link":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getbackLink());
+			Thread.sleep(2000);
+			break;
+			
+		case "Remove link":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getremoveLink());
+			assertEquals(objectManager.getBuyersUIpage().getaddToListMsg(), "Product removed from comparison");
+			Thread.sleep(2000);
+			break;
+			
+		case "My list visit button":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getMyAccountMyListVisitButton());
+			Thread.sleep(2000);
+			break;
+			
+		case "My list delete button":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getMyListDeleteProductButton());
+			assertEquals(objectManager.getBuyersUIpage().getaddToListMsg(), "The selected product was deleted from the wish list");
+			Thread.sleep(2000);
+			break;
+			
+			
 		}
 	}
 
@@ -272,5 +317,14 @@ public class BuyerUiStepDefs {
 
 		objectManager.getBuyersUIPDPPage().verifyLastUpdatedProductDetails(scenarioContext.productDetails,
 				supplierName);
+	}
+	
+	
+	@When("User validates the products details on Mylist page")
+	public void user_validates_the_products_details_on_Mylist_page() {
+	    
+		objectManager.getBuyersUIMyListpage().verifyProductDetailsOnMyListPage(scenarioContext.productDetails);
+		
+		
 	}
 }

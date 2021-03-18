@@ -27,6 +27,8 @@ public class BuyersUIpage extends Actions {
 	private String basketLink = "Basket";
 	private String myAccountLink="account";
 	private String clearBasketLink="Clear basket";
+	private String viewListLink="View list";
+	
 
 	private String continueShoppingLinkOnBasketPage = "Continue shopping";
 	private String addToBasket = "  Add ";
@@ -67,6 +69,34 @@ public class BuyersUIpage extends Actions {
 	
 	@FindBy(xpath = "//*[@id='main-content']/div[2]/div[3]/a")
 	private WebElement myListVisitButton;
+	
+	@FindBy(xpath = "//*[@class='govuk-button govuk-button--secondary bat-product__button bat-product__add-to-list__button']")
+	private WebElement addToList;
+	
+	@FindBy(xpath = "//*[@class='govuk-button govuk-button--secondary bat-compare-products-header__add-to-list']")
+	private WebElement addToListBtnComparePage;
+	
+	@FindBy(xpath = "//a[@href='/wishlist']")
+	private WebElement myAccountMyListVisitButton;
+	
+	@FindBy(xpath = "//*[@class='bat-wished-product__delete']/button")
+	private WebElement myListDeleteProductButton;
+	
+	@FindBy(xpath = "//*[@id='main-content']/div[1]/div/table/thead/tr/th[2]/div/div[2]/form[2]/button")
+	private WebElement removeLink;
+	
+	@FindBy(xpath = "//*[@class='govuk-width-container ']/a")
+	private WebElement backLink;
+	
+	@FindBy(xpath = "//*[@class='govuk-button govuk-button--secondary bat-product-preview__compare']")
+	private WebElement compareButton;
+	
+	@FindBy(xpath = "//*[@class='govuk-notification-banner__heading']")
+	private WebElement addToListMsgValidation;
+	
+	@FindBy(xpath = "//*[@class='govuk-notification-banner__heading']")
+	private WebElement addedToComparePageMsg;
+	
 	
 	private String mobileMenueStr = "//*[@class='bat-header__menu-button bat-js-header-toggle']";
 	private String totalNoOfProductInBasket="//li[@class='bat-basket__item']";
@@ -268,6 +298,46 @@ public class BuyersUIpage extends Actions {
 		return clearBasketLink;
 	}
 	
+	public WebElement getaddToList() {
+		return addToList;
+	}
+	
+	public String getaddToListMsg() {
+		return getText(addToListMsgValidation);
+	}
+	
+	public String getviewListLink() {
+		return viewListLink;
+	}
+	
+	public WebElement getcompareButton() {
+		return compareButton;
+	}
+	
+	public String getproductAddedToComparePageMsg() {
+		return getText(addedToComparePageMsg);
+	}
+	
+	public WebElement getaddToListBtnComparePage() {
+		return addToListBtnComparePage;
+	}
+	
+	public WebElement getbackLink() {
+		return backLink;
+	}
+	
+	
+	public WebElement getremoveLink() {
+		return removeLink;
+	}
+	
+	public WebElement getMyAccountMyListVisitButton() {
+		return myAccountMyListVisitButton;
+	}
+	
+	public WebElement getMyListDeleteProductButton() {
+		return myListDeleteProductButton;
+	}
 	
 
 }

@@ -31,7 +31,7 @@ Feature: This User story covers the My List related scenarios
   And User validates the Clear basket button and 'Your basket is empty' message on basket page
   
   #[SCA-108 TC01]
-  @confidence2121
+  @confidence
   Scenario: TC-TBD_Verify Buyer always be shown refreshed/up-to-date product prices in basket
   
   #UI Steps

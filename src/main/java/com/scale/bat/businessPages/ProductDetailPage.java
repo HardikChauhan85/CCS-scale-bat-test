@@ -46,7 +46,7 @@ public class ProductDetailPage extends Actions {
 	@FindBy(xpath = "//*[@id='product_discontinue_on']")
 	private WebElement discontinueOn;
 
-	@FindBy(xpath = "//*[@id='product_available_on_field']/input")
+	@FindBy(xpath = "//*[@id='product_available_on']")
 	private WebElement publishedFromDate;
 
 	private String errorMessage = "//*[@id='errorExplanation']";
