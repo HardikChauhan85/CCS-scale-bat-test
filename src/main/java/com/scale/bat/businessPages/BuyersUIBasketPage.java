@@ -274,7 +274,7 @@ public class BuyersUIBasketPage  extends Actions{
         
         	log.info("Validation completed on Basket Page UI");
         	
-        	TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
+        	//TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
             
 	}
 	
@@ -292,9 +292,9 @@ public class BuyersUIBasketPage  extends Actions{
         		 assertTrue("All Products are Not cleared from basket", false);
         	 }
         	 
-        	 TakeScreenShotAndAddToWordDoc.captureScreenShotNew();   
-        	 TakeScreenShotAndAddToWordDoc.writeScreenShot();
-        	 TakeScreenShotAndAddToWordDoc.writeDoc();
+        	 //TakeScreenShotAndAddToWordDoc.captureScreenShotNew();   
+        	 //TakeScreenShotAndAddToWordDoc.writeScreenShot();
+        	 //TakeScreenShotAndAddToWordDoc.writeDoc();
         	 waitForSeconds(2);
 	}
 	
@@ -334,6 +334,18 @@ public class BuyersUIBasketPage  extends Actions{
 	}
 	
 	public void verifyProductPriceAndStandardDeliveryCostDetails(Map<String, Object> pDetails) {
+		waitForSeconds(2);
+		
+		System.out.println("JSON PRODUCT PRICE : "+pDetails.get("Price").toString());
+		System.out.println("UI PRODUCT PRICE : "+getText(productPrice).replaceAll("[^a-zA-Z0-9]",""));
+		assertTrue(getText(productPrice).replaceAll("[^a-zA-Z0-9]","").contains(pDetails.get("Price").toString().replaceAll("[^a-zA-Z0-9]","")));
+		/*assertEquals(getText(mpnNumber), pDetails.get("MPN").toString());
+		assertEquals(getText(manufaturer), pDetails.get("ManufacturerName").toString());*/
+		log.info("Validation completed for Price on buyer UI");
+	}
+	
+	
+	public void verifyProductDetailsOmMyListPage(Map<String, Object> pDetails) {
 		waitForSeconds(2);
 		
 		System.out.println("JSON PRODUCT PRICE : "+pDetails.get("Price").toString());

@@ -73,9 +73,67 @@ Feature: This User story covers the My List related scenarios
   And User validates the product message All products were added to your basket
   And User Validates products details after clicking on Add these items to current basket button
   
+  #[US-161 (TC09) (TC10)]
+  @confidence
+  Scenario: TC-Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from PDP
+ 	 #API Steps
+    And user clears the basket
+    And user access the webservice of GetWishList
+    And deletes the products from the WishList
+ 	 #UI Steps
+  	Given User logged in as "supplier" in admin panel
+    And User click on "productcatalogues" link on main sidebar
+    And User clicks on show link to view products
+    And Check if the product is present in a catalogue if yes then delete
+    And User click on "productcatalogues" link on main sidebar
+    And User clicks on show link to view products
+    When User creates a product
+    And User navigates to BuyerUI
+  	And User login to buyerUI with API User
+    #And User login to buyerUI
+    When User search a product with SKU number
+    And User clicks on "PLP image" in buyers UI
+    And User clicks on "Add to list" in buyers UI
+    And User clicks on "View list" in buyers UI
+    And User validates the products details on Mylist page
+    And User Clicks on AddToBasket button of the selected product on My List page
+		And User validates the product message Product added to your basket
+		And User clicks on "My Account link" in buyers UI
+		And User clicks on "My list visit button" in buyers UI
+		And User validates the products details on Mylist page
+		And User clicks on "My list delete button" in buyers UI
+    
+    
+    
+    
   
-  
-		
+  #[US-161 (TC09)]
+	@confidence
+  Scenario: TC-Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from comparison page
+    #API Steps
+    And user clears the basket
+    And user access the webservice of GetWishList
+    And deletes the products from the WishList
+ 	  #UI Steps
+  	Given User logged in as "supplier" in admin panel
+    And User click on "productcatalogues" link on main sidebar
+    And User clicks on show link to view products
+    And Check if the product is present in a catalogue if yes then delete
+    And User click on "productcatalogues" link on main sidebar
+    And User clicks on show link to view products
+    When User creates a product
+    #UI Steps
+  	And User navigates to BuyerUI
+  	And User login to buyerUI with API User
+    #And User login to buyerUI
+    When User search a product with SKU number
+    And User clicks on "Compare button" in buyers UI
+    And User clicks on "Add to list Compare Page" in buyers UI
+    And User clicks on "View list" in buyers UI
+    And User validates the products details on Mylist page
+    And User clicks on "back link" in buyers UI
+    And User clicks on "back link" in buyers UI
+    And User clicks on "Romove link" in buyers UI
 		
 		
 		

@@ -59,7 +59,7 @@ public class Actions {
 	}
 
 	public String getAttributeValue(WebElement element) {
-		wait.until(ExpectedConditions.elementToBeClickable(element));
+		//wait.until(ExpectedConditions.elementToBeClickable(element));
 		return element.getAttribute("value");
 	}
 
