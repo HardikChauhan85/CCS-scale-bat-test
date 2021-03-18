@@ -66,9 +66,9 @@ public class ProductdetailsPageStepDefs {
 	public void field_is_updated_with_today_date(String field) {
 		String valueFromAdminPanel = objectManager.getproductDetailsPage().getProductDetails(field);
 		log.info("Value of " + field + " is: " + valueFromAdminPanel);
-		log.info(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
+		log.info(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		assertTrue("Date is not same!!",
-				valueFromAdminPanel.equalsIgnoreCase(new SimpleDateFormat("yyyy/MM/dd").format(new Date())));
+				valueFromAdminPanel.equalsIgnoreCase(new SimpleDateFormat("yyyy-MM-dd").format(new Date())));
 	}
 
 	@Then("Product should be in {string} state")

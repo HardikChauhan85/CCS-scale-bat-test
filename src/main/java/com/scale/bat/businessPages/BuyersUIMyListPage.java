@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.scale.bat.framework.utility.Actions;
 import com.scale.bat.framework.utility.ConfigurationReader;
+import com.scale.bat.framework.utility.DateTimeUtils;
 import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
 
@@ -55,6 +56,10 @@ public class BuyersUIMyListPage extends Actions  {
 		
 		@FindBy(xpath ="//*[@class='govuk-button govuk-button--primary']")
 		private WebElement addTheseItemsToCurrentBasketbutton;
+		
+		private String manufacturerName ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[2]/div/span[1]";
+		private String sku ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[2]/div/span[2]";
+		private String price ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[3]/div/span[1]";
 		
 		
 		
@@ -96,6 +101,8 @@ public class BuyersUIMyListPage extends Actions  {
 	}
 		
 	}
+		
+		
         
 	public void clickOnAddtoBasketButton() {
 		
@@ -116,6 +123,21 @@ public class BuyersUIMyListPage extends Actions  {
 	}
 	
 	
+	public void verifyProductDetailsOnMyListPage(Map<String, Object> pDetails) {
 	
+		String manufacturerNamejsn=pDetails.get("ManufacturerName").toString();
+		String SKUjsn=pDetails.get("SKU").toString();
+		String Pricejsn=pDetails.get("Price").toString();
+	
+		assertTrue(getTextXpath(manufacturerName).equalsIgnoreCase(manufacturerNamejsn));
+		log.info("Validation of 'Manufacturer Name' "+ manufacturerNamejsn+ " in My list Page is successful");
+		
+		assertTrue(getTextXpath(sku).equalsIgnoreCase(SKUjsn));
+		log.info("Validation of 'SKU' "+ SKUjsn + " in My list Page is successful");
+		
+		assertTrue(getTextXpath(price).contains(Pricejsn));
+		log.info("Validation of 'Price' "+ Pricejsn+ " in My list Page is successful");
+		
+	}
 
 }

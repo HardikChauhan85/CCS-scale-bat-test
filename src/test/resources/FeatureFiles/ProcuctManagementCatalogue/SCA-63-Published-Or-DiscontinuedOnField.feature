@@ -56,5 +56,6 @@ Feature: As a Supplier,
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
     When User clicks on edit button to view product details
+     When User clicks on "Unpublish" button on product details page
     Then "Published from date" field is empty once the product is published
     And User log off and close the application
