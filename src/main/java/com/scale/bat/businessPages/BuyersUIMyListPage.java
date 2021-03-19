@@ -57,10 +57,15 @@ public class BuyersUIMyListPage extends Actions  {
 		@FindBy(xpath ="//*[@class='govuk-button govuk-button--primary']")
 		private WebElement addTheseItemsToCurrentBasketbutton;
 		
+		@FindBy(xpath ="//*[@class='govuk-warning-text__text']")
+		private WebElement warningMessage;
+		
+				
 		private String manufacturerName ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[2]/div/span[1]";
 		private String sku ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[2]/div/span[2]";
 		private String price ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[3]/div/span[1]";
-		
+		private String updateLink="Update";
+		private String quantity= "Quantity";
 		
 		
 	
@@ -137,6 +142,38 @@ public class BuyersUIMyListPage extends Actions  {
 		
 		assertTrue(getTextXpath(price).contains(Pricejsn));
 		log.info("Validation of 'Price' "+ Pricejsn+ " in My list Page is successful");
+		
+	}
+	
+	public void updatetheProductQuantity(Map<String, Object> pDetails) {
+		
+		String manufacturerNamejsn=pDetails.get("ManufacturerName").toString();
+		
+		String localStockjsn=pDetails.get("LocalStockVolume").toString();
+		int totalLocalStockint=Integer.parseInt(localStockjsn);
+		int updatedLocalStock=totalLocalStockint+120;
+		String updatedLocalStockString= String.valueOf(updatedLocalStock);
+		
+		enterText(quantity,updatedLocalStockString);
+		clickElement(updateLink);
+		waitForSeconds(3);
+	}
+	
+	public void validateWarningMessageUnableToSupplyItems(String warningMsg) {
+		
+		assertTrue(getText(warningMessage).contains(warningMsg));
+		log.info("Warning message: "+ getText(warningMessage)+ " is displayed successful");
+		
+	}
+	
+	public void validateWarningMessageCannotAddTheSelectedProduct() {
+		
+		System.out.println("UI Warning message: " + getText(warningMessage));
+		String lines[] = getText(warningMessage).split("\\r?\\n");
+		String line2 = lines[1];
+		//assertEquals(line2, "You cannot add the selected product to the basket.<br>The number of units in the basked would exceed the number of units in stock for the product.");
+		assertEquals(line2, "You cannot add the selected product to the basket. The number of units in the basket would exceed the number of units in stock for the product.");
+		log.info("Warning message: "+ line2 + " is displayed successful");
 		
 	}
 

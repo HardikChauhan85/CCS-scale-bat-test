@@ -73,7 +73,7 @@ Feature: This User story covers the My List related scenarios
   And User validates the product message All products were added to your basket
   And User Validates products details after clicking on Add these items to current basket button
   
-  #[US-161 (TC09) (TC10)]
+  #[US-161 (TC02)(TC03)(TC05)(TC09)(TC10)]
   @confidence
   Scenario: TC-Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from PDP
  	 #API Steps
@@ -100,11 +100,17 @@ Feature: This User story covers the My List related scenarios
 		And User validates the product message Product added to your basket
 		And User clicks on "My Account link" in buyers UI
 		And User clicks on "My list visit button" in buyers UI
+		And User Clicks on AddToBasket button of the selected product on My List page
+		And User validates the product message Product added to your basket
+		And User validates the product quantity on basket page
+		And User clicks on "My Account link" in buyers UI
+		And User clicks on "My list visit button" in buyers UI
 		And User validates the products details on Mylist page
+		And User upadates the product quantity more than available stock of the product
+		And User validates the warning message "Unable to supply" items
+		And User Clicks on AddToBasket button of the selected product on My List page
+		And User validates the error message when product has exceed the number of units in stock for the product
 		And User clicks on "My list delete button" in buyers UI
-    
-    
-    
     
   
   #[US-161 (TC09)]

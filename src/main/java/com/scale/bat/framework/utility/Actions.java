@@ -87,6 +87,22 @@ public class Actions {
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(fieldName));
 		return element.getText();
 	}
+	
+	public String getDropDownDefaultSelectedOption(String xpath) {
+		Select archiveList = new Select(driver.findElement(By.xpath(xpath)));
+		String selectedValue = archiveList.getFirstSelectedOption().getText();
+		return selectedValue;
+	}
+	
+	public List<WebElement> getAllValuesOfDropDown(String xpath) {
+		Select dropdown = new Select(driver.findElement(By.xpath(xpath)));
+	    //Get all options
+	    List<WebElement> allDropDownValues = dropdown.getOptions();
+		return allDropDownValues;
+	}
+	
+	
+	
 
 	public List<WebElement> getWebElements(String elementClassName) {
 		wait.until(ExpectedConditions.elementToBeClickable(By.className(elementClassName)));
