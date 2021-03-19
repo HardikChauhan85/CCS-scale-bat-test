@@ -4,16 +4,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.math3.geometry.euclidean.twod.Line;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.scale.bat.framework.utility.Actions;
@@ -64,6 +68,9 @@ public class BuyersUIBasketPage  extends Actions{
 			
 	@FindBy(xpath ="//*[@class='govuk-notification-banner__heading']")
 	private WebElement productAddToBasketMsg;
+	
+	@FindBy(xpath ="//input[@name='itemQuantity']")
+	private WebElement productQuantity;
 	
 	@FindBy(xpath ="//*[@class='govuk-notification-banner__content']/p")
 	private WebElement allProductsWereAddedToYourBasket;
@@ -118,7 +125,7 @@ public class BuyersUIBasketPage  extends Actions{
 	
 	String checkClearBasketBtn ="//*[@name='_csrf']/following-sibling::button";
 
-	
+	String deliveryMethodDropDown ="//select[@id='shipping_method_id']";
 	
 	
 //	public void verifyProductDetailsOnBasketPage(Map<String, Object> pDetails) {
@@ -313,14 +320,41 @@ public class BuyersUIBasketPage  extends Actions{
 	}
 	
 	
-	public void verifyMessageAllProductsWereAddedToYourBasket() {
+	public void verifyTheDefaultDeliveryOption(String defaultDeliveryOption) {
+		assertEquals(getDropDownDefaultSelectedOption(deliveryMethodDropDown), defaultDeliveryOption);
+		log.info("Validated default value selected in Delivery Method drop down is " + defaultDeliveryOption + " on Basket Page UI");
+	}
+	
+	public void verifyAllTheOptionsInDeliveryOptionDropDown() {
 		
-		assertEquals(getText(allProductsWereAddedToYourBasket), "All products were added to your basket");
+		List<WebElement> allValues = getAllValuesOfDropDown(deliveryMethodDropDown);
+		//Get the length
+	    System.out.println(allValues.size());
+	    //Creating arraylist    
+	    ArrayList<String> listDeliveryOptions=new ArrayList<String>();
+	    //Adding object in arraylist 
+	    listDeliveryOptions.add("Standard UK Non Mainland (3-5 days)");   
+	    listDeliveryOptions.add("Next Business Day (Orders after Midday)");    
+	    listDeliveryOptions.add("Standard UK Mainland (3-5 days)");    
+
+	    // Loop to print one by one
+	    for (int j = 0; j < allValues.size(); j++) {
+	    	System.out.println(allValues.get(j).getText().equals(listDeliveryOptions.get(j)));
+	    	assertEquals(allValues.get(j).getText(), listDeliveryOptions.get(j));
+	
+	    }
+	
+	    log.info("Validated all Delivery Method on Basket Page UI");
 	}
 	
 	public void verifyMessageProductAddToBasketMsg() {
 		
 		assertEquals(getText(productAddToBasketMsg), "Product added to your basket");
+	}
+	
+	public void verifyProductUpdatedQuantityOnBasket() {
+		
+		assertEquals(getAttributeValue(productQuantity), "2");
 	}
 	
 	public void VerifyMessageItsOutOfStock() {
@@ -357,6 +391,9 @@ public class BuyersUIBasketPage  extends Actions{
 	}
 	
 	
-	
+	public void verifyMessageAllProductsWereAddedToYourBasket() {
+		
+		assertEquals(getText(allProductsWereAddedToYourBasket), "All products were added to your basket");
+	}
 	
 }

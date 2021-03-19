@@ -238,6 +238,20 @@ public class BuyerUiStepDefs {
 		objectManager.getBuyersUIBasketpage().verifyProductDetailsOnBasketPage();
 	}
 	
+	@Given("User validates the default delivery option should be pre-populated as {string}")
+	public void user_validates_the_default_delivery_option_should_be_pre_populated_as(String defaultDeliveryOption) {
+	    
+		objectManager.getBuyersUIBasketpage().verifyTheDefaultDeliveryOption(defaultDeliveryOption);
+	}
+
+	@Given("User validates the Delivery method drop down options")
+	public void user_validates_the_Delivery_method_drop_down_options() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyAllTheOptionsInDeliveryOptionDropDown();
+		
+	}
+	
+	
 	@Given("User validates the message after Clear basket button clicked")
 	public void user_validates_the_message_after_Clear_basket_button_clicked() throws IOException {
 	    
@@ -277,6 +291,13 @@ public class BuyerUiStepDefs {
 	 
 		objectManager.getBuyersUIBasketpage().verifyMessageProductAddToBasketMsg();
 	}
+	
+	@When("User validates the product quantity on basket page")
+	public void user_validates_the_product_quantity_on_basket_page() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyProductUpdatedQuantityOnBasket();
+	}
+
 	
 	@And("User validates the product message You cannot add the selected product to the basket Its out of stock")
 	public void user_validates_the_product_message_You_cannot_add_the_selected_product_to_the_basket_Its_out_of_stock() {
@@ -324,7 +345,26 @@ public class BuyerUiStepDefs {
 	public void user_validates_the_products_details_on_Mylist_page() {
 	    
 		objectManager.getBuyersUIMyListpage().verifyProductDetailsOnMyListPage(scenarioContext.productDetails);
-		
-		
 	}
+	
+	@When("User upadates the product quantity more than available stock of the product")
+	public void user_upadates_the_product_quantity_more_than_available_stock_of_the_product() {
+	  
+		objectManager.getBuyersUIMyListpage().updatetheProductQuantity(scenarioContext.productDetails);
+	}
+	
+	@When("User validates the warning message {string} items")
+	public void user_validates_the_warning_message_items(String warningMsg) {
+	   
+		objectManager.getBuyersUIMyListpage().validateWarningMessageUnableToSupplyItems(warningMsg);
+	}
+	
+
+	@When("User validates the error message when product has exceed the number of units in stock for the product")
+	public void user_validates_the_error_message_when_product_has_exceed_the_number_of_units_in_stock_for_the_product() {
+	    
+		objectManager.getBuyersUIMyListpage().validateWarningMessageCannotAddTheSelectedProduct();
+	}
+	
+
 }
