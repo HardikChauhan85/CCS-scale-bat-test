@@ -91,6 +91,13 @@ public class TestContext extends BrowserFactory {
 		driver.quit();
 		driver = null;
 	}
+	
+	@When("User close the current browser")
+	public void user_close_the_current_browser() {
+	   
+		driver.close();
+	}
+
 
 	// @And("Authorisation dialoxg box is handled")
 	// public void authorisation_dialoxg_box_is_handled() throws IOException,
