@@ -30,26 +30,37 @@ Feature: This User story covers the My List related scenarios
 	And User clicks on "Basket Link" in buyers UI
   And User validates the Clear basket button and 'Your basket is empty' message on basket page
   
-  #[SCA-108 TC01]
+  #[SCA-108 TC01, TC02]
+  #[SCA-107 TC03 TC01]
+  
   @confidence
   Scenario: TC-TBD_Verify Buyer always be shown refreshed/up-to-date product prices in basket
   
-  #UI Steps
-  Given User logged in as "supplier" in admin panel
+  	#API Steps
+  	Given user clears the basket
+  	#UI Steps
+  	And User logged in as "supplier" in admin panel
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
     And Check if the product is present in a catalogue if yes then delete
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
     When User creates a product
+    And User close the current browser
     #And User log off and close the application
   	And User navigates to BuyerUI
-    And User login to buyerUI
+    #And User login to buyerUI
+    And User login to buyerUI with API User
     When User search a product with SKU number
     And User clicks on "PLP image" in buyers UI
     And User clicks on "Add to basket" in buyers UI
     And User clicks on "Proceed to basket" in buyers UI
+    And User validates the generic message "Your basket has been updated."
     And User validates the product price on basket page
+    And User update the product quantity by "2".
+    And User clicks on "Quantity Update button" in buyers UI
+    And User validates the delivery cost as per delivery method selected
+    And User validates the generic message "Your basket has been updated."
     
     #Then verify the product details in buyers UI
     #And User log off and close the buyer UI
@@ -64,7 +75,7 @@ Feature: This User story covers the My List related scenarios
     #And User clicks on "Basket Link" in buyers UI
     #Then "Basket" is shown to the buyer
     #And User validates the product price on basket page
-    And User removes all the products from the basket
+    Given user clears the basket
     And User log off and close the buyer UI
   
   

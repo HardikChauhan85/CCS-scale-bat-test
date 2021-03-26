@@ -137,6 +137,11 @@ public class BuyerUiStepDefs {
 			Thread.sleep(2000);
 			break;
 			
+		case "Quantity Update button":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().quantityUpdateButtonBasket());
+			Thread.sleep(2000);
+			break;
+			
 			
 		}
 	}
@@ -258,6 +263,12 @@ public class BuyerUiStepDefs {
 		objectManager.getBuyersUIBasketpage().verifyProductMessageOnBasketPage();
 	}
 	
+	@When("User validates the generic message {string}")
+	public void user_validates_the_generic_message(String genericMsg) throws IOException {
+	    
+		objectManager.getBuyersUIBasketpage().verifyBasketGenericMessageOnBasketPage(genericMsg);
+	}
+	
 
 	@Given("User validates the Clear basket button and {string} message on basket page")
 	public void user_validates_the_Clear_basket_button_and_message_on_basket_page(String Msg) {
@@ -314,9 +325,26 @@ public class BuyerUiStepDefs {
 	@When("User validates the product price on basket page")
 	public void user_validates_the_product_price_on_basket_page() {
 	    
-		objectManager.getBuyersUIBasketpage().verifyProductPriceAndStandardDeliveryCostDetails(scenarioContext.productDetails);
+		objectManager.getBuyersUIBasketpage().verifyProductPriceDetails(scenarioContext.productDetails);
 	}
-
+	
+	@When("User validates the delivery cost as per delivery method selected")
+	public void user_validates_the_delivery_cost_as_per_delivery_method_selected() {
+	    
+		objectManager.getBuyersUIBasketpage().verifyProductDeliveryCostDetails(scenarioContext.productDetails);
+	}
+	
+	@Given("User select the Delivery option {string}")
+	public void user_select_the_Delivery_option(String deliveryMethod) {
+	   
+		objectManager.getBuyersUIBasketpage().selectTheDeliveryMethod(deliveryMethod);
+	}
+	
+	@When("User update the product quantity by {string}.")
+	public void user_update_the_product_quantity_by(String quantity) {
+	   
+		objectManager.getBuyersUIBasketpage().updateTheProductQuantity(quantity);
+	}
 
 
 	@Then("verify the product details in buyers UI")

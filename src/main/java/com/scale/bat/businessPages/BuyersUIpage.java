@@ -97,6 +97,9 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "//*[@class='govuk-notification-banner__heading']")
 	private WebElement addedToComparePageMsg;
 	
+	@FindBy(xpath = "//*[@class='bat-basket__items']/ul/li[1]/div/form/div/div[5]/button[1]")
+	private WebElement quantityUpdateButtonBasket;
+	
 	
 	private String mobileMenueStr = "//*[@class='bat-header__menu-button bat-js-header-toggle']";
 	private String totalNoOfProductInBasket="//li[@class='bat-basket__item']";
@@ -133,7 +136,7 @@ public class BuyersUIpage extends Actions {
 		enterText(userName, UserName);
 		enterText(password, Password);
 		waitForSeconds(1);
-		TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
+		//TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 		clickButton(logInButton);
 		log.info("Logged in to buyers Ui");
 	}
@@ -338,6 +341,13 @@ public class BuyersUIpage extends Actions {
 	public WebElement getMyListDeleteProductButton() {
 		return myListDeleteProductButton;
 	}
+	
+	public WebElement quantityUpdateButtonBasket() {
+		return quantityUpdateButtonBasket;
+	}
+	
+	
+	
 	
 
 }
