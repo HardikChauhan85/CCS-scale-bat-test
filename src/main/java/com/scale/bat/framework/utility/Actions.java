@@ -30,6 +30,7 @@ public class Actions {
 	public void enterText(WebElement element, String text) {
 		waitForSeconds(1);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
+		element.clear();
 		element.sendKeys(text);
 		// element.sendKeys(Keys.TAB);
 	}
