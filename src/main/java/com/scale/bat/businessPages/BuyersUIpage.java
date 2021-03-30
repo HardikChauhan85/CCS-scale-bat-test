@@ -108,8 +108,19 @@ public class BuyersUIpage extends Actions {
 	private String checkMyListIsEmpty="//*[@class='govuk-body govuk-!-govuk-!-margin-bottom-6']";
 	private String getTotalProductsInMyList="//*[@id='main-content']/div[1]/div/ul/li";
 	
-	
-		
+	//Erfan
+	 private String quote = "Quote";
+	 private String raiseQuote = "Raise quote";
+	 @FindBy(xpath = "//*[@href='/account/quotes']")
+	 private WebElement manageQuotesVisit;
+	 @FindBy(xpath = "//*[@id='name']")
+	 private WebElement quoteName;
+	 private String firmQuote = "//*[@id='kind']";
+	 private String indicativeQuote = "//*[@id='kind-2']";
+	 @FindBy(xpath = "//*[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
+	 private WebElement searchQuoteButton;
+	 @FindBy(xpath = "//*[@name='number']")
+	 private WebElement quoteReference;
 
 	private Logger log = Log.getLogger(BuyersUIpage.class);
 
@@ -347,7 +358,44 @@ public class BuyersUIpage extends Actions {
 	}
 	
 	
-	
-	
+	//Erfan
+		public String getQuoteLink() {
+			return quote ;
+		}
+		
+		public String getRaiseQuoteLink() {
+			return raiseQuote ;
+			}
+		
+		public WebElement getManageQuotesVisitElement() {
+			return manageQuotesVisit;
+		}
+		
+		public void enterQuoteName(String QuoteName) {
+			enterText(quoteName, QuoteName);
+			log.info("Quote name is entered as " + QuoteName);
+		}
+		
+		public String getFirmQuoteElement() {
+			return firmQuote;
+		}
 
+		public String getIndicativeQuoteElement() {
+			return indicativeQuote;
+		}
+
+		public WebElement getSearchQuoteElement() {
+			return searchQuoteButton;
+			}
+
+		public void searchQuoteRef(String QuoteReference) {
+			
+			enterText(quoteReference, QuoteReference);
+
+			 log.info("Quote Reference is entered as " + QuoteReference);
+			}
+		
+
+			
+			 
 }
