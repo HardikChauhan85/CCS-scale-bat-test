@@ -100,6 +100,9 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "//*[@class='bat-basket__items']/ul/li[1]/div/form/div/div[5]/button[1]")
 	private WebElement quantityUpdateButtonBasket;
 	
+	@FindBy(xpath = "//button[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
+	private WebElement manageQuoteSearchButton;
+	
 	
 	private String mobileMenueStr = "//*[@class='bat-header__menu-button bat-js-header-toggle']";
 	private String totalNoOfProductInBasket="//li[@class='bat-basket__item']";
@@ -110,17 +113,15 @@ public class BuyersUIpage extends Actions {
 	
 	//Erfan
 	 private String quote = "Quote";
-	 private String raiseQuote = "Raise quote";
+	 
 	 @FindBy(xpath = "//*[@href='/account/quotes']")
 	 private WebElement manageQuotesVisit;
-	 @FindBy(xpath = "//*[@id='name']")
-	 private WebElement quoteName;
-	 private String firmQuote = "//*[@id='kind']";
-	 private String indicativeQuote = "//*[@id='kind-2']";
+	
+	 
+	 
 	 @FindBy(xpath = "//*[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
 	 private WebElement searchQuoteButton;
-	 @FindBy(xpath = "//*[@name='number']")
-	 private WebElement quoteReference;
+
 
 	private Logger log = Log.getLogger(BuyersUIpage.class);
 
@@ -357,43 +358,27 @@ public class BuyersUIpage extends Actions {
 		return quantityUpdateButtonBasket;
 	}
 	
+	public WebElement manageQuoteSearchButton() {
+		return manageQuoteSearchButton;
+	}
 	
-	//Erfan
-		public String getQuoteLink() {
-			return quote ;
-		}
-		
-		public String getRaiseQuoteLink() {
-			return raiseQuote ;
-			}
-		
-		public WebElement getManageQuotesVisitElement() {
-			return manageQuotesVisit;
-		}
-		
-		public void enterQuoteName(String QuoteName) {
-			enterText(quoteName, QuoteName);
-			log.info("Quote name is entered as " + QuoteName);
-		}
-		
-		public String getFirmQuoteElement() {
-			return firmQuote;
-		}
+	public String getQuoteLink() {
+		return quote;
+	}
 
-		public String getIndicativeQuoteElement() {
-			return indicativeQuote;
-		}
+	public WebElement getManageQuotesVisitElement() {
+		return manageQuotesVisit;
+	}
+		
+		
+		
+
+		
 
 		public WebElement getSearchQuoteElement() {
 			return searchQuoteButton;
 			}
 
-		public void searchQuoteRef(String QuoteReference) {
-			
-			enterText(quoteReference, QuoteReference);
-
-			 log.info("Quote Reference is entered as " + QuoteReference);
-			}
 		
 
 			
