@@ -68,7 +68,7 @@ Feature: This User story covers the My List related scenarios
     #And User click on "productcatalogues" link on main sidebar
     #And User clicks on show link to view products
     #And User clicks on edit button to view product details
-    #When User update the product details
+    When User update the product details
     #And User log off and close the application
     #And User navigates to BuyerUI
     #And User login to buyerUI

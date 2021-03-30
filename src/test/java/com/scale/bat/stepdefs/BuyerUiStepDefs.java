@@ -141,7 +141,16 @@ public class BuyerUiStepDefs {
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().quantityUpdateButtonBasket());
 			Thread.sleep(2000);
 			break;
-			
+			//Erfan Code
+			case "Quote":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getQuoteLink());
+			break;
+			case "Raise quote":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getRaiseQuoteLink());
+			break;
+			case "Manage quotes Visit link":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getManageQuotesVisitElement());
+			break;
 			
 		}
 	}
@@ -394,5 +403,42 @@ public class BuyerUiStepDefs {
 		objectManager.getBuyersUIMyListpage().validateWarningMessageCannotAddTheSelectedProduct();
 	}
 	
+	//Erfan Code
+	
+	@And("User enter Quote name as {string}")
+	public void user_enter_quote_name(String QuoteName) {
+	objectManager.getBuyersUIpage().enterQuoteName(QuoteName);
+	}
 
+	@And("User create {string} quote")
+	public void user_create_quote (String QuoteType) {
+	switch (QuoteType) {
+	case "Firm":
+	objectManager.getBuyersUIpage().clickElementWithJavaScript(objectManager.getBuyersUIpage().getFirmQuoteElement());
+	break;
+	case "Indicative":
+	objectManager.getBuyersUIpage().clickElementWithJavaScript(objectManager.getBuyersUIpage().getIndicativeQuoteElement());
+	break;
+	default:
+	log.info("Quote type is entered as " + QuoteType);
+	}
+	}
+
+
+	 @Then("User get message {string} on screen")
+	public void validate_message (String Message) {
+	switch (Message) {
+	case "Quote raised successfully":
+	objectManager.getBuyersUIpage().isElementPresent(Message);
+	break;
+	}
+	}
+	 
+	 @And("User searches for Quote reference {string} in buyers UI")
+	 public void search_for_Quote_reference_in_buyers_UI(String QuoteReference) {
+	 objectManager.getBuyersUIpage().searchQuoteRef(QuoteReference);
+	 objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getSearchQuoteElement());
+	 }
+
+	
 }
