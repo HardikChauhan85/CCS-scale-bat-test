@@ -141,7 +141,7 @@ public class Actions {
 	public boolean existsElement(String xPath) {
 		waitForLoad();
 		WebElement element = driver.findElement(By.xpath(xPath));
-		log.info("Header: " + element.getText());
+		//log.info("Header: " + element.getText());
 		return true;
 	}
 
