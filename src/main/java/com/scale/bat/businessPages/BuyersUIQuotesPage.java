@@ -28,6 +28,15 @@ public class BuyersUIQuotesPage extends Actions{
 	private ConfigurationReader configReaderObj;
 	APIBase apiBase=new APIBase();
 	
+	public BuyersUIQuotesPage(WebDriver driver, Scenario scenario) {
+		super.driver = driver;
+		this.scenario = scenario;
+		
+		PageFactory.initElements(driver, this);
+		this.wait = new WebDriverWait(super.driver, 30);
+		configReaderObj = new ConfigurationReader();
+	}
+	
 	/**
 	 * Class level variable decleration
 	 */
@@ -36,7 +45,7 @@ public class BuyersUIQuotesPage extends Actions{
 	public static String supplierNameBasketPage;
 	public static String totalPriceBasketPage;
 	public static String rejectreasonWithCurrenntday;
-	
+	public static String actualTotalPriceBasketPage;
 	
 	/**
 	 * Class level Objects decleration
@@ -74,6 +83,18 @@ public class BuyersUIQuotesPage extends Actions{
 	@FindBy(xpath = "//div[@class='bat-basket__footer']/div[2]/ul/li[3]/span[2]")
 	 private WebElement getTotalPriceBasketPage;
 	
+	@FindBy(xpath = "//input[@value='firm']/following-sibling::div")
+	 private WebElement getFirmQuoteLabel;
+	
+	@FindBy(xpath = "//input[@value='indicative']/following-sibling::div")
+	 private WebElement getIncicativeQuoteLabel;
+	
+	@FindBy(xpath = "//ul[@class='govuk-list govuk-body-s govuk-!-margin-bottom-6 govuk-!-margin-right-3']/li[2]")
+	 private WebElement getIncicativeStatus;
+	
+	@FindBy(xpath = "//ul[@class='govuk-list govuk-body-s govuk-!-margin-bottom-6 govuk-!-margin-right-3']/li[3]")
+	 private WebElement getIncicativeMessage;
+	
 	//Table data in Admin UI
 	
 	@FindBy(xpath = "//table[@class='table']/tbody/tr[1]/td[1]/a")
@@ -107,40 +128,35 @@ public class BuyersUIQuotesPage extends Actions{
 	private String rejectReasonTextboxRejectQuotePageAdminUI = "//textarea[@name='scale_quote[rejection_reason]']";
 	private String rejectButtonRejectQuotePageAdminUI = "//span[@class='translation_missing']";
 	private String cancleButtonRejectQuotePageAdminUI = "//a[@class='btn btn-outline-secondary']";
-	
+	private String message="//p[@class='govuk-notification-banner__heading']";
 	
 	//Other Object
 	@FindBy(xpath = "//*[@name='number']")
 	 private WebElement quoteReference;
 	
-	@FindBy(xpath = "//a[@href='/admin/quotes']")
-	 private WebElement quoteLinkAdminPanel;
+	/*@FindBy(xpath = "//a[@href='/admin/quotes']/span")
+	 private WebElement quoteLinkAdminPanel;*/
+	private String quoteLinkAdminPanel="//a[@href='/admin/quotes']";
 	
 	@FindBy(xpath = "//button[@class='btn btn-primary ']")
 	 private WebElement searchButtonAdminPanel;
 	
+	@FindBy(xpath = "//input[@class='form-control js-filterable']")
+	 private WebElement quoteReferenceAdminUI;
 	
-	
-	private String manageQuoteColumHeaderSize = "//table[@class='govuk-table bat-quotes__table']/thead/tr";
+	private String manageQuoteColumHeaderSize = "//table[@class='govuk-table bat-quotes__table']/thead/tr/th";
 	private String firmQuote = "//*[@id='kind']";
 	private String indicativeQuote = "//*[@id='kind-2']";
 	private String raiseQuote = "Raise quote";
 	
 	
-	public BuyersUIQuotesPage(WebDriver driver, Scenario scenario) {
-		super.driver = driver;
-		this.scenario = scenario;
-		
-		PageFactory.initElements(driver, this);
-		this.wait = new WebDriverWait(super.driver, 30);
-		configReaderObj = new ConfigurationReader();
-	}
+	
 	
 	
 	public void validateNewQuoteCreatedMsg(String Message) {
 		
-		assertEquals(getText(Message), Message);
-		log.info("New Quote created message : " + Message + " is validated");
+		assertEquals(getTextXpath(message), Message);
+		log.info("New Quote created message : " + message + " is validated");
 	}
 	
 	public void enterQuoteNameInQuoteTextbox(String QuoteName) {
@@ -148,7 +164,7 @@ public class BuyersUIQuotesPage extends Actions{
 		String Currenntday = new DateTimeUtils().dateWithSpecificFormatt("dd/MM/yyyy HH:mm:ss");
 		quoteNameWithCurrenntday = QuoteName.concat("-").concat(Currenntday);
 		enterText(quoteName, quoteNameWithCurrenntday);
-		log.info("Quote name is entered as " + QuoteName);
+		log.info("Quote name is entered as " + quoteNameWithCurrenntday);
 		
 	}
 	
@@ -157,6 +173,20 @@ public class BuyersUIQuotesPage extends Actions{
 		supplierNameBasketPage = getText(getSupplierNameBasketPage);
 		totalPriceBasketPage = getText(getTotalPriceBasketPage);
 		log.info(" Supplier name " +supplierNameBasketPage+ " and Total price " +totalPriceBasketPage+ " in basket page ");
+		
+	}
+	
+	public void validateFirmAndIndicativeQuoteLabel() {
+		
+		String firmQuoteLabelActual = "To raise a Purchase Order using an external system or process, or to seek offline approval and then return to The Purchasing Platform to convert to an order later. Firm quotes are valid for 30 calendar days, suppliers are made aware of a pending order and will be holding the price on your behalf. The expectation is that firm quotes will generate purchase orders in all but the most exceptional of cases, when you must return to this platform and cancel your quote. If you are simply seeking indicative pricing, please request an indicative quote in the first instance.";
+		String indicativeQuoteLabelActual = "For budgetary approval prior to re-quote, or information only. Indicative quotes are not valid for purchase. You will need to return to The Purchasing Platform, and rerun a firm quote or create a direct purchase order (if available in your user profile and allowed by your organisation’s procurement policy) to purchase.";
+		
+		String firmQuoteLabelUI = getText(getFirmQuoteLabel);
+		String indicativeQuoteLabelUI = getText(getIncicativeQuoteLabel);
+		assertEquals(firmQuoteLabelActual, firmQuoteLabelUI);
+		assertEquals(indicativeQuoteLabelActual, indicativeQuoteLabelUI);
+		
+		log.info(" Validate Firm and Indicative quote label in quote page ");
 		
 	}
 	
@@ -191,9 +221,11 @@ public class BuyersUIQuotesPage extends Actions{
 	    manageQuotePageTableHeaders.add("Status");
 
 	    // Loop to print and validate Manage quote table headers one by one
-	    for (int j = 0; j < allValues; j++) {
-	    	System.out.println(getTextXpath("//table[@class='govuk-table bat-quotes__table']/thead/tr/th["+j+"]").equals(manageQuotePageTableHeaders.get(j)));
-	    	assertEquals(getTextXpath("//table[@class='govuk-table bat-quotes__table']/thead/tr/th["+j+"]"), manageQuotePageTableHeaders.get(j));
+	    for (int j = 1; j <= allValues; j++) {
+	    	System.out.println(getTextXpath("//table[@class='govuk-table bat-quotes__table']/thead/tr/th["+j+"]"));
+	    	System.out.println(manageQuotePageTableHeaders.get(j-1));
+	    	System.out.println(getTextXpath("//table[@class='govuk-table bat-quotes__table']/thead/tr/th["+j+"]").equals(manageQuotePageTableHeaders.get(j-1)));
+	    	assertEquals(getTextXpath("//table[@class='govuk-table bat-quotes__table']/thead/tr/th["+j+"]"), manageQuotePageTableHeaders.get(j-1));
 	
 	    }
 	
@@ -209,18 +241,38 @@ public class BuyersUIQuotesPage extends Actions{
 		String[] splitSupplierName = supplierNameUI.split("\\r?\\n");
 		String actualSupplierNameUI=splitSupplierName[0];
 		
+		String[] splitTotalPriceBasketPage = totalPriceBasketPage.split("\\s+");
+		actualTotalPriceBasketPage=splitTotalPriceBasketPage[0];
 		assertEquals(getText(getFirstRowQuoteNo), firstRowQuoteNo);
 		assertEquals(getText(getFirstRowQuoteName), quoteNameWithCurrenntday);
 		assertEquals(getText(getFirstRowdateQuoteRaised), Currenntday);
 		assertEquals(actualSupplierNameUI, supplierNameBasketPage);
 		assertEquals(getText(getFirstRowType), quoteType);
 		//assertEquals(getText(getFirstRowExpiryDate), );
-		assertEquals(getText(getFirstRowTotalValueIncVAT), totalPriceBasketPage);
 		assertEquals(getText(getFirstRowStatus), statusAccepted);
+		if(quoteType.equals("Firm")) {
+			assertEquals(getText(getFirstRowTotalValueIncVAT), actualTotalPriceBasketPage);
+		}
+		
 		
 	    log.info("Validated Manage Quotes Column Header on Manage quotes Page");
 		
 	}
+	
+	
+	public void validateIndicativeQuoteMessageAndStatus(String message, String statusAccepted) {
+		
+		String indicativeStatusUI = getText(getIncicativeStatus);
+		String[] splitindicativeStatusUI = indicativeStatusUI.split("Status: ");
+		String actualIndicativeStatusUI=splitindicativeStatusUI[1];
+		
+		assertEquals(actualIndicativeStatusUI, statusAccepted);
+		assertEquals(getText(getIncicativeMessage), message);
+	   log.info("Validated Indicative page Status and Message : "+ message);
+		
+	}
+	
+	
 	
 	
 	public void validateNewQuoteDetailsOnAdminUI(String statusAccepted) {
@@ -229,7 +281,7 @@ public class BuyersUIQuotesPage extends Actions{
 		
 		assertEquals(getText(getFirstRowQuoteNoAdminUI), firstRowQuoteNo);
 		assertEquals(getText(getDateQuoteRaisedAdminUI), Currenntday);
-		assertEquals(getText(getTotalValueIncVATAdminUI), totalPriceBasketPage);
+		assertEquals(getText(getTotalValueIncVATAdminUI), actualTotalPriceBasketPage);
 		//assertEquals(getText(getExpiryDateAdminUI), );
 		assertEquals(getText(getQuoteStatusAdminUI), statusAccepted);
 		assertEquals(getText(getQuoteStatusRejectedI), "Reject");
@@ -240,7 +292,7 @@ public class BuyersUIQuotesPage extends Actions{
 	
 	public void validateRejectQuotePage(String rejectQuotePageTitle) {
 		
-		String rejectQuotePageTitleWithQuoteNo = rejectQuotePageTitle.concat(firstRowQuoteNo);
+		String rejectQuotePageTitleWithQuoteNo = rejectQuotePageTitle.concat(" ").concat(firstRowQuoteNo);
 		assertEquals(getText(rejectQuotePageTitleAdminUI), rejectQuotePageTitleWithQuoteNo);
 		log.info("Validated Reject Quotes page title : "+rejectQuotePageTitleAdminUI);
 		
@@ -272,17 +324,31 @@ public class BuyersUIQuotesPage extends Actions{
 	}
 	
 	public void validateStatusAndRejectReasonOnManageQuote(String rejectStatus) {
-		assertEquals(getText(rejectQuoteStatusInAdminUI), rejectStatus);
-		//assertEquals(getText(rejectQuoteStatusInAdminUI), rejectreasonWithCurrenntday);
-		log.info("Validated reject quote Status "+rejectQuoteStatusInAdminUI+ " and Reason "+rejectreasonWithCurrenntday +" on Manage Quote page");
+		
+		 String rejectQuoteStatusInAdminUIStr = getText(rejectQuoteStatusInAdminUI);
+		 String[] splitRejectQuoteStatusInAdminUIStr = rejectQuoteStatusInAdminUIStr.split("\\r?\\n");
+		 String[] splitRejectQuoteStatusInAdminUIStatus = splitRejectQuoteStatusInAdminUIStr[1].split("\\s+");
+		 String actualSplitRejectQuoteStatusInAdminUIStatus = splitRejectQuoteStatusInAdminUIStatus[1];
+		 
+		 String[] splitRejectQuoteStatusInAdminUIRejectReason = splitRejectQuoteStatusInAdminUIStr[2].split("Reject reason: ");
+		 String actualSplitRejectQuoteStatusInAdminUIRejectReason = splitRejectQuoteStatusInAdminUIRejectReason[1];
+		 
+		assertEquals(actualSplitRejectQuoteStatusInAdminUIStatus, rejectStatus);
+		assertEquals(actualSplitRejectQuoteStatusInAdminUIRejectReason, rejectreasonWithCurrenntday);
+		log.info("Validated reject quote Status "+actualSplitRejectQuoteStatusInAdminUIStatus+ " and Reason "+actualSplitRejectQuoteStatusInAdminUIRejectReason +" on Manage Quote page");
 		
 	}
 	
-	
+	public void validateNewQuoteRejectedStatusOnQuotesPage(String statusRejected) {
+		
+		assertEquals(getText(getQuoteStatusAdminUI), statusRejected);
+		log.info("Validated Quotes status as "+statusRejected+" in Quotes page");
+		
+	}
 	
 	public void enterQuoteNoInQuoteReferenceTextboxAdminUI() {
 		
-		enterText(quoteReference, firstRowQuoteNo);
+		enterText(quoteReferenceAdminUI, firstRowQuoteNo);
 		
 	}
 	
@@ -298,7 +364,11 @@ public class BuyersUIQuotesPage extends Actions{
 		return raiseQuote ;
 	}
 	
-	public WebElement getQuoteLinkAdminPanel() {
+	public WebElement getFirstRowQuoteNoLink() {
+		return getFirstRowQuoteNo ;
+	}
+	
+	public String getQuoteLinkAdminPanel() {
 		return quoteLinkAdminPanel;
 	}
 	
