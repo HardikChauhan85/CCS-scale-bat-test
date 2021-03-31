@@ -76,6 +76,14 @@ public class TestContext extends BrowserFactory {
 		objectManager.getLogInAdminPanel().loginToSupplierAdminPanel(userRole);
 		log.info(userRole + " logged in to admin panel");
 	}
+	
+	@Given("User enter the admin url and logged in as a {string}")
+	public void user_enter_the_admin_url_and_logged_in_as_a(String userRole) throws MalformedURLException{
+	   
+		launchURL(configReader.adminPanelUrl());
+		objectManager.getLogInAdminPanel().loginToSupplierAdminPanel(userRole);
+		log.info(userRole + " logged in to admin panel");
+	}
 
 	@And("User log off and close the application")
 	public void user_log_off_from_the_application() {
@@ -195,6 +203,7 @@ public class TestContext extends BrowserFactory {
 		this.driver = initiateDriver(configReader.getBrowserName(),scenario);
 		launchURL(configReader.buyerUIUrl());
 		objectManager = new PageObjectManager(this.driver, scenario);
+		System.out.println("Buyer UI 1 Driver Instance: " + driver);
 		//TakeScreenShotAndAddToWordDoc.createWordFile();
 		//TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 	}
