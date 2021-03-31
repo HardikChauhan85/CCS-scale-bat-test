@@ -39,6 +39,12 @@ public class BuyersUIQuotesPageStepdefs {
 	
 	}
 	
+	@Given("User validated the Firm and Indicative quote label")
+	public void user_validated_the_Firm_and_Indicative_quote_label() {
+	    
+		objectManager.getBuyersUIQuotespage().validateFirmAndIndicativeQuoteLabel();
+	}
+	
 	@When("User get the supplier name and total amount of the products on Buyers UI")
 	public void user_get_the_supplier_name_and_total_amount_of_the_products_on_Buyers_UI() {
 	   
@@ -65,13 +71,9 @@ public class BuyersUIQuotesPageStepdefs {
 
 	@Then("User get message {string} on screen")
 	public void validate_message(String Message) {
-
+		
 		objectManager.getBuyersUIQuotespage().validateNewQuoteCreatedMsg(Message);
-
 	}
-	 
-	 
-	 
 	
 	
 	@Then("User validates the new Quote refrence no")
@@ -97,6 +99,12 @@ public class BuyersUIQuotesPageStepdefs {
 	    
 		objectManager.getBuyersUIQuotespage().validateNewQuoteDetails(quoteType, statusAccepted);
 	}
+	
+	@Then("User validates the text {string} and the status {string} on indicative quotes page")
+	public void user_validates_the_text_and_the_status_on_indicative_quotes_page(String message, String statusAccepted) {
+	    
+		objectManager.getBuyersUIQuotespage().validateIndicativeQuoteMessageAndStatus(message, statusAccepted);
+	}
 
 	@Given("User clicks on {string} in Admin UI")
 	public void user_clicks_on_in_Admin_UI(String LinkButton) {
@@ -104,7 +112,7 @@ public class BuyersUIQuotesPageStepdefs {
 		switch (LinkButton) {
 		case "Quote Link":
 			objectManager.getBuyersUIpage()
-					.clickElement(objectManager.getBuyersUIQuotespage().getQuoteLinkAdminPanel());
+					.clickElementWithJavaScript(objectManager.getBuyersUIQuotespage().getQuoteLinkAdminPanel());
 			break;
 			
 		case "Search Button":
@@ -171,9 +179,9 @@ public class BuyersUIQuotesPageStepdefs {
 	}
 
 	@Given("User validates quote staus as {string} on Quotes page in Admin UI")
-	public void user_validates_quote_staus_as_on_Quotes_page_in_Admin_UI(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+	public void user_validates_quote_staus_as_on_Quotes_page_in_Admin_UI(String statusRejected) {
+	    
+		objectManager.getBuyersUIQuotespage().validateNewQuoteRejectedStatusOnQuotesPage(statusRejected);
 	}
 
 
