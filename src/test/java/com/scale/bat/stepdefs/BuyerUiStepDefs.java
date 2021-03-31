@@ -7,11 +7,13 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 import org.openqa.selenium.WebElement;
 
 import com.scale.bat.businessPages.BuyersUIpage;
 import com.scale.bat.context.ScenarioContext;
 import com.scale.bat.context.TestContext;
+import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.PageObjectManager;
 import com.scale.bat.framework.utility.TakeScreenShotAndAddToWordDoc;
@@ -155,7 +157,10 @@ public class BuyerUiStepDefs {
 				objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().manageQuoteSearchButton());
 			break;
 			
-			
+		case "Quote refrence link":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIQuotespage().getFirstRowQuoteNoLink());
+		break;
+		
 		}
 	}
 
@@ -180,6 +185,11 @@ public class BuyerUiStepDefs {
 
 	@When("User search a product with SKU number")
 	public void user_search_a_product_with_SKU_number() {
+		
+		JSONObject jObj = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePath))
+				.getJSONObject("ProductCreation").getJSONObject("FromUi");
+		scenarioContext.productDetails = jObj.toMap();
+		
 		log.info(scenarioContext.productDetails);
 		objectManager.getBuyersUIpage().searchProduct(scenarioContext.productDetails.get("SKU").toString());
 	}
@@ -406,6 +416,5 @@ public class BuyerUiStepDefs {
 	    
 		objectManager.getBuyersUIMyListpage().validateWarningMessageCannotAddTheSelectedProduct();
 	}
-	
-	
+		
 }
