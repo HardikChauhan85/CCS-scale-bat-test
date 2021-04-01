@@ -7,6 +7,7 @@ import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.PageObjectManager;
 
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 
 public class CCSHomePageStefDef {
 	private Logger log = Log.getLogger(CCSHomePageStefDef.class);
@@ -46,11 +47,76 @@ public class CCSHomePageStefDef {
 		case "reports":
 			objectManager.getCCSHomePage().navigateToReports();
 			break;
+			
+		case "Suppliers":
+			objectManager.getCCSHomePage().navigateToSupplier();
+			break;
+			
 		default:
 			log.info("Check the BDD for proper spellings or wrong link text");
 		}
 
 	}
 	
+	@Given("User enters the {string} on Name textbox")
+	public void user_enters_the_on_Name_textbox(String supplierName) {
+	    
+		objectManager.getCCSHomePage().enterSupplierName(supplierName);
+	}
 
+	@Given("User clicks on {string} button")
+	public void user_clicks_on_button(String string) {
+	    
+		objectManager.getCCSHomePage().clickOnFilterResultButton();
+	}
+
+	@Given("User clicks on edit link")
+	public void user_clicks_on_edit_link() {
+	    
+		objectManager.getCCSHomePage().clickOnEditButton();
+	}
+
+	@Given("User removes the email from the Notification email textbox")
+	public void user_removes_the_email_from_the_Notification_email_textbox() {
+	    
+		objectManager.getCCSHomePage().removeTextFromNotificationEmailTextbox();
+	}
+
+	@Given("User clicks on Update Button")
+	public void user_clicks_on_Update_Button() {
+	    
+		objectManager.getCCSHomePage().clickOnUpdateButton();
+	}
+
+	@Given("User should not be able to update the supplier details and a message {string} should display")
+	public void user_should_not_be_able_to_update_the_supplier_details_and_a_message_should_display(String message) {
+	    
+		objectManager.getCCSHomePage().validateMessageForBlankNotificationEmailTextbox();
+	}
+
+	@Given("User enters the valid email {string} in Notification email textbox")
+	public void user_enters_the_valid_email_in_Notification_email_textbox(String emailId) {
+		
+		objectManager.getCCSHomePage().enterTextFromNotificationEmailTextbox(emailId);
+	}
+
+	@Given("User should be able to update the supplier details and a message {string}CogNewTestSupplier{double}{string} should display")
+	public void user_should_be_able_to_update_the_supplier_details_and_a_message_CogNewTestSupplier_should_display(String string, Double double1, String string2) {
+	    
+		objectManager.getCCSHomePage().validateSuccessMessageForNotificationEmailTextbox();
+	}
+
+	@Given("enters the invalid email {string} in Notification email textbox")
+	public void enters_the_invalid_email_in_Notification_email_textbox(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Given("should not be able to update the supplier details and a message {string} should display")
+	public void should_not_be_able_to_update_the_supplier_details_and_a_message_should_display(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	
 }
