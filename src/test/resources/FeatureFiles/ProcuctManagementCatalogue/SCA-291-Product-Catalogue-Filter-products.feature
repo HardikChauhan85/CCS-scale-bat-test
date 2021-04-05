@@ -114,7 +114,7 @@ Feature: As a supplier, CCS administrator and Category manager,
   #Due to defect not able to test
   # PRODUCT CATALOGUE PAGE
   @confidence
-  Scenario Outline: CCS Admin should be able to filter products in product catalogue page
+  Scenario Outline: Supplier should be able to filter products in product catalogue page
     Given User logged in as "supplier2" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar
@@ -139,7 +139,7 @@ Feature: As a supplier, CCS administrator and Category manager,
 
 	#[US-291 (TC-SCA-404, SCA-405, SCA-406, SCA-407, SCA-408)]
   @confidence
-  Scenario Outline: CCS Admin should be able to filter products in product catalogue page
+  Scenario Outline: Category Manager should be able to filter products in product catalogue page
     Given User logged in as "categoryManager" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "productcatalogues" link on main sidebar

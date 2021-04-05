@@ -1,8 +1,12 @@
 
 Feature: Supplier can't leave their Notification Email field blank
+
 	#SCA-1144 [TC-01 and TC02]
+	# TC-01(US-1994) Verify user get error message when 'Notification email' field is kept blank
+	# TC-02(US-1995) Verify user is able to update 'Notification email' field with valid email ID
+	# TC-03(US-1996) Verify user get error message when 'Notification email' field is updated with invalid email ID
 	@confidence
-  Scenario: CCS Admin should be able to filter products in product catalogue list page
+  Scenario: TC_Verify Notification Email field with balnk, correct and incorrect email id
     Given User logged in as "superadmin" in admin panel
     #And Authorisation dialoxg box is handled
     And User click on "Suppliers" link on main sidebar
