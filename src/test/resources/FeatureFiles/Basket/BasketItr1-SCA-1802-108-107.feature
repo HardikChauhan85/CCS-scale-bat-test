@@ -1,8 +1,10 @@
 Feature: This User story covers the My List related scenarios
 	
 	#[US-1802 (TC01)]
+	#TC01-(SCA-1972) Verify for logged in Buyer ‘Clear basket' button must be visible when basket is having one or more products 
+	# in the basket and when clicks on the  ‘Clear basket’ button then all the products that were in the Basket have been removed with a message "All products were removed from the basket.”.
   @confidence
-  Scenario: TC-TBD_Verify the buyer can add a product to the basket from the My list page	New
+  Scenario: TC_Verify the message All products were removed from the basket when clicks on the Clear basket button 
   	#API Steps
   	Given user clears the basket
  		And user gets all the available products list
@@ -21,8 +23,9 @@ Feature: This User story covers the My List related scenarios
 		
 			
 	#[US-1802 (TC02)]
+	#TC02-(SCA-1973) Verify for logged in Buyer ‘Clear basket, button must not be visible when basket is empty and  Buyer is able to sees a short message in text on basket page “Your basket is empty”
 	@confidence
-  Scenario: TC-TBD_Verify Buyer can add all products after clicking Clear my basket and add these items button in the My list page clears the basket and adds all products in the My list page to the basket New 
+  Scenario: TC_Verify Your basket is empty message in basket page
   Given user clears the basket
   #UI Steps
 	And User navigates to BuyerUI
@@ -30,11 +33,16 @@ Feature: This User story covers the My List related scenarios
 	And User clicks on "Basket Link" in buyers UI
   And User validates the Clear basket button and 'Your basket is empty' message on basket page
   
-  #[SCA-108 TC01, TC02]
-  #[SCA-107 TC03 TC01]
   
+  
+  #[SCA-108 TC01, TC02]
+  #TC01-(SCA-1974) Verify Buyer always be shown refreshed/up-to-date product prices in basket even if buyer log off/leaves the basket page and in between the product price has been updated by the supplier and buyer navigates to basket updated price should be shown for the product.
+  #TC02-(SCA-2148) Verify when adding a product to basket or navigating to basket page a generic message “Your basket has been updated”should be visible on screen to warn user that the basket will/has been be re-calculated to show current updated delivery costs.
+  #[SCA-107 TC03 TC01]
+  #TC01-(SCA-1991) Verify Buyer always be shown refreshed/updated delivery costs of the product in the basket for the selected delivery method.
+  #TC03-(SCA-1991)  Verify when adding a product to basket or navigating to basket page a generic message “Your basket has been updated”should be visible on screen to warn user that the basket will/has been be re-calculated to show current updated delivery costs.
   @confidence
-  Scenario: TC-TBD_Verify Buyer always be shown refreshed/up-to-date product prices in basket
+  Scenario: TC_Verify Buyer always be shown up-to-date product prices and delivery costs in basket page
   
   	#API Steps
   	Given user clears the basket
@@ -68,7 +76,7 @@ Feature: This User story covers the My List related scenarios
     #And User click on "productcatalogues" link on main sidebar
     #And User clicks on show link to view products
     #And User clicks on edit button to view product details
-    When User update the product details
+    #When User update the product details
     #And User log off and close the application
     #And User navigates to BuyerUI
     #And User login to buyerUI

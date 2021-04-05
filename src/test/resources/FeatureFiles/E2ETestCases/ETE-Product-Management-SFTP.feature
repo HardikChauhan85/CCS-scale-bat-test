@@ -2,7 +2,7 @@ Feature: This User story covers the ETE functionality from creating a product
   via SFTP uploads to validating the product in Buyer's UI#
 
   @test
-  Scenario: TC-TBD_Verify that newly created product via SFTP upload is available on Buyers Ui
+  Scenario: TC_Verify that newly created product via SFTP upload is available on Buyers Ui
     Given User creates a CSV with 10 records
     #And User uploads the file to s3 bucket
     #Add code to check the details in Database
