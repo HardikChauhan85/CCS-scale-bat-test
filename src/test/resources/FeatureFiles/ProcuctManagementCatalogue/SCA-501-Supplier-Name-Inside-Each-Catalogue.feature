@@ -2,7 +2,6 @@
 Feature: As a CCS administrator and a category manager,
   I should be able to see supplier name of the catalogue I'm viewing, 
   So that I know which supplier this catalogue relates to
-
   
   #Scenario: SCA-520_Verify that product updated successfully message is displayed after updating a product
   #  @admin
@@ -14,7 +13,7 @@ Feature: As a CCS administrator and a category manager,
     And User filter the catalogue list page using filter "supplier"
     When User clicks on show link to view products
     Then Title of each catalogue should have supplier and catalogue name
-#
+
   #  @admin
   @confidence
   Scenario: SCA-523_Verify that product updated successfully message is displayed after updating a product
@@ -24,7 +23,7 @@ Feature: As a CCS administrator and a category manager,
     And User filter the catalogue list page using filter "supplier"
     When User clicks on show link to view products
     Then Title of each catalogue should have supplier and catalogue name
-#
+
   #  @admin
   @confidence
   Scenario: SCA-521_Verify that super admin should not be able to see supplier name of other supplier on product catalogue
@@ -34,7 +33,7 @@ Feature: As a CCS administrator and a category manager,
     And User filter the catalogue list page using filter "supplier"
     When User clicks on show link to view products
     Then Title of each catalogue should not have other supplier and catalogue name
-#
+
   @confidence
   Scenario: SCA-522_Verify that category manager should not be able to see supplier name of other supplier on product catalogue
     Given User logged in as "categorymanager" in admin panel
