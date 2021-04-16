@@ -88,7 +88,7 @@ public class WishListServiceStepDefs {
 		jsonResponse = apibase.getRequest("/api/v2/storefront/products?sort_by=available_on");
 		jsonAllProductsResponse=jsonResponse;
 		statusCode = apibase.getStatusCode(jsonResponse);
-	}
+	}    
 
 	@Given("identify products which needs to be add in the list.")
 	public void identify_products_which_needs_to_be_add_in_the_list() {
