@@ -1,6 +1,7 @@
 package com.scale.bat.businessPages;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
@@ -60,7 +61,14 @@ public class BuyersUIMyListPage extends Actions  {
 		@FindBy(xpath ="//*[@class='govuk-warning-text__text']")
 		private WebElement warningMessage;
 		
+		@FindBy(xpath ="//p[@class='govuk-body']")
+		private WebElement disclaimerMessage;
 				
+		@FindBy(xpath ="//p[@class='govuk-body govuk-!-govuk-!-margin-bottom-6']")
+		private WebElement informationText;
+		
+		
+		private String backLink="//a[@class='govuk-back-link']";
 		private String manufacturerName ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[2]/div/span[1]";
 		private String sku ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[2]/div/span[2]";
 		private String price ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[3]/div/span[1]";
@@ -165,6 +173,32 @@ public class BuyersUIMyListPage extends Actions  {
 		log.info("Warning message: "+ getText(warningMessage)+ " is displayed successful");
 		
 	}
+	
+	public void validateDisclaimerMessageOnMyList() {
+		
+		assertTrue(getText(disclaimerMessage).equals(configReaderObj.get("disclaimerMessage")));
+		log.info("Disclaimer message: "+ configReaderObj.get("disclaimerMessage") + " is displayed successful");
+		
+	}
+	
+	public void validateInformationTextMyList() {
+		
+		assertTrue(getText(informationText).equals(configReaderObj.get("informationText")));
+		log.info("Disclaimer message: "+ configReaderObj.get("disclaimerMessage") + " is displayed successful");
+		
+	}
+	
+	public void validateBackLinkIsNotVisibleOnMyList() {
+		
+		boolean backLinkBoolean = isElementPresentByXpath(backLink);
+		assertFalse("Validated Back link is not visible", backLinkBoolean);
+		log.info("Validated Back link is not visible");
+		
+	}
+	
+	
+	
+	
 	
 	public void validateWarningMessageCannotAddTheSelectedProduct() {
 		

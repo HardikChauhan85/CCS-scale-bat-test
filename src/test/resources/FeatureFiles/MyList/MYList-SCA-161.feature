@@ -1,8 +1,8 @@
-Feature: This User story covers the My List related scenarios
+Feature: My List related scenarios Testcases
 	
-	#[US-161 (TC01)]
+	#[US-161 (TC01), (TC13), (TC14)]
  	@confidence
-  Scenario: TC-TBD_Verify the buyer can add a product to the basket from the My list page	New
+  Scenario: TC_Verify the buyer can add a product to the basket from the My list page
   	#API Steps
   	Given user access the webservice of GetWishList
   	And deletes the products from the WishList
@@ -18,6 +18,7 @@ Feature: This User story covers the My List related scenarios
 		And User login to buyerUI with API User
 		And User clicks on "My Account link" in buyers UI
 		And User clicks on My List Visit button
+		And User validates the disclaimer if product is present in Wish List page
 		And User Clicks on AddToBasket button of the selected product on My List page
 		And User validates the product message Product added to your basket
 		#And User Validated the product details on basket page
@@ -26,7 +27,7 @@ Feature: This User story covers the My List related scenarios
 				 		
 	#[US-161 (TC06)]
 	@confidence
-  Scenario: TC-TBD_Verify Buyer can add all products after clicking Clear my basket and add these items button in the My list page clears the basket and adds all products in the My list page to the basket New 
+  Scenario: TC_Verify Buyer can add all products after clicking Clear my basket and add these items button in the My list page clears the basket and adds all products in the My list page to the basket
   Given user clears the basket
   And user gets all the available products list
   And identify products which needs to be add in the list.
@@ -51,7 +52,7 @@ Feature: This User story covers the My List related scenarios
   
   #[US-161 (TC08)(TC07)]
 	@confidence
-  Scenario: TC-TBD_Verify after clicking Add these items to current basket button in My list page DOES NOT deletes and clear the basket before adding wish list items to basket New
+  Scenario: TC_Verify after clicking Add these items to current basket button in My list page DOES NOT deletes and clear the basket before adding wish list items to basket
   Given user clears the basket
   And user gets all the available products list
   And identify products which needs to be add in the list.
@@ -75,7 +76,7 @@ Feature: This User story covers the My List related scenarios
   
   #[US-161 (TC02)(TC03)(TC05)(TC09)(TC10)]
   @confidence
-  Scenario: TC-Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from PDP
+  Scenario: TC_Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from PDP
  	 #API Steps
     And user clears the basket
     And user access the webservice of GetWishList
@@ -115,7 +116,7 @@ Feature: This User story covers the My List related scenarios
   
   #[US-161 (TC09)]
 	@confidence
-  Scenario: TC-Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from comparison page
+  Scenario: TC_Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from comparison page
     #API Steps
     And user clears the basket
     And user access the webservice of GetWishList
@@ -141,5 +142,20 @@ Feature: This User story covers the My List related scenarios
     And User clicks on "back link" in buyers UI
     And User clicks on "Romove link" in buyers UI
 		
+		
+	#[US-161 (TC017) (TC018)]
+	@confidence2021
+  Scenario: TC_Verify Buyer navigates to My list page without adding a product Back button should be hidden and an information text should be displayed
+  #API Steps
+  And user access the webservice of GetWishList
+ 	And deletes the products from the WishList
+ 	#UI Steps
+ 	And User navigates to BuyerUI
+	And User login to buyerUI with API User
+	And User clicks on "My Account link" in buyers UI
+	And User clicks on My List Visit button
+	And User validates information text in My list if no items in the wish list
+	And User validates Back button is hidden
+	
 		
 		

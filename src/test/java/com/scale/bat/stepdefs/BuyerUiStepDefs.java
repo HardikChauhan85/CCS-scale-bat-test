@@ -207,6 +207,26 @@ public class BuyerUiStepDefs {
 		objectManager.getBuyersUIpage().clickOnMyListVisitButton();
 	}
 	
+	@Given("User validates the disclaimer if product is present in Wish List page")
+	public void user_validates_the_disclaimer_if_product_is_present_in_Wish_List_page() {
+	    
+		objectManager.getBuyersUIMyListpage().validateDisclaimerMessageOnMyList();
+		
+	}
+	
+	@Given("User validates information text in My list if no items in the wish list")
+	public void user_validates_information_text_in_My_list_if_no_items_in_the_wish_list() {
+	    
+		objectManager.getBuyersUIMyListpage().validateInformationTextMyList();
+	}
+
+	@Given("User validates Back button is hidden")
+	public void user_validates_Back_button_is_hidden() {
+	    
+		objectManager.getBuyersUIMyListpage().validateBackLinkIsNotVisibleOnMyList();
+		
+	}
+	
 
 	@And("User clears the Mylist")
 	public void user_clears_the_Mylist() {
