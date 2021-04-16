@@ -1,6 +1,6 @@
 Feature: This User story covers the ETE functionality from creating a product in admin UI to validating the product in Buyer's UI#
 
-  @testE2E
+  @testE2E @confidence
   Scenario: TC01_Verify that product should not be available in the catalogue of the supplier1 in supplier admin
     Given User logged in as "supplier" in admin panel
     And User click on "productcatalogues" link on main sidebar
@@ -8,7 +8,7 @@ Feature: This User story covers the ETE functionality from creating a product in
     And Check if the product is present in a catalogue if yes then delete
     And User log off and close the application
 
-  @testE2E
+  @testE2E @confidence
   Scenario: TC02_Verify that product should not be available in the catalogue of the supplier2 in supplier admin
     Given User logged in as "supplier1" in admin panel
     And User click on "productcatalogues" link on main sidebar
@@ -16,7 +16,7 @@ Feature: This User story covers the ETE functionality from creating a product in
     And Check if the product is present in a catalogue if yes then delete
     And User log off and close the application
 
-  @testE2E
+  @testE2E @confidence
   Scenario: TC03_Verify that newly created product by Supplier1 from UI is available on Buyers UI
     Given User logged in as "supplier" in admin panel
     And User click on "productcatalogues" link on main sidebar
@@ -38,7 +38,7 @@ Feature: This User story covers the ETE functionality from creating a product in
     Then verify the product details in buyers UI
 
   #
-  @testE2E
+  @testE2E @confidence
   Scenario: TC04_Verify that newly created product by Supplier2 from UI is available on Buyers UI
     Given User logged in as "supplier1" in admin panel
     And User click on "productcatalogues" link on main sidebar
@@ -63,7 +63,7 @@ Feature: This User story covers the ETE functionality from creating a product in
 
   #
   #
-  @testE2E
+  @testE2E @confidence
   Scenario: TC05_Verify that Supplier1 updated product from UI is available on Buyers UI with updates
     Given User logged in as "supplier" in admin panel
     #And Authorisation dialoxg box is handled
@@ -100,7 +100,7 @@ Feature: This User story covers the ETE functionality from creating a product in
   #When User search a product with SKU number
   #Then verify the product details in buyers UI
   #
-  @testE2E
+  @testE2E @confidence
   Scenario: TC06_Verify that Supplier1 unpublished product from UI is available on Buyers UI with updates
     Given User logged in as "supplier" in admin panel
     #And Authorisation dialoxg box is handled
@@ -117,7 +117,7 @@ Feature: This User story covers the ETE functionality from creating a product in
     Then verify the product details should not be available on buyers UI
 
   #
-  @testE2E
+  @testE2E @confidence
   Scenario: TC07_Verify that Supplier1 deleted product from UI is not available on Buyers UI with updates
     Given User logged in as "supplier" in admin panel
     #And Authorisation dialoxg box is handled
@@ -134,7 +134,7 @@ Feature: This User story covers the ETE functionality from creating a product in
 
   #
   #To Delete the Supplier1 product not a part of E2E TC
-  @testE2E
+  @testE2E @confidence 
   Scenario: TC08_Verify that Supplier2 deleted product from UI is not available on Buyers UI with updates
     Given User logged in as "supplier1" in admin panel
     #And Authorisation dialoxg box is handled
@@ -150,7 +150,7 @@ Feature: This User story covers the ETE functionality from creating a product in
     Then verify the product details should not be available on buyers UI
 
   #[US-291] # PRODUCT CATALOGUE LIST PAGE
-  @testE2E
+  @testE2E @confidence
   Scenario Outline: TC09_CCS Admin should be able to filter products in product catalogue list page
     Given User logged in as "superadmin" in admin panel
     #And Authorisation dialoxg box is handled
@@ -168,7 +168,7 @@ Feature: This User story covers the ETE functionality from creating a product in
       | unpublished | unpublished      |
 
   #[US-291] # PRODUCT CATALOGUE PAGE
-  @testE2E
+  @testE2E @confidence
   Scenario Outline: TC10_CCS Admin should be able to filter products in product catalogue page
     Given User logged in as "superadmin" in admin panel
     #And Authorisation dialoxg box is handled

@@ -4,8 +4,8 @@ Feature: As a CCS administrator and a category manager,
   So that I know which supplier this catalogue relates to
   
   #Scenario: SCA-520_Verify that product updated successfully message is displayed after updating a product
-  #  @admin
-  @confidence
+  #  
+  @confidence @admin
   Scenario: SCA-520_Verify Title of each catalogue should have supplier and catalogue name
     Given User logged in as "superadmin" in admin panel
     #And Authorisation dialoxg box is handled
@@ -14,8 +14,8 @@ Feature: As a CCS administrator and a category manager,
     When User clicks on show link to view products
     Then Title of each catalogue should have supplier and catalogue name
 
-  #  @admin
-  @confidence
+  #  
+  @confidence @admin
   Scenario: SCA-523_Verify that product updated successfully message is displayed after updating a product
     Given User logged in as "categorymanager" in admin panel
     #And Authorisation dialoxg box is handled
@@ -24,8 +24,8 @@ Feature: As a CCS administrator and a category manager,
     When User clicks on show link to view products
     Then Title of each catalogue should have supplier and catalogue name
 
-  #  @admin
-  @confidence
+  #  
+  @confidence @admin
   Scenario: SCA-521_Verify that super admin should not be able to see supplier name of other supplier on product catalogue
     Given User logged in as "superadmin" in admin panel
     #And Authorisation dialoxg box is handled
@@ -34,7 +34,7 @@ Feature: As a CCS administrator and a category manager,
     When User clicks on show link to view products
     Then Title of each catalogue should not have other supplier and catalogue name
 
-  @confidence
+  @confidence @admin
   Scenario: SCA-522_Verify that category manager should not be able to see supplier name of other supplier on product catalogue
     Given User logged in as "categorymanager" in admin panel
     #And Authorisation dialoxg box is handled

@@ -88,13 +88,13 @@ public class BuyersUIBasketPage  extends Actions{
 	//My Basket Page Locators
 	//PRODUCT 1
 	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/form/div/div[2]/a")
+	@FindBy(xpath ="//*[@class='bat-basket-item__title']/a")
 	private WebElement productName;
 	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/form/div/div[2]/span")
+	@FindBy(xpath ="//*[@class='bat-basket-item__title']/a/following-sibling::span[1]")
 	private WebElement mpn;
 	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/div/table/tbody/tr/td[3]")
+	@FindBy(xpath ="//*[@class='bat-basket-item__unit-price']")
 	private WebElement productUnitPrice;
 	
 	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/div/table/tbody/tr/td[5]")
@@ -288,13 +288,14 @@ public class BuyersUIBasketPage  extends Actions{
 			int productNamelength = getText(productName).length();
 			String productNames = getText(productName).substring(17,productNamelength);
 			//System.out.println("productNameUI = " + productName + " jsonproductName = " + apiBase.getvaluefromresponse("data[0].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse));
-			
+			String[] productPrice = getText(productUnitPrice).split("each");
+			String productPriceSplit = productPrice[0].replaceAll("\\s", "");
 			int mpnlength=getText(mpn).length();
 			String mpns = getText(mpn).substring(5,mpnlength);
 			
 			System.out.println("JSON Body Validation: " + WishListServiceStepDefs.jsonAllProductsResponse.getBody().asString());
 		 	//Product Price UI
-        	assertTrue(getText(productUnitPrice).equals(apiBase.getvaluefromresponse("data[0].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	assertTrue(productPriceSplit.equals(apiBase.getvaluefromresponse("data[0].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
         	
         	//Product Name Validation
         	assertTrue(productNames.equals(apiBase.getvaluefromresponse("data[0].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
