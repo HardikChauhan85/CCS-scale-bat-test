@@ -88,6 +88,12 @@ public class BuyersUIQuotesPageStepdefs {
 		objectManager.getBuyersUIQuotespage().enterQuoteNoInQuoteReferenceTextbox();
 	}
 
+	@Then("User enters the new Quote refrence partially in Quote reference textbox in buyers UI")
+	public void user_enters_the_new_Quote_refrence_partially_in_Quote_reference_textbox_in_buyers_UI() {
+		
+		objectManager.getBuyersUIQuotespage().enterQuoteNoPartiallyInQuoteReferenceTextbox();
+	}
+	
 	@Then("User validates the Quote table column headers displayed on BuyerUI")
 	public void user_validates_the_Quote_table_column_headers_displayed_on_BuyerUI() {
 	    

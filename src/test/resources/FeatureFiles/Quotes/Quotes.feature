@@ -56,6 +56,7 @@ Feature: This User story covers the Firm quotes related scenarios
     
     
     #[US: SCA-98 (TC 01, TC 02)]
+    #[US: SCA-1801 (SCA-2044)]
     @confidence
   	Scenario: TC-Verify user is able to create Indicative quote and verify label for Indicative quote radio button is displayed correctly.
  	  #API Steps
@@ -85,6 +86,87 @@ Feature: This User story covers the Firm quotes related scenarios
     And User clicks on "Quote refrence link" in buyers UI
     And User validates the text "Indicative quote only, not valid for purchase" and the status "accepted" on indicative quotes page
      
+ 
+   #[US: SCA-100 (TC1: SCA-1959 )]
+   #[US: SCA-1801 (TC2: SCA-2042 )]
+  @confidence
+  Scenario: TC-Verify when quote is created, its status automatically assigned as Accepted
+ 	  #API Steps
+  	Given user clears the basket
+ 		And user gets all the available products list
+		And identify products which needs to be add in the list.
+		And get the products variant ids 
+		And user access the webservice of GetWishList
+		And user adds a product to basket
+
+		#UI Steps
+		And User navigates to BuyerUI
+		And User login to buyerUI with API User
+		And User clicks on "Basket Link" in buyers UI
+		And User get the supplier name and total amount of the products on Buyers UI
+		And User clicks on "Quote" in buyers UI
+		And User validated the Firm and Indicative quote label 
+		And User enter Quote name as "AutoFirmquote"
+    And User create "Firm" quote
+    And User clicks on "Raise quote" in buyers UI
+    Then User get message "Quote raised successfully" on screen
+    And User validates the new Quote refrence no
+    And User enters the new Quote refrence in Quote reference textbox in buyers UI
+    And User clicks on "Manage quote Search button" in buyers UI 
+    And User validates the new "Firm" Quote details in quotes table with default status as "Accepted" in Buyers UI
+
+ 
+    #[US: SCA-1801 (TC3: SCA-2043 )]
+  	@confidence
+  	Scenario: TC-Verify Buyer is able to search firm quote using partial Quote Reference
+ 	  #API Steps
+  	Given user clears the basket
+ 		And user gets all the available products list
+		And identify products which needs to be add in the list.
+		And get the products variant ids 
+		And user access the webservice of GetWishList
+		And user adds a product to basket
+
+		#UI Steps
+		And User navigates to BuyerUI
+		And User login to buyerUI with API User
+		And User clicks on "Basket Link" in buyers UI
+		And User get the supplier name and total amount of the products on Buyers UI
+		And User clicks on "Quote" in buyers UI
+		And User validated the Firm and Indicative quote label 
+		And User enter Quote name as "AutoFirmquote"
+    And User create "Firm" quote
+    And User clicks on "Raise quote" in buyers UI
+    Then User get message "Quote raised successfully" on screen
+    And User validates the new Quote refrence no
+  	And  User enters the new Quote refrence partially in Quote reference textbox in buyers UI 
+    And User clicks on "Manage quote Search button" in buyers UI 
+    And User validates the new "Firm" Quote details in quotes table with default status as "Accepted" in Buyers UI
     
-    
-    
+    #[US: SCA-1801 (SCA-2045)]
+    @confidence
+  	Scenario: TC-Verify Buyer is able to search indicative quote using partial Quote Reference
+ 	  #API Steps
+  	Given user clears the basket
+ 		And user gets all the available products list
+		And identify products which needs to be add in the list.
+		And get the products variant ids 
+		And user access the webservice of GetWishList
+		And user adds a product to basket
+		#And deletes the products from the WishList
+		#UI Steps
+		And User navigates to BuyerUI
+		And User login to buyerUI with API User
+		And User clicks on "Basket Link" in buyers UI
+		And User get the supplier name and total amount of the products on Buyers UI
+		And User clicks on "Quote" in buyers UI
+		And User validated the Firm and Indicative quote label 
+		And User enter Quote name as "Indicativequote"
+    And User create "Indicative" quote
+    And User clicks on "Raise quote" in buyers UI
+    Then User get message "Quote raised successfully" on screen
+    And User validates the new Quote refrence no
+  	And  User enters the new Quote refrence partially in Quote reference textbox in buyers UI
+    And User clicks on "Manage quote Search button" in buyers UI 
+    And User validates the new "Indicative" Quote details in quotes table with default status as "Accepted" in Buyers UI
+ 
