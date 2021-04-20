@@ -124,7 +124,7 @@ public class ProductCatalogueListPage extends Actions {
 	
 
 	public void showProducts() {
-		waitForSeconds(5);
+		waitForSeconds(7);
 		clickElement(show);
 		assertTrue("Header is different!! Please check vendor",getText(contentHeader).toLowerCase().contains("RM6147".toLowerCase()));
 		log.info("Supplier name is present on product catalogue header SCA-501");

@@ -205,14 +205,6 @@ public class Actions {
 	}
 
 	public void clearTextBox(WebElement element) {
-
-//		org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
-//
-//		int textLength = element.getAttribute("value").length();
-//		while (textLength > 0) {
-//			actions.moveToElement(element).click().sendKeys(Keys.BACK_SPACE).build().perform();
-//			textLength--;
-//		}
 		element.clear();
 	}
 
