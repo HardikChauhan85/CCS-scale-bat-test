@@ -161,6 +161,11 @@ public class BuyerUiStepDefs {
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIQuotespage().getFirstRowQuoteNoLink());
 		break;
 		
+		case "Update Link Add to list":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getUpdateLinkAddToList());
+		break;
+		
+		
 		}
 	}
 
@@ -436,5 +441,32 @@ public class BuyerUiStepDefs {
 	    
 		objectManager.getBuyersUIMyListpage().validateWarningMessageCannotAddTheSelectedProduct();
 	}
-		
+	
+	
+	@Given("User should not be able to view MY account link")
+	public void user_should_not_be_able_to_view_MY_account_link() {
+	    
+		objectManager.getBuyersUIpage().validateMyAccountLinkIsVisible();
+	}
+
+	@When("User validates the {string} button is not visible")
+	public void user_validates_the_button_is_not_visible(String string) {
+	    
+		objectManager.getBuyersUIpage().validateAddToListButtonIsVisible();
+	}
+
+	@When("User adjust the products quantity on the Added to wishlist page")
+	public void user_adjust_the_products_quantity_on_the_Added_to_wishlist_page() {
+	    
+		objectManager.getBuyersUIMyListpage().enterTheProductFullQuantity(scenarioContext.productDetails);
+	}
+	
+	@When("User validates the OOS message")
+	public void user_validates_the_OOS_message() {
+	    
+		objectManager.getBuyersUIMyListpage().validateUnableToSupplyQtyMessaseInAddToList();
+	}
+
+
+
 }

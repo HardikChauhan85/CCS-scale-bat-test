@@ -1,5 +1,6 @@
 package com.scale.bat.businessPages;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class BuyersUIpage extends Actions {
 	private String signIn = "Sign in";
 	private String logInButton = "Log in";
 	private String mobileDevices = "Output Accessories";
-	private String PLPScreenText = "products";
+	private String PLPScreenText = "The purchasing platform";
 	private String basketText = "Basket";
 	private String basketLink = "Basket";
 	private String myAccountLink="account";
@@ -33,7 +34,7 @@ public class BuyersUIpage extends Actions {
 	private String continueShoppingLinkOnBasketPage = "Continue shopping";
 	private String addToBasket = "  Add ";
 
-	@FindBy(xpath = "//*[@class='bat-basket-item-added__buttons']/a")
+	@FindBy(xpath = "//*[@class='govuk-button govuk-button--secondary']")
 	private WebElement continueShopping;
 
 	@FindBy(xpath = "//*[@id='dropdown-navigation']/li[1]/a")
@@ -73,6 +74,8 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "//*[@class='govuk-button govuk-button--secondary bat-product__button bat-product__add-to-list__button']")
 	private WebElement addToList;
 	
+	private String addToListString ="//*[@class='govuk-button govuk-button--secondary bat-product__button bat-product__add-to-list__button']";
+	
 	@FindBy(xpath = "//*[@class='govuk-button govuk-button--secondary bat-compare-products-header__add-to-list']")
 	private WebElement addToListBtnComparePage;
 	
@@ -111,8 +114,8 @@ public class BuyersUIpage extends Actions {
 	private String checkMyListIsEmpty="//*[@class='govuk-body govuk-!-govuk-!-margin-bottom-6']";
 	private String getTotalProductsInMyList="//*[@id='main-content']/div[1]/div/ul/li";
 	
-	//Erfan
-	 private String quote = "Quote";
+	private String quote = "Quote";
+	private String update = "Update";
 	 
 	 @FindBy(xpath = "//*[@href='/account/quotes']")
 	 private WebElement manageQuotesVisit;
@@ -236,6 +239,24 @@ public class BuyersUIpage extends Actions {
 			}
 		}
 	}
+	
+	
+	public void validateMyAccountLinkIsVisible() {
+		boolean backLinkBoolean = isElementPresent(myAccountLink);
+		assertFalse("Validated Account Link is not visible", backLinkBoolean);
+		log.info("Validated Account Link is not visible");
+	}
+	
+	public void validateAddToListButtonIsVisible() {
+		
+		boolean backLinkBoolean = isElementPresentByXpath(addToListString);
+		assertFalse("Validated AddToList button is not visible", backLinkBoolean);
+		log.info("Validated AddToList button is not visible");
+		
+	}
+	
+	
+
 	
 	
 	public void compareProducts(int numberOfProducts) {
@@ -369,17 +390,14 @@ public class BuyersUIpage extends Actions {
 	public WebElement getManageQuotesVisitElement() {
 		return manageQuotesVisit;
 	}
-		
-		
-		
 
-		
-
-		public WebElement getSearchQuoteElement() {
+	public WebElement getSearchQuoteElement() {
 			return searchQuoteButton;
-			}
+	}
 
-		
+	public String getUpdateLinkAddToList() {
+		return update;
+	}
 
 			
 			 
