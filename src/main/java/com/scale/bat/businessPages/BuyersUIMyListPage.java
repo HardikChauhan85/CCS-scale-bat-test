@@ -67,7 +67,13 @@ public class BuyersUIMyListPage extends Actions  {
 		@FindBy(xpath ="//p[@class='govuk-body govuk-!-govuk-!-margin-bottom-6']")
 		private WebElement informationText;
 		
+		@FindBy(xpath ="//*[@class='govuk-input govuk-input--width-4']")
+		private WebElement quantityTextBoxAddToList;
 		
+		@FindBy(xpath ="//*[@class='govuk-warning-text__text']")
+		private WebElement OOSQtyMessage;
+		
+		private String quantityTextBoxAddToListString="//*[@class='govuk-input govuk-input--width-4']";
 		private String backLink="//a[@class='govuk-back-link']";
 		private String manufacturerName ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[2]/div/span[1]";
 		private String sku ="//*[@id='main-content']/div[1]/div/ul/li[1]/div/div/div[2]/div/span[2]";
@@ -196,8 +202,25 @@ public class BuyersUIMyListPage extends Actions  {
 		
 	}
 	
+	public void enterTheProductFullQuantity(Map<String, Object> pDetails) {
+		
+		String localVolumeStock = pDetails.get("LocalStockVolume").toString();
+		int localVolumeStockInt = Integer.parseInt(localVolumeStock);
+		int localVolumeStockIntOOS = localVolumeStockInt+100;
+		String localVolumeStockStrOOS = Integer.toString(localVolumeStockIntOOS);
+		enterText(quantityTextBoxAddToList,localVolumeStockStrOOS);
+		boolean quantityBoolean =isElementPresentByXpath(quantityTextBoxAddToListString);
+		assertTrue("Buyer is able to enter the total stock of the product ", quantityBoolean);
+		log.info("Buyer is able to enter the total stock of the product");
+		
+	}
 	
 	
+	public void validateUnableToSupplyQtyMessaseInAddToList() {
+		assertTrue(getText(OOSQtyMessage).contains("Unable to supply"));
+		log.info("Validated Out Of stock quantity message");
+		
+	}
 	
 	
 	public void validateWarningMessageCannotAddTheSelectedProduct() {
