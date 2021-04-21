@@ -18,6 +18,8 @@ import cucumber.api.Scenario;
 
 public class ProductDetailPage extends Actions {
 	private Logger log = Log.getLogger(ProductDetailPage.class);
+	
+	public static String localreducedStockString;
 
 	@FindBy(xpath = "//*[@id='product_unspsc_field']/input")
 	private WebElement unspscTextField;
@@ -83,6 +85,20 @@ public class ProductDetailPage extends Actions {
 		clearTextBox(StockTextField);
 		String qty = String.valueOf(randomBunmber(10));
 		enterText(StockTextField, qty);
+		clickButton(updateButton);
+		existsElement(successfulMessage);
+	}
+	
+	
+	public void reduceStockQuantity(Map<String, Object> pDetails) {
+		clickByLinkText(stock);
+		clearTextBox(StockTextField);
+		
+		String localVolumeStock = pDetails.get("LocalStockVolume").toString();
+		int localVolumeStockInt = Integer.parseInt(localVolumeStock);
+		int localreducedStockInt = localVolumeStockInt-1;
+		localreducedStockString = Integer.toString(localreducedStockInt);
+		enterText(StockTextField, localreducedStockString);
 		clickButton(updateButton);
 		existsElement(successfulMessage);
 	}

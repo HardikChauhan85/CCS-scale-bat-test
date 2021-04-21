@@ -72,7 +72,7 @@ Feature: My List related scenarios Testcases
     And User validates the product message All products were added to your basket
     And User Validates products details after clicking on Add these items to current basket button
 
-  #[US-161 (TC02)(TC03)(TC05)(TC09)(TC10)]
+  #[US-161 (TC02)(TC03)(TC05)(TC09)(TC10)(TC11)]
   @confidence
   Scenario: TC_Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from PDP
     #API Steps
@@ -111,7 +111,7 @@ Feature: My List related scenarios Testcases
     And User validates the error message when product has exceed the number of units in stock for the product
     And User clicks on "My list delete button" in buyers UI
 
-  #[US-161 (TC09) (TC20) (TC23) (TC24)]
+  #[US-161 (TC09) (TC20) (TC23) (TC24)(TC04)(TC12)(TC22)(TC25)(TC26)]
   @confidence
   Scenario: TC_Verify Buyer can search for a product using Search bar on PLP & should be able to add the product to the My List page from comparison page
     #API Steps
@@ -127,7 +127,8 @@ Feature: My List related scenarios Testcases
     And User clicks on show link to view products
     When User creates a product
     #UI Steps
-    And User navigates to BuyerUI
+    #And User navigates to BuyerUI
+    And User enters the buyers UI
     And User login to buyerUI with API User
     #And User login to buyerUI
     When User search a product with SKU number
@@ -145,6 +146,32 @@ Feature: My List related scenarios Testcases
     And User clicks on "back link" in buyers UI
     And User clicks on "back link" in buyers UI
     And User clicks on "Romove link" in buyers UI
+    And User clicks on "My Account link" in buyers UI
+    And User clicks on My List Visit button
+    And User Clicks on AddToBasket button of the selected product on My List page
+    And User clicks on "My Account link" in buyers UI
+    And User clicks on My List Visit button
+    And User Clicks on Add these items to current basket button
+    And User validated the warning message when all stocks of product were added to basket
+    #UI Steps
+    #Given User logged in as "supplier" in admin panel
+    #And User enter the admin url and logged in as a "supplier"
+    And User enters the Admin UI url
+    And User click on "productcatalogues" link on main sidebar
+    And User clicks on show link to view products
+    When User clicks on edit button to view product details
+   	#When User updates the stock quantity of a product
+   	And User reduces the stock of the product
+    Then A successful message should be displayed
+    And User enters the buyers UI
+    And User clicks on "My Account link" in buyers UI
+    And User clicks on My List Visit button
+    And User validates the warning and quantity available message in MyList
+    
+    
+    
+    
+    
 
   #[US-161 (TC017) (TC018)]
   @confidence
