@@ -467,6 +467,17 @@ public class BuyerUiStepDefs {
 		objectManager.getBuyersUIMyListpage().validateUnableToSupplyQtyMessaseInAddToList();
 	}
 
-
+	@Then("User validates the warning and quantity available message in MyList")
+	public void user_validates_the_warning_and_quantity_available_message_in_MyList() {
+	 
+		objectManager.getBuyersUIMyListpage().validateWarningAndQuantityMessageInMyList();
+	}
+	
+	
+	@When("User validated the warning message when all stocks of product were added to basket")
+	public void user_validated_the_warning_message_when_all_stocks_of_product_were_added_to_basket() {
+	    
+		objectManager.getBuyersUIMyListpage().validateReduceStockMessageWhenClickAddTheseItemsToCurrentBasketInMyList(scenarioContext.productDetails);
+	}
 
 }

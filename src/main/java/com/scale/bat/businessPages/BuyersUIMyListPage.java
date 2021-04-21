@@ -20,6 +20,7 @@ import com.scale.bat.framework.utility.ConfigurationReader;
 import com.scale.bat.framework.utility.DateTimeUtils;
 import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
+import com.scale.bat.stepdefs.ProductCatalogueListPageStepDef;
 
 import cucumber.api.Scenario;
 
@@ -72,6 +73,9 @@ public class BuyersUIMyListPage extends Actions  {
 		
 		@FindBy(xpath ="//*[@class='govuk-warning-text__text']")
 		private WebElement OOSQtyMessage;
+		
+		@FindBy(xpath ="//*[@class='bat-wished-product__title__insufficient-stock']")
+		private WebElement qtyReduceMessage;
 		
 		private String quantityTextBoxAddToListString="//*[@class='govuk-input govuk-input--width-4']";
 		private String backLink="//a[@class='govuk-back-link']";
@@ -219,6 +223,30 @@ public class BuyersUIMyListPage extends Actions  {
 	public void validateUnableToSupplyQtyMessaseInAddToList() {
 		assertTrue(getText(OOSQtyMessage).contains("Unable to supply"));
 		log.info("Validated Out Of stock quantity message");
+		
+	}
+	
+	public void validateWarningAndQuantityMessageInMyList() {
+		
+		String[] OOSQtyMessageUI = getText(OOSQtyMessage).split("\\r?\\n");
+		String actualOOSQtyMessageUI = OOSQtyMessageUI[1];
+		assertTrue(actualOOSQtyMessageUI.equals(configReaderObj.get("warningMsgReduceQty")));
+		assertTrue(getText(qtyReduceMessage).contains("Quantity available: "));
+		log.info("Validated warning message of reduced quantity im My List page ");
+		
+	}
+	
+	public void validateReduceStockMessageWhenClickAddTheseItemsToCurrentBasketInMyList(Map<String, Object> pDetails) {
+		
+		String[] OOSQtyMessageUI = getText(OOSQtyMessage).split(",");
+		String[] actualOOSQtyMessageUI1 = OOSQtyMessageUI[0].split("\\r?\\n");
+		String actualOOSQtyMessageUI2 = actualOOSQtyMessageUI1[1];
+		String actualOOSQtyMessageUI3 = actualOOSQtyMessageUI1[2];
+		String actualOOSQtyMessageUI4 = actualOOSQtyMessageUI1[3];
+		assertTrue(actualOOSQtyMessageUI2.equals(configReaderObj.get("warningMsgReduceQtyWhenClickAddTheseItemBtn1")));
+		assertTrue(actualOOSQtyMessageUI3.equals(pDetails.get("ProductName").toString()));
+		assertTrue(actualOOSQtyMessageUI4.equals(configReaderObj.get("warningMsgReduceQtyWhenClickAddTheseItemBtn2")));
+		log.info("Validated warning message of reduced quantity when click AddTheseItemBtn im My List page ");
 		
 	}
 	

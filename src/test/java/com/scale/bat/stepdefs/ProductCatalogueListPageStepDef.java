@@ -241,6 +241,11 @@ public class ProductCatalogueListPageStepDef {
 	public void user_updates_the_stock_quantity_of_a_product() {
 		objectManager.getproductDetailsPage().updateStockQuantity();
 	}
+	
+	@When("User reduces the stock of the product")
+	public void user_reduces_the_stock_of_the_product() {
+	    objectManager.getproductDetailsPage().reduceStockQuantity(scenarioContext.productDetails);
+	}
 
 	@Then("Title of each catalogue should not have other supplier and catalogue name")
 	public void Title_of_each_catalogue_should_not_have_other_supplier_and_catalogue_name() {
