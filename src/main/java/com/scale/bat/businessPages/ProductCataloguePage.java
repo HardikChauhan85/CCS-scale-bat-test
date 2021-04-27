@@ -2,6 +2,8 @@ package com.scale.bat.businessPages;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Map;
+
 import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -99,6 +101,11 @@ public class ProductCataloguePage extends Actions {
 	@FindBy(xpath = "//*[@class='row align-items-center  border-bottom']/div[1]/form/button")
 	private WebElement PublishButton;
 	
+	private String updateButton = "Update";
+
+	//private String successfulMessage = "//*[@id='main-part']/div[2]/div[1]/div";
+	private String successfulMessage = "//*[@class='alert alert-success mx-2']";
+
 	
 	
 	public ProductCataloguePage(WebDriver driver, Scenario scenario) {
@@ -157,6 +164,17 @@ public class ProductCataloguePage extends Actions {
 		}
 		
 		
+	}
+	
+	
+	public void addsTheNextDayOption(Map<String, Object> pDetails) {
+		clickElementXpath(nextDayDeliveryAvailableCheckBox);
+		clearTextBox(nextDayChargeProduct);
+		enterText(nextDayChargeProduct, pDetails.get("nextDayChargeProduct").toString());
+		clearTextBox(nextDayChargeBasket);
+		enterText(nextDayChargeBasket, pDetails.get("nextDayChargeBasket").toString());
+		clickButton(updateButton);
+		existsElement(successfulMessage);
 	}
 
 	public void deleteProduct() {

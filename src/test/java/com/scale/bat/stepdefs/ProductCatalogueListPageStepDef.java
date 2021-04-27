@@ -229,6 +229,18 @@ public class ProductCatalogueListPageStepDef {
 	public void user_clicks_on_edit_button_to_view_products() {
 		objectManager.getProductCatalogueListPage().editProduct();
 	}
+	
+	@When("User removes the Next Day Delivery Available option")
+	public void user_removes_the_Next_Day_Delivery_Available_option() {
+	    
+		objectManager.getproductDetailsPage().removeTheNextDayOption();
+	}
+	
+	@When("User adds the Next Day Delivery option")
+	public void user_adds_the_Next_Day_Delivery_option() {
+	    
+		objectManager.getProductCataloguePage().addsTheNextDayOption(scenarioContext.productDetails);
+	}
 
 	@And("Updated quantity will be replaced by previous value on clicking cancel button")
 	public void update_qty_will_be_replaced_by_previous_value() {
