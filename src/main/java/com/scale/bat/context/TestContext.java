@@ -35,6 +35,7 @@ import cucumber.api.java.AfterStep;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 
@@ -84,6 +85,21 @@ public class TestContext extends BrowserFactory {
 		objectManager.getLogInAdminPanel().loginToSupplierAdminPanel(userRole);
 		log.info(userRole + " logged in to admin panel");
 	}
+	
+	@When("User enters the Admin UI url")
+	public void user_enters_the_Admin_UI_url() {
+		launchURL(configReader.adminPanelUrl());
+		log.info(" User enters the Admin UI url");
+	}
+	
+	@Given("User login as {string} in admin panel")
+	public void user_login_as_in_admin_panel(String userRole) {
+		
+		objectManager = new PageObjectManager(driver, scenario);
+		objectManager.getLogInAdminPanel().loginToSupplierAdminPanel(userRole);
+		log.info(userRole + " logged in to admin panel");
+	}
+
 
 	@And("User log off and close the application")
 	public void user_log_off_from_the_application() {
@@ -242,8 +258,12 @@ public class TestContext extends BrowserFactory {
 		objectManager.getBuyersUIpage().loginByuerUi(configReader.apiUserName("supplier"), configReader.apiUserPassword("supplier"));
 	}
 
+	@Then("User enters the buyers UI")
+	public void user_enters_the_buyers_UI() {
+		launchURL(configReader.buyerUIUrl());
+	}
 
-
+	
 	@After
 	public void cleanUp() throws Exception {
 		if (configReader.get("browserName").equalsIgnoreCase("chrome_profile")
