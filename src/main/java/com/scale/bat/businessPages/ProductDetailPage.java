@@ -52,6 +52,9 @@ public class ProductDetailPage extends Actions {
 	private WebElement publishedFromDate;
 
 	private String errorMessage = "//*[@id='errorExplanation']";
+	
+	@FindBy(xpath = "//input[@name='product[delivery_charges_attributes][next_day_available]'][2]")
+	private WebElement nextDayDeliveryCheckbox;
 
 	public ProductDetailPage(WebDriver driver, Scenario scenario) {
 		super.driver = driver;
@@ -88,6 +91,14 @@ public class ProductDetailPage extends Actions {
 		clickButton(updateButton);
 		existsElement(successfulMessage);
 	}
+	
+	public void removeTheNextDayOption() {
+		clickElementXpath(nextDayDeliveryCheckbox);
+		clickButton(updateButton);
+		existsElement(successfulMessage);
+	}
+	
+	
 	
 	
 	public void reduceStockQuantity(Map<String, Object> pDetails) {

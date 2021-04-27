@@ -14,14 +14,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.scale.bat.framework.utility.Actions;
 import com.scale.bat.framework.utility.ConfigurationReader;
-import com.scale.bat.framework.utility.DateTimeUtils;
 import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
-import com.scale.bat.stepdefs.ProductCatalogueListPageStepDef;
-
 import cucumber.api.Scenario;
 
 public class BuyersUIMyListPage extends Actions  {

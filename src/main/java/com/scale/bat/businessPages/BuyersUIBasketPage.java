@@ -1,6 +1,7 @@
 package com.scale.bat.businessPages;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -143,6 +144,29 @@ public class BuyersUIBasketPage  extends Actions{
 	
 	@FindBy(xpath ="//select[@id='shipping_method_id']")
 	private WebElement webElementDeliveryMethodDropDown;
+	
+	@FindBy(xpath ="//div[@id='shipping_method_id-hint']")
+	private WebElement basketWarningMsgOfNextDayDelivery;
+	
+	private String basketWarningMsgOfNextDayDeliveryString="//div[@id='shipping_method_id-hint']";
+	
+	@FindBy(xpath ="//a[@href='/basket']")
+	private WebElement basketLink;
+	
+	
+	@FindBy(xpath ="//h2[@class='govuk-notification-banner__title']")
+	private WebElement notificationBlueBanner;
+	
+	@FindBy(xpath ="//span[@class='govuk-details__summary-text']")
+	private WebElement notificationBlueBannerSummaryText;
+	
+	@FindBy(xpath ="//div[@class='govuk-details__text']/ul/li")
+	private WebElement notificationBlueBannerProductDetail;
+	
+	@FindBy(xpath ="//input[@name='quantity']")
+	private WebElement productQuantityOnBasket;
+	
+	
 	
 	
 	//Declare Variables
@@ -329,11 +353,63 @@ public class BuyersUIBasketPage  extends Actions{
         	 waitForSeconds(2);
 	}
 	
+	
+	
+	public void verifyBlueBanneredBox(Map<String, Object> pDetails) throws IOException {
+		waitForSeconds(2);
+		assertTrue(getText(notificationBlueBanner).equals("Important"));
+        assertTrue(getText(notificationBlueBannerSummaryText).equals(configReaderObj.get("notificationBlueBannerSummaryTextMsg")));
+        clickElementXpath(notificationBlueBannerSummaryText);
+        assertTrue(getText(notificationBlueBannerProductDetail).equals(pDetails.get("ProductName").toString() + " from sftpsupplier2021 had it's stock reduced from 5 to the maximum stock available from suppliers. The suppliers providing the product were updated."));
+    }
+	
+	public void verifyProductReducedQuantityOnBasketPage() throws IOException {
+		waitForSeconds(2);
+		assertTrue(getAttributeValue(productQuantityOnBasket).equals("4"));
+        
+	}
+	
+	
 	public void verifyBasketGenericMessageOnBasketPage(String genericMsg) throws IOException {
 		waitForSeconds(2);
-			//Product Price UI
-        	assertTrue(getText(basketPageMsgAfterClearBasket).equals(genericMsg));
-        	waitForSeconds(2);
+		assertTrue(getText(basketPageMsgAfterClearBasket).equals(genericMsg));
+        waitForSeconds(2);
+	}
+	
+	
+	
+	public void verifyBasketLinkCount(String basketCount) throws IOException {
+			waitForSeconds(2);
+			//Verify Basket Link qty
+        	assertTrue(getText(basketLink).equals("Basket: "+basketCount));
+        	log.info("Validated basket link product quantity "+getText(basketLink)+ " successfully");
+	}
+	
+	public void validateWarningMessageIsHiddenOnBasketPage() {
+		
+		boolean mgsNotVisible = isElementPresentByXpath(basketWarningMsgOfNextDayDeliveryString);
+		if(mgsNotVisible==false) {
+			assertFalse("Warning message is hidden on basket when 'Next Day Delivery' option is available",mgsNotVisible);
+			log.info("Warning message is hidden on basket when 'Next Day Delivery' option is available");
+		}else {
+			assertFalse(getText(basketWarningMsgOfNextDayDelivery)+" is visible", mgsNotVisible);
+		}
+	}
+	
+	public void validateNextDayDeliveryIsGreyedOutOnBasketPage() {
+		
+		boolean nexBusinessDayIsGreyedOut  = isElementPresentByXpath(basketWarningMsgOfNextDayDeliveryString);
+		assertTrue("'Next Business Day (Orders after Midday)' option is greyed out ",nexBusinessDayIsGreyedOut);
+		log.info("'Next Business Day (Orders after Midday)' option is greyed out in Delivery method dropdown");
+		
+	}
+	
+	
+	
+	public void validateWarningMessageIsVisiblenOnBasketPage() {
+		
+		assertTrue(getText(basketWarningMsgOfNextDayDelivery).equals(configReaderObj.get("warningMessageNextDay")));
+		log.info("Warning message: " +getText(basketWarningMsgOfNextDayDelivery)+ " is validated");
 	}
 	
 	public void verifyProductMessageAndClearBasketButttonOnBasketPage(String msg) {

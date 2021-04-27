@@ -165,6 +165,10 @@ public class BuyerUiStepDefs {
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getUpdateLinkAddToList());
 		break;
 		
+		case "Update Link":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getUpdateLinkAddToList());
+		break;
+		
 		
 		}
 	}
@@ -311,10 +315,49 @@ public class BuyerUiStepDefs {
 		objectManager.getBuyersUIBasketpage().verifyProductMessageOnBasketPage();
 	}
 	
+	@Then("User validates warning message in a blue bannered box and clicking on dropdown gives products details")
+	public void user_validates_warning_message_in_a_blue_bannered_box_and_clicking_on_dropdown_gives_products_details() throws IOException {
+	    
+		objectManager.getBuyersUIBasketpage().verifyBlueBanneredBox(scenarioContext.productDetails);
+	}
+	
+	@Then("User validates the reduced product quantity on basket page")
+	public void user_validates_the_reduced_product_quantity_on_basket_page() throws IOException {
+	    
+		objectManager.getBuyersUIBasketpage().verifyProductReducedQuantityOnBasketPage();
+	}
+
+	
 	@When("User validates the generic message {string}")
 	public void user_validates_the_generic_message(String genericMsg) throws IOException {
 	    
 		objectManager.getBuyersUIBasketpage().verifyBasketGenericMessageOnBasketPage(genericMsg);
+	}
+	
+	
+	@When("User validates the basket count {string}")
+	public void user_validates_the_basket_count(String basketCount) throws IOException {
+		
+		objectManager.getBuyersUIBasketpage().verifyBasketLinkCount(basketCount);
+	}
+
+
+	@When("User validates {string} delivery method will greyed out in delivery dropdown")
+	public void user_validates_delivery_method_will_greyed_out_in_delivery_dropdown(String string) {
+	    
+		objectManager.getBuyersUIBasketpage().validateNextDayDeliveryIsGreyedOutOnBasketPage();
+	}
+
+	@When("User validates warning message should be visible when {string} delivery method is greyed out")
+	public void user_validates_warning_message_should_be_visible_when_delivery_method_is_greyed_out(String string) {
+	    
+		objectManager.getBuyersUIBasketpage().validateWarningMessageIsVisiblenOnBasketPage();
+	}
+	
+	@When("User validates warning message should be hidden when all delivery methods are available on Basket page")
+	public void user_validates_warning_message_should_be_hidden_when_all_delivery_methods_are_available_on_Basket_page() {
+	    
+		objectManager.getBuyersUIBasketpage().validateWarningMessageIsHiddenOnBasketPage();
 	}
 	
 
