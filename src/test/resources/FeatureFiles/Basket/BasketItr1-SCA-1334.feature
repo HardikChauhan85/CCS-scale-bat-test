@@ -7,6 +7,7 @@ Feature: This User story covers the Basket default delivery methods related scen
 	# TC-04(SCA-2154) Verify when Delivery method on Basket is being set to default if a Basket is cleared of products
 	@confidence
   Scenario: TC_Verify Basket Default delivery option with other options available in Delivery method dropdown
+  #API Steps
   Given user clears the basket
   And user gets all the available products list
   And identify products which needs to be add in the list.
