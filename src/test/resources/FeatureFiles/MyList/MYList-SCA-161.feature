@@ -216,3 +216,48 @@ Feature: My List related scenarios Testcases
     And User clicks on "Add to list" in buyers UI
     And User clicks on "Continue Shopping" in buyers UI
     Then "PLP" is shown to the buyer
+    
+  #[US-161 (TC08)]
+  @confidence
+  Scenario: TC_Verify clicking Add these items to current basket button a single warning message displayed for all products
+    #API Steps
+    Given user access the webservice of GetWishList
+    And deletes the products from the WishList
+    And user clears the basket
+    And user gets all the available products list
+    And identify products which needs to be add in the list.
+    And get the products variant ids
+    And user access the webservice of GetWishList
+    And user add the WishList
+    ##Admin UI Steps
+   	#And User logged in as "supplier" in admin panel
+    #And User click on "productcatalogues" link on main sidebar
+    #And User clicks on show link to view products
+    #And Check if the product is present in a catalogue if yes then delete
+    #And User click on "productcatalogues" link on main sidebar
+    #And User clicks on show link to view products
+    #When User creates a product
+    ##Buyers UI Steps
+    And User navigates to BuyerUI
+    And User login to buyerUI with API User
+    #And User enters the buyers UI
+    #And User login to buyerUI with API User
+    When User search a product with SKU number
+    And User clicks on "PLP image" in buyers UI
+    And User clicks on "Add to basket" in buyers UI
+    And User adjust the products quantity on the Added to wishlist page
+    And User clicks on "Update Link" in buyers UI
+    And User validates the OOS message
+    And User clicks on "Proceed to basket" in buyers UI
+    And User validates the generic message "Your basket has been updated."
+    #Buyers UI Steps
+   	When User search a product with SKU number
+    And User clicks on "PLP image" in buyers UI
+    And User clicks on "Add to list" in buyers UI
+    And User clicks on "View list" in buyers UI
+    And User Clicks on Add these items to current basket button
+    And User validated the warning message when all stocks of product were added to basket
+    
+    
+    
+   	

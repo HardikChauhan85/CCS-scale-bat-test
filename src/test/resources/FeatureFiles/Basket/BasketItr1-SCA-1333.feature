@@ -51,6 +51,7 @@ Feature: This User story covers the Warning Message related to Next Day Delivery
    
     
   #[US-1333 (TC01)]
+  #[UC-1335 (SCA-2265)]
   @confidence
   Scenario: TC_Verify product in basket donot ship with “Next Business Day” delivery method then option will greyed out and warning message should permanently displayed
     #API Steps
