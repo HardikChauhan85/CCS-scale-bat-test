@@ -40,7 +40,7 @@ Feature: This User story covers the My List related scenarios
   #TC02-(SCA-2148) Verify when adding a product to basket or navigating to basket page a generic message “Your basket has been updated”should be visible on screen to warn user that the basket will/has been be re-calculated to show current updated delivery costs.
   #[SCA-107 TC03 TC01]
   #TC01-(SCA-1991) Verify Buyer always be shown refreshed/updated delivery costs of the product in the basket for the selected delivery method.
-  #TC03-(SCA-1991)  Verify when adding a product to basket or navigating to basket page a generic message “Your basket has been updated”should be visible on screen to warn user that the basket will/has been be re-calculated to show current updated delivery costs.
+  #TC03-(SCA-1992)  Verify when adding a product to basket or navigating to basket page a generic message “Your basket has been updated”should be visible on screen to warn user that the basket will/has been be re-calculated to show current updated delivery costs.
   @confidence
   Scenario: TC_Verify Buyer always be shown up-to-date product prices and delivery costs in basket page
   	#API Steps

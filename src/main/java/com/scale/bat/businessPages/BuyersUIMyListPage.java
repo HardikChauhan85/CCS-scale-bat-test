@@ -239,7 +239,7 @@ public class BuyersUIMyListPage extends Actions  {
 		String actualOOSQtyMessageUI2 = actualOOSQtyMessageUI1[1];
 		String actualOOSQtyMessageUI3 = actualOOSQtyMessageUI1[2];
 		String actualOOSQtyMessageUI4 = actualOOSQtyMessageUI1[3];
-		assertTrue(actualOOSQtyMessageUI2.equals(configReaderObj.get("warningMsgReduceQtyWhenClickAddTheseItemBtn1")));
+		assertTrue(actualOOSQtyMessageUI2.equals(configReaderObj.get("warningMsgReduceQtyWhenClickAddTheseItemBtn1")) || actualOOSQtyMessageUI2.equals(configReaderObj.get("warningMsgExceedQtyWhenClickAddTheseItemBtn01")));
 		assertTrue(actualOOSQtyMessageUI3.equals(pDetails.get("ProductName").toString()));
 		assertTrue(actualOOSQtyMessageUI4.equals(configReaderObj.get("warningMsgReduceQtyWhenClickAddTheseItemBtn2")));
 		log.info("Validated warning message of reduced quantity when click AddTheseItemBtn im My List page ");
