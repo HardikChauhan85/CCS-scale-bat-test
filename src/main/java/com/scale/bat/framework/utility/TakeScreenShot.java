@@ -21,6 +21,7 @@ import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
 
 import cucumber.api.Scenario;
+import cucumber.api.java.AfterStep;
 
 
 
@@ -35,7 +36,7 @@ public class TakeScreenShot extends Actions {
 		this.wait = new WebDriverWait(this.driver, 30);
 	}
 	
-	
+	//@AfterStep
 	public void takeSnapShot1() {
 		// Code to take full page screenshot
 		ByteArrayOutputStream imageStream = new ByteArrayOutputStream();
