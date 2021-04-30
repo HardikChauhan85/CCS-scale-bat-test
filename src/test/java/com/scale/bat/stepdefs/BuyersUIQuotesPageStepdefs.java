@@ -88,6 +88,12 @@ public class BuyersUIQuotesPageStepdefs {
 		objectManager.getBuyersUIQuotespage().enterQuoteNoInQuoteReferenceTextbox();
 	}
 
+	@Then("User enters the new Quote refrence partially in Quote reference textbox in buyers UI")
+	public void user_enters_the_new_Quote_refrence_partially_in_Quote_reference_textbox_in_buyers_UI() {
+		
+		objectManager.getBuyersUIQuotespage().enterQuoteNoPartiallyInQuoteReferenceTextbox();
+	}
+	
 	@Then("User validates the Quote table column headers displayed on BuyerUI")
 	public void user_validates_the_Quote_table_column_headers_displayed_on_BuyerUI() {
 	    
@@ -129,8 +135,12 @@ public class BuyersUIQuotesPageStepdefs {
 			objectManager.getBuyersUIpage()
 					.clickElementWithJavaScript(objectManager.getBuyersUIQuotespage().getRejectButtonAdminUI());
 			break;
+		case "Supplier Link":
+			objectManager.getBuyersUIpage().clickElementWithJavaScript(objectManager.getBuyersUIQuotespage().getSupplierLinkAdminUI());
+
 		default:
 			log.info("Quote type is entered as " + LinkButton);
+			
 		}
 	}
 
@@ -184,5 +194,41 @@ public class BuyersUIQuotesPageStepdefs {
 		objectManager.getBuyersUIQuotespage().validateNewQuoteRejectedStatusOnQuotesPage(statusRejected);
 	}
 
+	@Then("User enters the {string} in Quote reference textbox in buyers UI")
+	public void user_enters_the_given_Quote_refrence_in_Quote_reference_textbox_in_buyers_UI(String quoteRef) {
+		
+		objectManager.getBuyersUIQuotespage().enterGivenQuoteNoInQuoteReferenceTextbox(quoteRef);
+	}
+	
+	@Then("No results found message displayed for quotes in buyers UI")
+	public void no_results_found_message_displayed_for_quotes_in_buyers_UI() {
+	    
+		objectManager.getBuyersUIQuotespage().validateNoResultFoundQuoteBuyerUI();
+	}
+	
+	
+	@Then("User enters the new Quote refrence partially in Quote reference textbox in Admin UI")
+	public void user_enters_the_new_Quote_refrence_partially_in_Quote_reference_textbox_in_Admin_UI() {
 
+		objectManager.getBuyersUIQuotespage().enterQuoteNoPartiallyInQuoteReferenceTextboxAdminUI();
+												
+	}
+
+	@When("User enters the Quote refrence as {string} on Quote Reference textbox in Admin UI")
+	public void user_enters_the_Quote_refrence_as_on_Quote_Reference_textbox_in_Admin_UI(String quoteRef) {
+	  
+	    objectManager.getBuyersUIQuotespage().enterGivenQuoteNoInQuoteReferenceTextboxAdminUI(quoteRef);
+
+	}
+	
+	@Then("No results found message displayed for quotes in Admin UI")
+	public void no_results_found_message_displayed_for_quotes_in_Admin_UI() {
+		objectManager.getBuyersUIQuotespage().validateNoResultFoundQuoteAdminUI();
+	}
+	
+	
+	@Given("User validates all quotes are displayed in quotes table")
+	public void user_validates_all_quotes_are_displayed_in_quotes_table() {
+	   
+	}
 }

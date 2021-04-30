@@ -38,6 +38,7 @@ public class WishListServiceStepDefs {
 	String firstProductVariantID;
 	String secondProductVariantID;
 	String thirdProductVariantID;
+	public static String allQuotesQty;
 	
 	
 	
@@ -143,6 +144,14 @@ public class WishListServiceStepDefs {
 	}
 
 
+	@Given("User get the total no of quotes available in manage quotes page on buyers UI")
+	public void user_get_the_total_no_of_quotes_available_in_manage_quotes_page_on_buyers_UI() {
+	    
+		jsonResponse = apibase.getRequest("/api/v2/storefront/account/quotes?include=vendor");
+		//String anc = jsonResponse.getBody().asString();
+		allQuotesQty= apibase.getvaluefromresponse("x.meta.total_count");
+	}
+	
 	
 
 }
