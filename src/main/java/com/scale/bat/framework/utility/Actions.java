@@ -63,6 +63,11 @@ public class Actions {
 		//wait.until(ExpectedConditions.elementToBeClickable(element));
 		return element.getAttribute("value");
 	}
+	
+	public String getAttributeValue(WebElement element, String attributeValue) {
+		//wait.until(ExpectedConditions.elementToBeClickable(element));
+		return element.getAttribute(attributeValue);
+	}
 
 	public void clickByLinkText(String elementName) {
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(elementName)));

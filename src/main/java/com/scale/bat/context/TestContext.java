@@ -223,6 +223,19 @@ public class TestContext extends BrowserFactory {
 		//TakeScreenShotAndAddToWordDoc.createWordFile();
 		//TakeScreenShotAndAddToWordDoc.captureScreenShotNew();
 	}
+	
+	@Given("User login to AdminUI as API User")
+	public void user_login_to_AdminUI_as_API_User() throws MalformedURLException {
+	    
+		//objectManager.getBuyersUIpage().loginByuerUi(configReader.apiUserName("supplier"), configReader.apiUserPassword("supplier"));
+		this.driver = initiateDriver(configReader.getBrowserName(),scenario);
+		launchURL(configReader.adminPanelUrl());
+		objectManager = new PageObjectManager(driver, scenario);
+		objectManager.getLogInAdminPanel().loginToAPISupplierAdminPanel();
+		log.info("logged in to admin panel as API User");
+		
+	}
+
 
 	@Given("User login to buyerUI")
 	public void user_login_to_BuyerUI() {

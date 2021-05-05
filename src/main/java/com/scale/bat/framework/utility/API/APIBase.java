@@ -112,6 +112,16 @@ public class APIBase extends ConfigurationReader {
         return  strpathval;
     }
     
+    public int getvaluefromresponseAsInterger(String path){
+        int  strpathval = response.then().extract().path(path);
+        return  strpathval;
+    }
+    
+    public int getvaluefromresponseAsInterger(String path,Response response){
+        int  strpathval = response.then().extract().path(path);
+        return  strpathval;
+    }
+    
     public String getvaluefromresponse(String path, Response response){
         String  strpathval = response.then().extract().path(path);
         return  strpathval;

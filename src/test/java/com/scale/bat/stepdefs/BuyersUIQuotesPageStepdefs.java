@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.scale.bat.businessPages.BuyersUIQuotesPage;
+import com.scale.bat.businessPages.WishListServiceStepDefs;
 import com.scale.bat.context.ScenarioContext;
 import com.scale.bat.context.TestContext;
 import com.scale.bat.framework.utility.DateTimeUtils;
@@ -229,6 +230,18 @@ public class BuyersUIQuotesPageStepdefs {
 	
 	@Given("User validates all quotes are displayed in quotes table")
 	public void user_validates_all_quotes_are_displayed_in_quotes_table() {
-	   
+		
+		objectManager.getBuyersUIQuotespage().validateAllQuoteOnBuyersUI(WishListServiceStepDefs.allQuotesQtyApi, WishListServiceStepDefs.jsonResponse);
 	}
+	
+	
+	@When("User validates all quotes are displayed in quotes table on admin UI")
+	public void user_validates_all_quotes_are_displayed_in_quotes_table_on_admin_UI() {
+		
+		objectManager.getBuyersUIQuotespage().validateAllQuoteOnAdminUI(WishListServiceStepDefs.allQuotesQtyApi, WishListServiceStepDefs.jsonResponse);
+	}
+
+
+	
+	
 }

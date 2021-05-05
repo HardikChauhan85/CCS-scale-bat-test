@@ -37,5 +37,12 @@ public class LogInAdminPanel extends Actions{
     	clickElement(loginButton);
 
     }
+    
+    public void loginToAPISupplierAdminPanel() {
+    	enterText(enterUsername, configReaderObj.apiUserName("supplier"));
+    	enterText(enterPassword, configReaderObj.apiUserPassword("supplier"));
+    	clickElement(loginButton);
+
+    }
 
 }
