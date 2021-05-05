@@ -231,18 +231,32 @@ Feature: This User story covers the Firm quotes related scenarios
     And User clicks on "Search Button" in Admin UI
     Then No results found message displayed for quotes in Admin UI
     
+    #Before Run this Scenario Quotes should be raise for the user else it won't work
     #[US: SCA-1801 (SCA-2077)]
-    @confidence2021
-  	Scenario: TC-Verify Buyer is able to search indicative quote using partial Quote Reference
+    @confidence
+  	Scenario: TC-Verify Buyer is able to see all quotes upon searching BLANK in Quote Reference
  	  #API Steps
   	Given User get the total no of quotes available in manage quotes page on buyers UI
+  	And User navigates to BuyerUI
+    And User login to buyerUI with API User
   	And User clicks on "My Account link" in buyers UI		
 		And User clicks on "Manage quotes Visit link" in buyers UI
-		And User enters the "abcd" in Quote reference textbox in buyers UI
+		And User enters the "" in Quote reference textbox in buyers UI
     And User clicks on "Manage quote Search button" in buyers UI 
 		And User validates all quotes are displayed in quotes table
     
 		
-		
+		#Before Run this Scenario Quotes should be raise for the user else it won't work
+    #[US: SCA-1798 (SCA-2025)]
+    @confidence
+  	Scenario: TC-Verify Supplier is able to see all quotes upon searching BLANK in Quote Reference on Adnin UI
+ 	  #API Steps
+  	Given User get the total no of quotes available in manage quotes page on buyers UI
+  	And User login to AdminUI as API User
+  	And User clicks on "Quote Link" in Admin UI
+  	When User enters the Quote refrence as "" on Quote Reference textbox in Admin UI
+  	And User clicks on "Search Button" in Admin UI
+  	And User validates all quotes are displayed in quotes table on admin UI
+  	
 		
 		

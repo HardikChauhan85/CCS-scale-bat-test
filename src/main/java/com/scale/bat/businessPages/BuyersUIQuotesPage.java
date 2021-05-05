@@ -1,6 +1,7 @@
 package com.scale.bat.businessPages;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.API.APIBase;
 
 import cucumber.api.Scenario;
+import io.restassured.response.Response;
 
 public class BuyersUIQuotesPage extends Actions{
 	
@@ -132,6 +134,29 @@ public class BuyersUIQuotesPage extends Actions{
 	private String message="//p[@class='govuk-notification-banner__heading']";
 	private String errMsgXpath = "//*[@id=\"main-content\"]/div/div/p";
 	private String errMsgQuoteNotFoundSupplierView = "//*[@class='alert alert-info no-objects-found']";
+	private String getAllQuoteOnBuyersUI = "//table[@class='govuk-table bat-quotes__table']/tbody/tr/td[1]/a";
+	
+	private String getAllQuoteOnAdminUI = "//table[@class='table']/tbody/tr/td[1]/a";
+	
+	
+	@FindBy(xpath = "//nav[@class='pagination ']")
+	 private WebElement paginationCountQuotesPage;
+	
+	@FindBy(xpath = "//li[@class='page active page-item']/a")
+	 private WebElement paginationCountQuotesPageAdminUI;
+	
+	@FindBy(xpath = "//li[@class='pagination__item pagination__item--next']/a")
+	 private WebElement nextLinkQuotesPage;
+	
+	@FindBy(xpath = "//a[@aria-label='Next page']")
+	 private WebElement nextLinkQuotesPageAdminUI;
+	
+	@FindBy(xpath = "//a[@aria-label='Last page']")
+	 private WebElement lastPageNavigatorAdminUI;
+	
+	@FindBy(xpath = "//a[@aria-label='First page']")
+	 private WebElement firstPageNavigatorAdminUI;
+	
 	
 	//Other Object
 	@FindBy(xpath = "//*[@name='number']")
@@ -429,6 +454,72 @@ public class BuyersUIQuotesPage extends Actions{
 		assertEquals(actualErrorMsg,expectedErrorMsg );
 		log.info("Error message : " + expectedErrorMsg + " is validated on Admin UI");
 	}
+	
+	public void validateAllQuoteOnBuyersUI(int AllQuotesCount,Response jsonResponse ) {
+		//Below code is to get the total page on Quotes page		
+		int allQuotesQtyApi = apiBase.getvaluefromresponseAsInterger("meta.total_count",jsonResponse);
+		String paginationCountQuotes = getAttributeValue(paginationCountQuotesPage,"arial-label");
+		String[] paginationCountQuotesSplit = paginationCountQuotes.split("of");
+		String paginationCountLast = paginationCountQuotesSplit[1].replaceAll("[^a-zA-Z0-9]", " ").replaceAll("\\s", "");
+		int paginationCountLastInt = Integer.parseInt(paginationCountLast);
+		//Below For loop is to navigates on the available pages
+		int count=0;
+		int allQuotesCount=0;
+		int totalCount=0;
+		for(int i=0;i<paginationCountLastInt;i++) {
+			
+			if(count>=1) {
+			clickElement(nextLinkQuotesPage);
+			}
+			
+			allQuotesCount = getElementsSizeByXpath(getAllQuoteOnBuyersUI,driver);
+			totalCount=allQuotesCount+totalCount;
+			count++;
+			//Below For loop is to validate the all the Quotes no from UI to API
+			for(int j=0;j<allQuotesCount;j++ ) {
+				
+				String allQuotesQty = apiBase.getvaluefromresponse("data["+j+"].attributes.number",jsonResponse);
+				String getQuoteNo = getTextXpath("//table[@class='govuk-table bat-quotes__table']/tbody/tr["+(j+1)+"]/td/a");
+				if(allQuotesQty.equals(getQuoteNo)){
+					
+				}else {
+					assertFalse("All Quotes are not displayed on Quotes table", false);
+				}
+			}
+			count++;
+			
+		}
+		
+		assertEquals("All Quotes are displayed on Quotes table on Buyers UI with total count: "+String.valueOf(totalCount),"All Quotes are displayed on Quotes table on Buyers UI with total count: "+String.valueOf(allQuotesQtyApi));
+		log.info("All Quotes are displayed on Quotes table");
+		System.out.println("All Page Count On UI: " + paginationCountQuotes);
+	}
+	
+	
+	public void validateAllQuoteOnAdminUI(int AllQuotesCount,Response jsonResponse ) {
+		int allQuotesQtyApi = apiBase.getvaluefromresponseAsInterger("meta.total_count",jsonResponse);
+		clickElement(lastPageNavigatorAdminUI);
+		String paginationCountLast=getText(paginationCountQuotesPageAdminUI);
+		clickElement(firstPageNavigatorAdminUI);
+		int paginationCountLastInt = Integer.parseInt(paginationCountLast);
+		int count=0;
+		int allQuotesCount=0;
+		int totalCount=0;
+		for(int i=0;i<paginationCountLastInt;i++) {
+			
+			if(count>=1) {
+			clickElement(nextLinkQuotesPageAdminUI);
+			}
+			
+			allQuotesCount= getElementsSizeByXpath(getAllQuoteOnAdminUI,driver);
+			totalCount=allQuotesCount+totalCount;
+			count++;
+		}
+		String totalCountStringUI = String.valueOf(totalCount);
+		assertEquals("All Quotes are displayed on Quotes table in Admin UI with total count: "+totalCountStringUI,"All Quotes are displayed on Quotes table in Admin UI with total count: "+String.valueOf(allQuotesQtyApi));
+		log.info("All Quotes are displayed on Quotes table and total count is :"+totalCountStringUI);
+	}
+	
 
 	public String getSupplierLinkAdminUI() {
 		return supplierLinkAdminPanel;
