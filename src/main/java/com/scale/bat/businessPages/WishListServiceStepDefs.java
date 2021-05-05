@@ -32,13 +32,13 @@ public class WishListServiceStepDefs {
 	String strcontentype;
 	public String access_hash;
 	public int statusCode;
-	public Response jsonResponse;
+	public static Response jsonResponse;
 	public static Response jsonAllProductsResponse=null;
 	String firstProduct;
 	String firstProductVariantID;
 	String secondProductVariantID;
 	String thirdProductVariantID;
-	public static String allQuotesQty;
+	public static int allQuotesQtyApi;
 	
 	
 	
@@ -148,8 +148,10 @@ public class WishListServiceStepDefs {
 	public void user_get_the_total_no_of_quotes_available_in_manage_quotes_page_on_buyers_UI() {
 	    
 		jsonResponse = apibase.getRequest("/api/v2/storefront/account/quotes?include=vendor");
-		//String anc = jsonResponse.getBody().asString();
-		allQuotesQty= apibase.getvaluefromresponse("x.meta.total_count");
+		String anc = jsonResponse.getBody().asString();
+		System.out.println(anc);
+		allQuotesQtyApi= apibase.getvaluefromresponseAsInterger("meta.total_count");
+		System.out.println(allQuotesQtyApi);
 	}
 	
 	
