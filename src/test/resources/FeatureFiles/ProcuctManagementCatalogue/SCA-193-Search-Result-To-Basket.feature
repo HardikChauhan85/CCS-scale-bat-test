@@ -4,7 +4,7 @@ Feature: As a Buyer,
   So that I can then checkout and buy the products I've selected
 	# @buyer
   @confidence 
-  Scenario: TC-725_Verify that buyer is presented with "confirmation screen" when add to basket button is selected
+  Scenario: TC-725_Verify that buyer is presented with confirmation screen when add to basket button is selected
     Given User navigates to BuyerUI
     #And Authorisation dialoxg box is handled
     And User login to buyerUI
@@ -25,7 +25,7 @@ Feature: As a Buyer,
 
 	# @buyer
   @confidence 
-  Scenario: TC-727_Verify that buyer is navigated back to PLP from "confirmation screen" on clicking back button from browser
+  Scenario: TC-727_Verify that buyer is navigated back to PLP from confirmation screen on clicking back button from browser
     Given User navigates to BuyerUI
     #And Authorisation dialoxg box is handled
     And User login to buyerUI
