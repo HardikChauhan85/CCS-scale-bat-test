@@ -1,4 +1,4 @@
-Feature: This User story covers the ETE functionality from creating a product in admin UI to validating the product in Buyer's UI#
+Feature: This User story covers the ETE functionality from creating a product in admin UI to validating the product in Buyer's UI
 	#@confidence
   @testE2E 
   Scenario: TC01_Verify that product should not be available in the catalogue of the supplier1 in supplier admin
