@@ -2,7 +2,7 @@ Feature: This User story covers the Warning Message related to Next Day Delivery
 
   #[US-1333 (TC02) (TC05)]
   @confidence
-  Scenario: TC_Verify product in basket donot ship with “Next Business Day” delivery method then option will greyed out and warning message should permanently displayed
+  Scenario: TC_Verify product in basket donot ship with Next Business Day delivery method then option will greyed out and warning message should permanently displayed
     #API Steps
     Given user clears the basket
     #UI Steps
@@ -53,7 +53,7 @@ Feature: This User story covers the Warning Message related to Next Day Delivery
   #[US-1333 (TC01)]
   #[UC-1335 (SCA-2265)]
   @confidence
-  Scenario: TC_Verify product in basket donot ship with “Next Business Day” delivery method then option will greyed out and warning message should permanently displayed
+  Scenario: TC_Verify warning message should permanently displayed on Buyers UI
     #API Steps
     Given user clears the basket
     #UI Steps
@@ -133,7 +133,7 @@ Feature: This User story covers the Warning Message related to Next Day Delivery
     And User clicks on "Add to basket" in buyers UI
     And User clicks on "Proceed to basket" in buyers UI
     And User validates the generic message "Your basket has been updated."
-    And User validates the product is not being added to basket
+    #And User validates the product is not being added to basket
     And User validates the basket count "0"
     
     
