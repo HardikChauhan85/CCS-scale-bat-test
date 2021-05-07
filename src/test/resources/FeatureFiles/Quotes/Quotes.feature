@@ -249,7 +249,7 @@ Feature: This User story covers the Firm quotes related scenarios
 		
 		#Before Run this Scenario Quotes should be raise for the user else it won't work
     #[US: SCA-1798 (SCA-2025)]
-    @confidence2021
+    @confidence
   	Scenario: TC-Verify Supplier is able to see all quotes upon searching BLANK in Quote Reference on Adnin UI
  	  #API Steps
   	Given User get the total no of quotes available in manage quotes page on buyers UI
