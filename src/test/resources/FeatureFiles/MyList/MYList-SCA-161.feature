@@ -79,7 +79,7 @@ Feature: My List related scenarios Testcases
     And user clears the basket
     And user access the webservice of GetWishList
     And deletes the products from the WishList
-    #UI Steps
+    #Admin UI Steps
     Given User logged in as "supplier" in admin panel
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
@@ -87,7 +87,8 @@ Feature: My List related scenarios Testcases
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
     When User creates a product
-    And User navigates to BuyerUI
+    #Buyers UI Steps
+    And User enters the buyers UI
     And User login to buyerUI with API User
     #And User login to buyerUI
     When User search a product with SKU number
@@ -102,6 +103,9 @@ Feature: My List related scenarios Testcases
     And User Clicks on AddToBasket button of the selected product on My List page
     And User validates the product message Product added to your basket
     And User validates the product quantity on basket page
+    And User update the product quantity by "6".
+    And User clicks on "Quantity Update button" in buyers UI
+    
     And User clicks on "My Account link" in buyers UI
     And User clicks on "My list visit button" in buyers UI
     And User validates the products details on Mylist page
