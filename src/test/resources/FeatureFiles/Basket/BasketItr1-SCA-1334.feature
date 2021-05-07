@@ -38,6 +38,7 @@ Feature: This User story covers the Basket default delivery methods related scen
   #[US-1334 (TC03)]
   # TC-03(SCA-2105) Verify when Buyer selects a delivery option in the Basket page and then leaves the 
   # Basket page,and adds another product to the basket  then previosly select delivery option would be selected bydefault
+  #Note: In Buyers UI first product should have 'Next Business Day (Orders after Midday)' in the product
 	@confidence
   Scenario: TC_Verify Basket shows always previously selected delivery method to buyers when adds a new product to basket
   Given user clears the basket
@@ -50,18 +51,18 @@ Feature: This User story covers the Basket default delivery methods related scen
 	And User login to buyerUI with API User
 	And User clicks on "Basket Link" in buyers UI
   And User Validated a product details on basket page
-  #And User validates the Delivery method drop down options
-  #And User validates the default delivery option should be pre-populated as "Standard UK Mainland (3-5 days)"
-  And User select the Delivery option "Next Business Day (Orders after Midday)"
-  And User clicks on "My Account link" in buyers UI
-  #API Steps
-  And user gets all the available products list
-  And identify products which needs to be add in the list.
-  And get the products variant ids
-  And user adds a product to basket
-  #UI Steps
-  And User clicks on "Basket Link" in buyers UI
-  And User validates the default delivery option should be pre-populated as "Next Business Day (Orders after Midday)"
+  ##And User validates the Delivery method drop down options
+  ##And User validates the default delivery option should be pre-populated as "Standard UK Mainland (3-5 days)"
+  #And User select the Delivery option "Next Business Day (Orders after Midday)"
+  #And User clicks on "My Account link" in buyers UI
+  ##API Steps
+  #And user gets all the available products list
+  #And identify products which needs to be add in the list.
+  #And get the products variant ids
+  #And user adds a product to basket
+  ##UI Steps
+  #And User clicks on "Basket Link" in buyers UI
+  #And User validates the default delivery option should be pre-populated as "Next Business Day (Orders after Midday)"
   And User select the Delivery option "Standard UK Non Mainland (3-5 days)"
   And User clicks on "My Account link" in buyers UI
   #API Steps

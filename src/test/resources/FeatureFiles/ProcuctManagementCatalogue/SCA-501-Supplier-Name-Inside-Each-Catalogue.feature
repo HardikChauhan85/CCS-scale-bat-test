@@ -15,7 +15,7 @@ Feature: As a CCS administrator and a category manager,
     Then Title of each catalogue should have supplier and catalogue name
 
   #@admin  
-  @confidence 
+  @confidence
   Scenario: SCA-523_Verify that product updated successfully message is displayed after updating a product
     Given User logged in as "categorymanager" in admin panel
     #And Authorisation dialoxg box is handled
