@@ -58,14 +58,11 @@ public class BuyersUIBasketPage  extends Actions{
 	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/form/div/div[2]/a")
 	private WebElement productNameBasket;
 	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/div/table/tbody/tr/td[2]")
+	@FindBy(xpath ="//*[@class='bat-basket-item__title__sku']")
 	private WebElement skuBasket;
 	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/form/div/div[2]/span")
+	@FindBy(xpath ="//*[@class='bat-basket-item__title__mpn']")
 	private WebElement mpnBasket;
-	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/div/table/tbody/tr/td[4]")
-	private WebElement qtyBasket;
 	
 	@FindBy(xpath ="//*[@class='bat-basket__footer__right']/ul/li[1]/span[2]")
 	private WebElement productsTotal;
@@ -76,7 +73,10 @@ public class BuyersUIBasketPage  extends Actions{
 	@FindBy(xpath ="//*[@class='govuk-notification-banner__heading']")
 	private WebElement productAddToBasketMsg;
 	
-	@FindBy(xpath ="//input[@name='itemQuantity']")
+	@FindBy(xpath ="//input[@name='quantity']")
+	private WebElement qtyBasket;
+	
+	@FindBy(xpath ="//input[@name='quantity']")
 	private WebElement productQuantity;
 	
 	@FindBy(xpath ="//*[@class='govuk-notification-banner__content']/p")
@@ -89,7 +89,7 @@ public class BuyersUIBasketPage  extends Actions{
 	//My Basket Page Locators
 	//PRODUCT 1
 	
-	@FindBy(xpath ="//*[@class='bat-basket-item__title']/a")
+	@FindBy(xpath ="//ul[@class='govuk-list bat-basket-items-by-supplier']/li[1]/div/ul/li/div/form/div/div[2]/a")
 	private WebElement productName;
 	
 	@FindBy(xpath ="//*[@class='bat-basket-item__title']/a/following-sibling::span[1]")
@@ -98,20 +98,20 @@ public class BuyersUIBasketPage  extends Actions{
 	@FindBy(xpath ="//*[@class='bat-basket-item__unit-price']")
 	private WebElement productUnitPrice;
 	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[1]/div/div/table/tbody/tr/td[5]")
+	@FindBy(xpath ="//*[@class='bat-basket-item__total']")
 	private WebElement productTotalPrice;
 	
-	@FindBy(xpath ="//div[@class='bat-basket__items']/ul/li/div/div/table/tbody/tr/td[6]")
+	@FindBy(xpath ="//div[@class='bat-basket__footer__right']/ul/li[2]/span[2]")
 	private WebElement getDeviveryCharge;
 	
 	//PRODUCT 2
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[2]/div/form/div/div[2]/a")
+	@FindBy(xpath ="//ul[@class='govuk-list bat-basket-items-by-supplier']/li[2]/div/ul/li/div/form/div/div[2]/a")
 	private WebElement productName2;
 	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[2]/div/form/div/div[2]/span")
+	@FindBy(xpath ="//ul[@class='govuk-list bat-basket-items-by-supplier']/li[2]/div/ul/li/div/form/div/div[2]/span[1]")
 	private WebElement mpn2;
 	
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[2]/div/div/table/tbody/tr/td[5]")
+	@FindBy(xpath ="//ul[@class='govuk-list bat-basket-items-by-supplier']/li[2]/div/ul/li/div/form/div/div[2]/following-sibling::div[1]")
 	private WebElement productPrice2;
 	
 	@FindBy(xpath ="//button[@class='govuk-button govuk-button--secondary govuk-!-width-one-quarter']")
@@ -120,13 +120,13 @@ public class BuyersUIBasketPage  extends Actions{
 	
 	
 	//PRODUCT 3 
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[3]/div/form/div/div[2]/a")
+	@FindBy(xpath ="//ul[@class='govuk-list bat-basket-items-by-supplier']/li[3]/div/ul/li/div/form/div/div[2]/a")
 	private WebElement productName3;
 		
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[3]/div/form/div/div[2]/span")
+	@FindBy(xpath ="//ul[@class='govuk-list bat-basket-items-by-supplier']/li[3]/div/ul/li/div/form/div/div[2]/span[1]")
 	private WebElement mpn3;
 		
-	@FindBy(xpath ="//*[@id='main-content']/div/div/div/div[1]/ul/li[3]/div/div/table/tbody/tr/td[5]")
+	@FindBy(xpath ="//ul[@class='govuk-list bat-basket-items-by-supplier']/li[3]/div/ul/li/div/form/div/div[2]/following-sibling::div[1]")
 	private WebElement productPrice3;
 
 	//Basket page
@@ -232,9 +232,11 @@ public class BuyersUIBasketPage  extends Actions{
 			    	
 			int product2mpnlength=getText(mpn2).length();
 			String product2mpn = getText(mpn2).substring(5,product2mpnlength);
-		     	
+			
+			String[] productPrice2Split = getText(productPrice2).split(" ");	
+			String productPrice2UIActual = productPrice2Split[0];
         	//Product2 Price UI
-        	assertTrue(getText(productPrice2).equals(apiBase.getvaluefromresponse("data[2].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+        	assertTrue(productPrice2UIActual.equals(apiBase.getvaluefromresponse("data[2].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
         	
         	//Product2 Name Validation
         	assertTrue(product2Name.equals(apiBase.getvaluefromresponse("data[2].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
@@ -257,9 +259,11 @@ public class BuyersUIBasketPage  extends Actions{
 		int mpnlength=getText(mpn).length();
 		String mpn1 = getText(mpn).substring(5,mpnlength);
 		
+		String[] productPriceSplit = getText(productUnitPrice).split(" ");	
+		String productPriceUIActual = productPriceSplit[0];
     	
     	//Product1 Price UI
-    	assertTrue(getText(productUnitPrice).equals(apiBase.getvaluefromresponse("data[0].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+    	assertTrue(productPriceUIActual.equals(apiBase.getvaluefromresponse("data[0].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
     	
     	//Product1 Name Validation
     	assertTrue(productName1.equals(apiBase.getvaluefromresponse("data[0].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
@@ -275,9 +279,11 @@ public class BuyersUIBasketPage  extends Actions{
 		int product1mpnlength=getText(mpn2).length();
 		String product1mpn = getText(mpn2).substring(5,product1mpnlength);
 			
+		String[] productPrice2Split = getText(productPrice2).split(" ");	
+		String productPriceUIActual2 = productPrice2Split[0];
 			
         //Product2 Price UI
-      	assertTrue(getText(productPrice2).equals(apiBase.getvaluefromresponse("data[1].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+      	assertTrue(productPriceUIActual2.equals(apiBase.getvaluefromresponse("data[1].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
         	
         //Product2 Name Validation
         assertTrue(product1Name.equals(apiBase.getvaluefromresponse("data[1].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
@@ -292,9 +298,12 @@ public class BuyersUIBasketPage  extends Actions{
 				
 		int product2mpnlength=getText(mpn3).length();
 		String product2mpn = getText(mpn3).substring(5,product2mpnlength);
+		
+		String[] productPrice3Split = getText(productPrice3).split(" ");	
+		String productPriceUIActual3 = productPrice3Split[0];
 		 	
         //Product3 Price UI
-       	assertTrue(getText(productPrice3).equals(apiBase.getvaluefromresponse("data[2].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
+       	assertTrue(productPriceUIActual3.equals(apiBase.getvaluefromresponse("data[2].attributes.display_price", WishListServiceStepDefs.jsonAllProductsResponse)));
         	
        	//Product3 Name Validation
        	assertTrue(product2Name.equals(apiBase.getvaluefromresponse("data[2].attributes.name", WishListServiceStepDefs.jsonAllProductsResponse)));
@@ -441,8 +450,8 @@ public class BuyersUIBasketPage  extends Actions{
 	    ArrayList<String> listDeliveryOptions=new ArrayList<String>();
 	    //Adding object in arraylist 
 	    listDeliveryOptions.add("Standard UK Mainland (3-5 days)");
+	    listDeliveryOptions.add("Standard UK Non Mainland (3-5 days)");
 	    listDeliveryOptions.add("Next Business Day (Orders after Midday)");    
-	    listDeliveryOptions.add("Standard UK Non Mainland (3-5 days)"); 
 
 	    // Loop to print one by one
 	    for (int j = 0; j < allValues.size(); j++) {
@@ -503,24 +512,37 @@ public class BuyersUIBasketPage  extends Actions{
 	public void verifyProductDeliveryCostDetails(Map<String, Object> pDetails) {
 		waitForSeconds(1);
 		
+		String[] productTotalPriceUISplit;
+		String productTotalPriceUIActual;
+		String[] productUnitPriceUISplit;
+		String productUnitPriceUIActual;
+		String[] getDeviveryChargeSplit;
+		String deliveryTotalActualValue;
+		
 		// 1) Check the Delivery charge for Delivery method "Standard UK Non Mainland (3-5 days)"
 		selectItemFromDropDown(webElementDeliveryMethodDropDown, "Standard UK Non Mainland (3-5 days)");
 		clickElement(basketUpdateButton);
 		waitForSeconds(2);
-		System.out.println("JSON PRODUCT Standard UK Non Mainland (3-5 days) : "+ pDetails.get("StandardChargeProductUKNonMainland").toString());
-		System.out.println("UI PRODUCT Standard UK Non Mainland (3-5 days) : "+getText(getDeviveryCharge).replace("£", ""));
+		getDeviveryChargeSplit = getText(getDeviveryCharge).split("ex");
+		deliveryTotalActualValue = getDeviveryChargeSplit[0].replace("£", "").replaceAll("\\s", "");
 		
-		// Validate the Delivery Charge
-		assertTrue(getText(getDeviveryCharge).replace("£", "").equals(pDetails.get("StandardChargeProductUKNonMainland").toString()));
+		//System.out.println("JSON PRODUCT Standard UK Non Mainland (3-5 days) : "+ pDetails.get("StandardChargeProductUKNonMainland").toString());
+		//System.out.println("UI PRODUCT Standard UK Non Mainland (3-5 days) : "+ deliveryTotalActualValue);
+		
+		// Validate the Delivery Total
+		assertTrue(deliveryTotalActualValue.equals(pDetails.get("StandardChargeProductUKNonMainland").toString().replaceAll("\\s", "")));
 		//Remove the unnecessary text "MPN: " from the string
 		String[] splitMPN=getText(mpnBasket).split(" ");
 		String actMPN=splitMPN[1];
+		//Remove the unnecessary text "SKU: " from the string
+		String[] splitSKU=getText(skuBasket).split(" ");
+		String actSKU=splitSKU[1];
 		
 		assertTrue(actMPN.equals(pDetails.get("MPN").toString()));
-		assertTrue(getText(skuBasket).equals(pDetails.get("SKU").toString()));
-		assertTrue(getText(qtyBasket).equals("2"));
+		assertTrue(actSKU.equals(pDetails.get("SKU").toString()));
+		assertTrue(getAttributeValue(qtyBasket).equals("2"));
 		
-		//Double the price as per quantity 2
+		//Double the price as per quantity 2 for validation
 		String productUnitPriceStr=pDetails.get("Price").toString();
 		double productUnitPriceDouble = Double.parseDouble(productUnitPriceStr);
 		double productTotalPriceDouble = productUnitPriceDouble*2;
@@ -534,13 +556,17 @@ public class BuyersUIBasketPage  extends Actions{
 		deliveryTotalSplit=getText(deliveryTotal).split("e");
 		deliveryTotalSplitActual=deliveryTotalSplit[0];
 		
-		/*System.out.println("UI productTotalPrice : "+ getText(productTotalPrice).replaceAll("[^a-zA-Z0-9]",""));
-		System.out.println("UI productsTotal : "+ getText(productsTotal).replaceAll("[^a-zA-Z0-9]",""));
-		System.out.println("JSON productTotalPriceString Concat : "+ productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]",""));*/
+		//Remove the unnecessary text from TotalPrice string
+		productTotalPriceUISplit = getText(productTotalPrice).split(":");
+		productTotalPriceUIActual = productTotalPriceUISplit[1].replaceAll("\\s", "");
+		
+		//Remove the unnecessary text from UnitPrice string
+		productUnitPriceUISplit = getText(productUnitPrice).split("each");
+		productUnitPriceUIActual = productUnitPriceUISplit[0].replaceAll("\\s", "");
 		
 		// Validate the UnitPrice, Total, Products total, and Delivery Total
-		assertTrue(getText(productTotalPrice).replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
-		assertTrue(getText(productUnitPrice).replaceAll("[^a-zA-Z0-9]","").equals(pDetails.get("Price").toString().concat("0").replaceAll("[^a-zA-Z0-9]","")));
+		assertTrue(productTotalPriceUIActual.replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
+		assertTrue(productUnitPriceUIActual.replaceAll("[^a-zA-Z0-9]","").equals(pDetails.get("Price").toString().concat("0").replaceAll("[^a-zA-Z0-9]","")));
 		assertTrue(productsTotalSplitActual.replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
 		assertTrue(deliveryTotalSplitActual.replaceAll("[^a-zA-Z0-9]","").contains(pDetails.get("StandardChargeProductUKNonMainland").toString().replaceAll("[^a-zA-Z0-9]","")));
 		
@@ -550,9 +576,14 @@ public class BuyersUIBasketPage  extends Actions{
 		selectItemFromDropDown(webElementDeliveryMethodDropDown, "Next Business Day (Orders after Midday)");
 		clickElement(basketUpdateButton);
 		waitForSeconds(2);
-		System.out.println("JSON PRODUCT Next Business Day (Orders after Midday) : "+ pDetails.get("nextDayChargeProduct").toString());
-		System.out.println("UI PRODUCT Next Business Day (Orders after Midday) : "+getText(getDeviveryCharge).replace("£", ""));
-		assertTrue(getText(getDeviveryCharge).replace("£", "").equals(pDetails.get("nextDayChargeProduct").toString()));
+		getDeviveryChargeSplit = getText(getDeviveryCharge).split("ex");
+		deliveryTotalActualValue = getDeviveryChargeSplit[0].replace("£", "").replaceAll("\\s", "");
+		
+		//System.out.println("JSON PRODUCT Next Business Day (Orders after Midday) : "+ pDetails.get("nextDayChargeProduct").toString());
+		//System.out.println("UI PRODUCT Next Business Day (Orders after Midday) : "+ deliveryTotalActualValue);
+		
+		// Validate the Delivery Total
+		assertTrue(deliveryTotalActualValue.equals(pDetails.get("nextDayChargeProduct").toString()));
 		
 		//Remove the unnecessary text "ex. VAT" from the string Product total
 		productsTotalSplit = getText(productsTotal).split("e");
@@ -561,9 +592,17 @@ public class BuyersUIBasketPage  extends Actions{
 		deliveryTotalSplit =getText(deliveryTotal).split("e");
 		deliveryTotalSplitActual=deliveryTotalSplit[0];
 		
+		//Remove the unnecessary text from TotalPrice string
+		productTotalPriceUISplit = getText(productTotalPrice).split(":");
+		productTotalPriceUIActual = productTotalPriceUISplit[1].replaceAll("\\s", "");
+				
+		//Remove the unnecessary text from UnitPrice string
+		productUnitPriceUISplit = getText(productUnitPrice).split("each");
+		productUnitPriceUIActual = productUnitPriceUISplit[0].replaceAll("\\s", "");
+		
 		// Validate the UnitPrice, Total, Products total, and Delivery Total
-		assertTrue(getText(productTotalPrice).replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
-		assertTrue(getText(productUnitPrice).replaceAll("[^a-zA-Z0-9]","").equals(pDetails.get("Price").toString().concat("0").replaceAll("[^a-zA-Z0-9]","")));
+		assertTrue(productTotalPriceUIActual.replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
+		assertTrue(productUnitPriceUIActual.replaceAll("[^a-zA-Z0-9]","").equals(pDetails.get("Price").toString().concat("0").replaceAll("[^a-zA-Z0-9]","")));
 		
 		assertTrue(productsTotalSplitActual.replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
 		assertTrue(deliveryTotalSplitActual.replaceAll("[^a-zA-Z0-9]","").contains(pDetails.get("StandardChargeProductUKNonMainland").toString().replaceAll("[^a-zA-Z0-9]","")));
@@ -574,9 +613,14 @@ public class BuyersUIBasketPage  extends Actions{
 		selectItemFromDropDown(webElementDeliveryMethodDropDown, "Standard UK Mainland (3-5 days)");
 		clickElement(basketUpdateButton);
 		waitForSeconds(2);
-		System.out.println("JSON PRODUCT StandardChargeProductUKMainland : "+ pDetails.get("StandardChargeProductUKMainland").toString());
-		System.out.println("UI PRODUCT StandardChargeProductUKMainland : "+getText(getDeviveryCharge).replace("£", ""));
-		assertTrue(getText(getDeviveryCharge).replace("£", "").equals(pDetails.get("StandardChargeProductUKMainland").toString()));
+		getDeviveryChargeSplit = getText(getDeviveryCharge).split("ex");
+		deliveryTotalActualValue = getDeviveryChargeSplit[0].replace("£", "").replaceAll("\\s", "");
+		
+		//System.out.println("JSON PRODUCT StandardChargeProductUKMainland : "+ pDetails.get("StandardChargeProductUKMainland").toString());
+		//System.out.println("UI PRODUCT StandardChargeProductUKMainland : "+getText(getDeviveryCharge).replace("£", ""));
+		
+		// Validate the Delivery Total
+		assertTrue(deliveryTotalActualValue.equals(pDetails.get("StandardChargeProductUKMainland").toString()));
 		
 		//Remove the unnecessary text "ex. VAT" from the string Product total
 		productsTotalSplit = getText(productsTotal).split("e");
@@ -584,10 +628,18 @@ public class BuyersUIBasketPage  extends Actions{
 		//Remove the unnecessary text "ex. VAT" from the string Delivery total
 		deliveryTotalSplit =getText(deliveryTotal).split("e");
 		deliveryTotalSplitActual=deliveryTotalSplit[0];
+		
+		//Remove the unnecessary text from TotalPrice string
+		productTotalPriceUISplit = getText(productTotalPrice).split(":");
+		productTotalPriceUIActual = productTotalPriceUISplit[1].replaceAll("\\s", "");
+						
+		//Remove the unnecessary text from UnitPrice string
+		productUnitPriceUISplit = getText(productUnitPrice).split("each");
+		productUnitPriceUIActual = productUnitPriceUISplit[0].replaceAll("\\s", "");
 				
 		// Validate the UnitPrice, Total, Products total, and Delivery Total
-		assertTrue(getText(productTotalPrice).replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
-		assertTrue(getText(productUnitPrice).replaceAll("[^a-zA-Z0-9]","").equals(pDetails.get("Price").toString().concat("0").replaceAll("[^a-zA-Z0-9]","")));
+		assertTrue(productTotalPriceUIActual.replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
+		assertTrue(productUnitPriceUIActual.replaceAll("[^a-zA-Z0-9]","").equals(pDetails.get("Price").toString().concat("0").replaceAll("[^a-zA-Z0-9]","")));
 				
 		assertTrue(productsTotalSplitActual.replaceAll("[^a-zA-Z0-9]","").equals(productTotalPriceString.concat("0").replaceAll("[^a-zA-Z0-9]","")));
 		assertTrue(deliveryTotalSplitActual.replaceAll("[^a-zA-Z0-9]","").contains(pDetails.get("StandardChargeProductUKNonMainland").toString().replaceAll("[^a-zA-Z0-9]","")));

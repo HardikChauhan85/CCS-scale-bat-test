@@ -95,7 +95,7 @@ public class BuyersUIQuotesPage extends Actions{
 	@FindBy(xpath = "//ul[@class='govuk-list govuk-body-s govuk-!-margin-bottom-6 govuk-!-margin-right-3']/li[2]")
 	 private WebElement getIncicativeStatus;
 	
-	@FindBy(xpath = "//ul[@class='govuk-list govuk-body-s govuk-!-margin-bottom-6 govuk-!-margin-right-3']/li[3]")
+	@FindBy(xpath = "//ul[@class='govuk-list govuk-body-s govuk-!-margin-bottom-6 govuk-!-margin-right-3']/li[4]")
 	 private WebElement getIncicativeMessage;
 	
 	//Table data in Admin UI
@@ -365,7 +365,7 @@ public class BuyersUIQuotesPage extends Actions{
 		 String[] splitRejectQuoteStatusInAdminUIStatus = splitRejectQuoteStatusInAdminUIStr[1].split("\\s+");
 		 String actualSplitRejectQuoteStatusInAdminUIStatus = splitRejectQuoteStatusInAdminUIStatus[1];
 		 
-		 String[] splitRejectQuoteStatusInAdminUIRejectReason = splitRejectQuoteStatusInAdminUIStr[2].split("Reject reason: ");
+		 String[] splitRejectQuoteStatusInAdminUIRejectReason = splitRejectQuoteStatusInAdminUIStr[3].split("Reject reason: ");
 		 String actualSplitRejectQuoteStatusInAdminUIRejectReason = splitRejectQuoteStatusInAdminUIRejectReason[1];
 		 
 		assertEquals(actualSplitRejectQuoteStatusInAdminUIStatus, rejectStatus);

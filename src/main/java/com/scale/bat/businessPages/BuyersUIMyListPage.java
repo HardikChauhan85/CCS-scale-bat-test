@@ -58,6 +58,9 @@ public class BuyersUIMyListPage extends Actions  {
 		@FindBy(xpath ="//*[@class='govuk-warning-text__text']")
 		private WebElement warningMessage;
 		
+		@FindBy(xpath ="//ul[@class='govuk-list govuk-error-summary__list']/li")
+		private WebElement warningMessageExceedNumberOfStock;
+		
 		@FindBy(xpath ="//p[@class='govuk-body']")
 		private WebElement disclaimerMessage;
 				
@@ -249,12 +252,9 @@ public class BuyersUIMyListPage extends Actions  {
 	
 	public void validateWarningMessageCannotAddTheSelectedProduct() {
 		
-		System.out.println("UI Warning message: " + getText(warningMessage));
-		String lines[] = getText(warningMessage).split("\\r?\\n");
-		String line2 = lines[1];
-		//assertEquals(line2, "You cannot add the selected product to the basket.<br>The number of units in the basked would exceed the number of units in stock for the product.");
-		assertEquals(line2, "You cannot add the selected product to the basket. The number of units in the basket would exceed the number of units in stock for the product.");
-		log.info("Warning message: "+ line2 + " is displayed successful");
+		//System.out.println("UI Warning message: " + getText(warningMessageExceedNumberOfStock));
+		assertEquals(getText(warningMessageExceedNumberOfStock), configReaderObj.get("warningMessageExceedNumberOfStock"));
+		log.info("Warning message is displayed successful : "+ getText(warningMessageExceedNumberOfStock));
 		
 	}
 
