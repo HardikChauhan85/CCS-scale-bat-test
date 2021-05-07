@@ -20,6 +20,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 
 public class WishListServiceStepDefs {
@@ -86,7 +87,9 @@ public class WishListServiceStepDefs {
 	@And("user gets all the available products list")
 	public void user_gets_all_the_available_products_list() {
 	    
-		jsonResponse = apibase.getRequest("/api/v2/storefront/products?sort_by=available_on");
+		jsonResponse = apibase.getRequest("/api/v2/storefront/products?filter[in_stock]=true&sort_by=available_on");
+		String anc = jsonResponse.getBody().asString();
+		System.out.println(anc);
 		jsonAllProductsResponse=jsonResponse;
 		statusCode = apibase.getStatusCode(jsonResponse);
 	}    

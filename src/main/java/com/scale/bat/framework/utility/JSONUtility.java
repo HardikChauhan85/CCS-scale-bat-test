@@ -21,203 +21,172 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.simple.JSONObject;
 
 public class JSONUtility {
-	/***************
-	 * Path to store all excel files and generated json files
-	 *****************/
-	/*private static String excelPath = "src/main/resources/TestData/";
-	private static String jsonPath = "src/main/resources/TestData/ApiJson/";
-	private static String JSONPath = "src/main/resources/TestData/ApiJson/";
-	private static String fcoJSONPath = "src/main/resources/TestData/fco/";*/
-	
-    private static String excelPath = "TestData/";
-	//private static String excelPath = "TestData/ServiceTestdata.xlsx";
-	private static String jsonPath = "TestData/ApiJson/";
-	private static String JSONPath = "TestData/ApiJson/";
-	private static String fcoJSONPath = "src/main/resources/TestData/fco/";
+	  /***************Path to store all excel files and generated json files*****************/
+    private static String excelPath = "src/main/resources/data/";
+    private static String jsonPath = "src/main/resources/data/JSONs/";
+    private static String JSONPath = "src/main/resources/data/JSONs/";
+    private static String fcoJSONPath = "src/main/resources/data/fco/";
 
-	public static void main(String[] args) throws Exception {
-		JSONUtility obj = new JSONUtility();
-		obj.convertExcelToJsonFile("DataSheet.xlsx");
-	}
+    public static void main(String []args) throws Exception {
+        JSONUtility obj = new JSONUtility();
+        obj.convertExcelToJsonFile("ServiceTestdata.xlsx");
+   }
 
-	/**
-	 * This converts Payment_Details excel file into single JSON file
-	 * 
-	 * @param fileName:
-	 *            Excel file name having payment_details
-	 * @throws IOException
-	 */
-	public void convertCutOffExcelToJson(String fileName) throws IOException {
-		FileInputStream fi = new FileInputStream(new File(excelPath + fileName));
-		Workbook wb = new XSSFWorkbook(fi);
-		Sheet sheet = wb.getSheet("TestData");
-		int number_of_rows = sheet.getPhysicalNumberOfRows();
 
-		ArrayList<String> headerList = getHeaderList(sheet.getRow(1));
+    public void convertCutOffExcelToJson(String fileName) throws IOException {
+        FileInputStream fi = new FileInputStream(new File(excelPath+fileName));
+        Workbook wb = new XSSFWorkbook(fi);
+        Sheet sheet = wb.getSheet("TestData");
+        int number_of_rows = sheet.getPhysicalNumberOfRows();
 
-		JSONObject parentObject = new JSONObject();
-		for (int rowNum = 2; rowNum < number_of_rows; rowNum++) {
-			// parentObject = new JSONObject();
-			Row row = sheet.getRow(rowNum);
-			int num_of_Cells = row.getPhysicalNumberOfCells();
-			JSONObject childObject = new JSONObject();
-			for (int cellNum = 1; cellNum < num_of_Cells; cellNum++) {
-				Cell currentCell = row.getCell(cellNum);
+        ArrayList<String> headerList = getHeaderList(sheet.getRow(1));
 
-				switch (currentCell.getCellType()) {
-				case STRING:
-					childObject.put(headerList.get(cellNum), currentCell.getStringCellValue());
-					break;
-				case NUMERIC:
-					childObject.put(headerList.get(cellNum), currentCell.getNumericCellValue());
-					break;
-				default:
-					childObject.put(headerList.get(cellNum), "");
-				}
-			}
-			parentObject.put((row.getCell(0)).getStringCellValue(), childObject);
-		}
+        JSONObject parentObject = new JSONObject();
+        for(int rowNum = 2; rowNum < number_of_rows; rowNum++)
+        {
+            //parentObject = new JSONObject();
+            Row row = sheet.getRow(rowNum);
+            int num_of_Cells = row.getPhysicalNumberOfCells();
+            JSONObject childObject = new JSONObject();
+            for(int cellNum=1; cellNum<num_of_Cells; cellNum++)
+            {
+                Cell currentCell = row.getCell(cellNum);
 
-		// System.out.println(parentObject.toString());
-		createJSONFile(parentObject, "PaymentDetails");
-	}
+                switch(currentCell.getCellType())
+                {
+                    case STRING:
+                        childObject.put(headerList.get(cellNum), currentCell.getStringCellValue());
+                        break;
+                    case NUMERIC:
+                        childObject.put(headerList.get(cellNum), currentCell.getNumericCellValue());
+                        break;
+                    default:
+                        childObject.put(headerList.get(cellNum), "");
+                }
+            }
+            parentObject.put((row.getCell(0)).getStringCellValue(),childObject);
+        }
 
-	protected ArrayList<String> getHeaderList(Row row) {
-		ArrayList<String> headerList = new ArrayList<String>();
+//        System.out.println(parentObject.toString());
+        createJSONFile(parentObject,"ServiceTestdata");
+    }
 
-		Iterator<Cell> cellIterator = row.cellIterator();
+    protected ArrayList<String> getHeaderList(Row row) {
+        ArrayList<String> headerList = new ArrayList<String>();
 
-		while (cellIterator.hasNext()) {
-			Cell currentCell = cellIterator.next();
-			headerList.add(currentCell.getStringCellValue());
-		}
+        Iterator<Cell> cellIterator = row.cellIterator();
 
-		return headerList;
-	}
+        while (cellIterator.hasNext()) {
+            Cell currentCell = cellIterator.next();
+            headerList.add(currentCell.getStringCellValue());
+        }
 
-	/**
-	 * Converts each row present in given excel file into individual json file
-	 * 
-	 * @param fileName
-	 * @throws Exception
-	 */
-	public void convertExcelToJsonFile(String fileName) throws Exception {
+        return headerList;
+    }
 
-		FileInputStream fi = new FileInputStream(new File(excelPath + fileName));
-		Workbook wb = new XSSFWorkbook(fi);
-		Sheet sheet = wb.getSheet("TestData");
-		int number_of_rows = sheet.getPhysicalNumberOfRows();
+    /**
+     * Converts each row present in given excel file into individual json file
+     * @param fileName
+     * @throws Exception
+     */
+    public void convertExcelToJsonFile(String fileName) throws Exception {
 
-		ArrayList<String> headerList = getHeaderList(sheet.getRow(1));
+        FileInputStream fi = new FileInputStream(new File(excelPath+fileName));
+        Workbook wb = new XSSFWorkbook(fi);
+        Sheet sheet = wb.getSheet("TestData");
+        int number_of_rows = sheet.getPhysicalNumberOfRows();
 
-		JSONObject jsonObject = null;
-		for (int rowNum = 2; rowNum < number_of_rows; rowNum++) {
-			jsonObject = new JSONObject();
-			Row row = sheet.getRow(rowNum);
-			int num_of_Cells = row.getPhysicalNumberOfCells();
-			// System.out.println("Number of cells: " + num_of_Cells);
-			for (int cellNum = 1; cellNum < num_of_Cells; cellNum++) {
-				Cell currentCell = row.getCell(cellNum);
+        ArrayList<String> headerList = getHeaderList(sheet.getRow(0));
 
-				switch (currentCell.getCellType()) {
-				case STRING:
-					jsonObject.put(headerList.get(cellNum), currentCell.getStringCellValue());
-					break;
-				case NUMERIC:
-					jsonObject.put(headerList.get(cellNum), currentCell.getNumericCellValue());
-					break;
-				default:
-					jsonObject.put(headerList.get(cellNum), "");
-				}
-			}
-			createJSONFile(jsonObject, (row.getCell(0)).getStringCellValue());
-			// System.out.println(rowNum);
-			jsonObject = null;
-		}
-	}
+        JSONObject jsonObject = null;
+        for(int rowNum = 1; rowNum < number_of_rows; rowNum++)
+        {
+            jsonObject = new JSONObject();
+            Row row = sheet.getRow(rowNum);
+            int num_of_Cells = row.getPhysicalNumberOfCells();
+//            System.out.println("Number of cells: " + num_of_Cells);
+            for(int cellNum=0; cellNum<num_of_Cells; cellNum++)
+            {
+                Cell currentCell = row.getCell(cellNum);
 
-	/**
-	 * Creates json file for given jsonObject
-	 * 
-	 * @param jsonObject
-	 * @param filename:
-	 *            created json file will be stored with this name
-	 * @throws IOException
-	 */
-	protected void createJSONFile(JSONObject jsonObject, String filename) throws IOException {
-		FileWriter file = null;
-		try {
-			file = new FileWriter(JSONPath + filename + ".json");
-			file.write(jsonObject.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			file.flush();
-			file.close();
-			file = null;
-		}
+                switch(currentCell.getCellType())
+                {
+                    case STRING:
+                        jsonObject.put(headerList.get(cellNum), currentCell.getStringCellValue());
+                        break;
+                    case NUMERIC:
+                        jsonObject.put(headerList.get(cellNum), currentCell.getNumericCellValue());
+                        break;
+                    default:
+                        jsonObject.put(headerList.get(cellNum), "");
+                }
+            }
+            createJSONFile(jsonObject, (row.getCell(0)).getStringCellValue());
+//            System.out.println(rowNum);
+            jsonObject=null;
+        }
+    }
 
-	}
+    /**
+     * Creates json file for given jsonObject
+     * @param jsonObject
+     * @param filename: created json file will be stored with this name
+     * @throws IOException
+     */
+    protected void createJSONFile(JSONObject jsonObject, String filename) throws IOException {
+        FileWriter file = null;
+        try {
+            file = new FileWriter(JSONPath+filename+".json");
+            file.write(jsonObject.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            file.flush();
+            file.close();
+            file = null;
+        }
 
-	/**
-	 * Converts json file into map
-	 * 
-	 * @param jsonFileName:
-	 *            json file name which needs to be converted into map
-	 * @return Map
-	 */
-	public Map<String, Object> convertJSONtoMAP(String jsonFileName) {
-		ObjectMapper mapper = new ObjectMapper();
-		Map<String, Object> map = null;
-		try {
-			map = mapper.readValue(new File(JSONPath + jsonFileName + ".json"),
-					new TypeReference<Map<String, Object>>() {
-					});
+    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return map;
-	}
+    /**
+     * Converts json file into map
+     * @param jsonFileName: json file name which needs to be converted into map
+     * @return Map
+     */
+    public Map<String, Object> convertJSONtoMAP(String jsonFileName)
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> map = null;
+        try {
+            map = mapper.readValue(new File(JSONPath+jsonFileName+".json"), new TypeReference<Map<String, Object>>() {
+            });
 
-	/**
-	 * Add/update key-value pair in existing json file
-	 * 
-	 * @param filename:
-	 *            json file name
-	 * @param key
-	 * @param value
-	 * @throws IOException
-	 */
-	public void amendJsonFile(String filename, String key, String value) throws IOException {
-		byte[] jsonData = Files.readAllBytes(Paths.get(jsonPath + filename + ".json"));
 
-		ObjectMapper objectMapper = new ObjectMapper();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
 
-		JsonNode rootNode = objectMapper.readTree(jsonData);
-		// If key already present, it will update the value or else it will create the
-		// new one
-		((ObjectNode) rootNode).put(key, value);
+    /**
+     * Add/update key-value pair in existing json file
+     * @param filename: json file name
+     * @param key
+     * @param value
+     * @throws IOException
+     */
+    public void amendJsonFile(String filename, String key, String value) throws IOException {
+        byte[] jsonData = Files.readAllBytes(Paths.get(jsonPath+filename+".json"));
 
-		objectMapper.writeValue(new File(jsonPath + filename + ".json"), rootNode);
-	}
+        ObjectMapper objectMapper = new ObjectMapper();
 
-	public void mapToJSONFile(String paymentRefNumber, String fileName) throws IOException {
-		JSONObject jsonObject = new JSONObject();
+        JsonNode rootNode = objectMapper.readTree(jsonData);
+        //If key already present, it will update the value or else it will create the new one
+        ((ObjectNode) rootNode).put(key, value);
 
-		jsonObject.put("Payment_Ref_Number", paymentRefNumber);
-		FileWriter file = null;
-		try {
-			file = new FileWriter(fcoJSONPath + fileName + ".json");
-			file.write(jsonObject.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			file.flush();
-			file.close();
-			file = null;
-		}
+        objectMapper.writeValue(new File(jsonPath+filename+".json"), rootNode);
+    }
 
-	}
+
 
 }

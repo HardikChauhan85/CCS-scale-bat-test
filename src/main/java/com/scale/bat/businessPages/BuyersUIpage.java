@@ -68,8 +68,8 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "//*[@class='bat-header__menu-button bat-js-header-toggle']")
 	private WebElement mobileMenue;
 	
-	@FindBy(xpath = "//*[@id='main-content']/div[2]/div[3]/a")
-	private WebElement myListVisitButton;
+	/*@FindBy(xpath = "//a[@href='/wishlist']")
+	private WebElement myListVisitButton;*/
 	
 	@FindBy(xpath = "//*[@class='govuk-button govuk-button--secondary bat-product__button bat-product__add-to-list__button']")
 	private WebElement addToList;
@@ -100,8 +100,12 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "//*[@class='govuk-notification-banner__heading']")
 	private WebElement addedToComparePageMsg;
 	
-	@FindBy(xpath = "//*[@class='bat-basket__items']/ul/li[1]/div/form/div/div[5]/button[1]")
+	/*@FindBy(xpath = "//*[@class='bat-basket__items']/ul/li[1]/div/form/div/div[5]/button[1]")
+	private WebElement quantityUpdateButtonBasket;*/
+	
+	@FindBy(xpath = "//*[@class='bat-basket-item__actions']/button[1]")
 	private WebElement quantityUpdateButtonBasket;
+	
 	
 	@FindBy(xpath = "//button[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
 	private WebElement manageQuoteSearchButton;
@@ -197,7 +201,7 @@ public class BuyersUIpage extends Actions {
 	}
 	
 	public void clickOnMyListVisitButton() {
-		clickElement(myListVisitButton);
+		clickElement(myAccountMyListVisitButton);
 	}
 
 	public void navigateToPDPPage() {

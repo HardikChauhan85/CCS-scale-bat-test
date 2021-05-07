@@ -11,6 +11,7 @@ Feature: This User story covers the Firm quotes related scenarios
   	##Admin UI
     Given User logged in as "supplier" in admin panel
     And User click on "productcatalogues" link on main sidebar
+    And User clicks on show link to view products
     And Check if the product is present in a catalogue if yes then delete
     And User click on "productcatalogues" link on main sidebar
     And User clicks on show link to view products
@@ -248,7 +249,7 @@ Feature: This User story covers the Firm quotes related scenarios
 		
 		#Before Run this Scenario Quotes should be raise for the user else it won't work
     #[US: SCA-1798 (SCA-2025)]
-    @confidence
+    @confidence2021
   	Scenario: TC-Verify Supplier is able to see all quotes upon searching BLANK in Quote Reference on Adnin UI
  	  #API Steps
   	Given User get the total no of quotes available in manage quotes page on buyers UI
