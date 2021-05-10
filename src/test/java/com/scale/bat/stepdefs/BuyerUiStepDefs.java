@@ -43,7 +43,18 @@ public class BuyerUiStepDefs {
 	@And("User removes all the products from the basket")
 	public void user_removes_all_the_products_from_the_basket() {
 	    
-		objectManager.getBuyersUIpage().removeProductsFromTheBasket();
+		//objectManager.getBuyersUIpage().removeProductsFromTheBasket();
+		
+		boolean mgsNotVisible=objectManager.getBuyersUIBasketpage().validateWarningMessageIsPresentOrNot();
+	
+		if(mgsNotVisible==true) {
+			
+		}else {
+			
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getclearBasketLink());
+		}
+		
+		
 	}
 
 	@When("User add {int} products to compare")
@@ -61,9 +72,11 @@ public class BuyerUiStepDefs {
 		switch (button) {
 		case "Continue Shopping":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getContinueShoppingElement());
+			Thread.sleep(2000);
 			break;
 		case "Proceed to basket":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getProceedToBasketElement());
+			Thread.sleep(1000);
 			break;
 		case "browser back button":
 			objectManager.getBuyersUIpage().navigateBackfromBrowser();
@@ -71,6 +84,7 @@ public class BuyerUiStepDefs {
 		case "continue shopping link":
 			objectManager.getBuyersUIpage()
 					.clickByLinkText(objectManager.getBuyersUIpage().getContinueShoppingLinkOnBasketPage());
+			Thread.sleep(1000);
 			break;
 		case "Delete button":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().deleteButtonOnBasketElement());
