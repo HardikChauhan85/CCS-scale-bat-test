@@ -405,6 +405,14 @@ public class BuyersUIBasketPage  extends Actions{
 		}
 	}
 	
+	public boolean validateWarningMessageIsPresentOrNot() {
+		
+		boolean mgsNotVisible = isElementPresent("Your basket is empty");
+		
+		return mgsNotVisible;
+	}
+	
+	
 	public void validateNextDayDeliveryIsGreyedOutOnBasketPage() {
 		
 		boolean nexBusinessDayIsGreyedOut  = isElementPresentByXpath(basketWarningMsgOfNextDayDeliveryString);
