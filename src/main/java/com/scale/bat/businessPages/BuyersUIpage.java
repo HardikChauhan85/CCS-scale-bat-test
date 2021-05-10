@@ -219,7 +219,9 @@ public class BuyersUIpage extends Actions {
 	}
 
 	public void addProductToBasket(int numberOfProducts) {
+		waitForSeconds(2);
 		navigateToPLPPage();
+		waitForSeconds(2);
 		int i = 1;
 		do {
 			if (isElementPresentByXpath("//*[@class='bat-basket-item-added__buttons']/a")) {
@@ -242,6 +244,8 @@ public class BuyersUIpage extends Actions {
 				clickElement(abc);
 			}
 		}
+		
+		
 	}
 	
 	
@@ -281,6 +285,7 @@ public class BuyersUIpage extends Actions {
 	public void isBuyerNavigatedToGivenPage(String pageName) {
 		switch (pageName) {
 		case "PLP":
+			waitForSeconds(2);
 			assertTrue(isElementPresent(PLPScreenText));
 			log.info("Navigated to " + pageName);
 			break;
