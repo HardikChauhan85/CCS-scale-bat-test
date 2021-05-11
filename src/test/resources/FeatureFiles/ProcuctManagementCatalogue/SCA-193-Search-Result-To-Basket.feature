@@ -8,6 +8,7 @@ Feature: As a Buyer,
     Given User navigates to BuyerUI
     #And Authorisation dialoxg box is handled
     And User login to buyerUI
+    And User clicks on "Basket Link" in buyers UI
     And User removes all the products from the basket
     When User add 1 product in basket
     Then "Confirmation screen" is shown to the buyer
@@ -30,6 +31,7 @@ Feature: As a Buyer,
     Given User navigates to BuyerUI
     #And Authorisation dialoxg box is handled
     And User login to buyerUI
+    And User clicks on "Basket Link" in buyers UI
     And User removes all the products from the basket
     When User add 1 product in basket
     And User clicks on "browser back button" in buyers UI
