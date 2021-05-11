@@ -103,7 +103,7 @@ Feature: As a supplier, CCS administrator and Category manager,
     Examples: 
      | supplierFilter | supplierValue | filter    | filterValue |
       | supplier    | cogautosupplier2  | publisheddelete | Published&Deleted |
-      #|supplier			|cogautosupplier2	|publishedunpublished	|Published&Unpublished|
+      |supplier			|cogautosupplier2	|publishedunpublished	|Published&Unpublished|
      ##| supplier       | cogautosupplier2  | published | published   |
 		 ##|supplier			|cogautosupplier2	|unpublished	|unpublished|
 		 ##|supplier			|cogautosupplier2	|MPN	|DT-740|
