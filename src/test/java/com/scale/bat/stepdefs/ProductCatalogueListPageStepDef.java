@@ -1,5 +1,8 @@
 package com.scale.bat.stepdefs;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.net.MalformedURLException;
 import java.util.Map;
 
@@ -297,6 +300,43 @@ public class ProductCatalogueListPageStepDef {
 		objectManager.getProductCatalogueListPage().verifyFilterValue(fillter, filterValue);
 	}
 	
+	@Given("User validates the supplier{int} product total delivery total VAT and grand Total in basket for Standard UK Mainland")
+	public void user_validates_the_supplier_product_total_delivery_total_VAT_and_grand_Total_in_basket_for_Standard_UK_Mainland(Integer int1) {
+	    
+		JSONObject jObj1 = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePathSCA223Sup1))
+				.getJSONObject("Product1");
+		
+		JSONObject jObj2 = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePathSCA223Sup1))
+				.getJSONObject("Product2").getJSONObject("FromUi");
+		
+		objectManager.getBuyersUIBasketpage().validateSupplier1Product1and2VATAndOtherDetailsForStandardUKMainland(jObj1,jObj2);
+	}
 	
+	@Given("User validates the supplier{int} product total delivery total VAT and grand Total in basket for Next Business Day")
+	public void user_validates_the_supplier_product_total_delivery_total_VAT_and_grand_Total_in_basket_for_Next_Business_Day(Integer int1) {
+	
+		JSONObject jObj1 = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePathSCA223Sup1))
+				.getJSONObject("Product1");
+		
+		JSONObject jObj2 = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePathSCA223Sup1))
+				.getJSONObject("Product3").getJSONObject("FromUi");
+		
+		objectManager.getBuyersUIBasketpage().validateSupplier1Product1and2VATAndOtherDetailsForNextBusinessDay(jObj1,jObj2);
+
+	}
+	
+	
+	@Given("User validates the supplier{int} product total delivery total VAT and grand Total in basket for Standard UK Non Mainland")
+	public void user_validates_the_supplier_product_total_delivery_total_VAT_and_grand_Total_in_basket_for_Standard_UK_Non_Mainland(Integer int1) {
+	    
+		JSONObject jObj1 = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePathSCA223Sup1))
+				.getJSONObject("Product2").getJSONObject("FromUi");
+		
+		JSONObject jObj2 = new JSONObject(new JsonParser().convertJsonToString(scenarioContext.ScenarioDataFilePathSCA223Sup2))
+				.getJSONObject("Product1");
+		
+		objectManager.getBuyersUIBasketpage().validateSupplier1Product1and2VATAndOtherDetailsForStandardUKNonMainland(jObj1,jObj2);
+		
+	}
 
 }
