@@ -106,7 +106,6 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "//*[@class='bat-basket-item__actions']/button[1]")
 	private WebElement quantityUpdateButtonBasket;
 	
-	
 	@FindBy(xpath = "//button[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
 	private WebElement manageQuoteSearchButton;
 	
@@ -117,18 +116,15 @@ public class BuyersUIpage extends Actions {
 	private String getTotalProductsInBasket="//*[@class='bat-basket__items']/ul/li";
 	private String checkMyListIsEmpty="//*[@class='govuk-body govuk-!-govuk-!-margin-bottom-6']";
 	private String getTotalProductsInMyList="//*[@id='main-content']/div[1]/div/ul/li";
-	
 	private String quote = "Quote";
 	private String update = "Update";
 	 
-	 @FindBy(xpath = "//*[@href='/account/quotes']")
-	 private WebElement manageQuotesVisit;
+	@FindBy(xpath = "//*[@href='/account/quotes']")
+	private WebElement manageQuotesVisit;
+	 
+	@FindBy(xpath = "//*[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
+	private WebElement searchQuoteButton;
 	
-	 
-	 
-	 @FindBy(xpath = "//*[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
-	 private WebElement searchQuoteButton;
-
 
 	private Logger log = Log.getLogger(BuyersUIpage.class);
 
@@ -407,7 +403,7 @@ public class BuyersUIpage extends Actions {
 	public String getUpdateLinkAddToList() {
 		return update;
 	}
-
-			
+	
+	
 			 
 }
