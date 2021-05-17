@@ -177,10 +177,29 @@ public class BuyersUIQuotesPage extends Actions{
 	@FindBy(xpath = "//*[@id='q_number_cont']")
 	private WebElement quoteRefAdminUI ; 
 	
+	@FindBy(xpath = ".//button[contains(text(),'Clear my basket and add these items')]")
+	private WebElement clearMyTextBtn;
+	
+	private String clearMyTextBtnStr = ".//button[contains(text(),'Clear my basket and add these items')]";
+	
+	@FindBy(xpath = "//button[@class='govuk-button govuk-button--primary']")
+	private WebElement addtoBasketBtnOnIndicative;
+	
+	private String addtoBasketBtnOnIndicativeStr = "//button[@class='govuk-button govuk-button--primary']";
+	
+	@FindBy(xpath = ".//p[@id='convert-firm-quote-to-basket-button']")
+	private WebElement clearMyBasketTextMsg;
+	
+	@FindBy(xpath = "//div[@class='govuk-notification-banner__content']")
+	private WebElement successMsg;
+	
 	private String manageQuoteColumHeaderSize = "//table[@class='govuk-table bat-quotes__table']/thead/tr/th";
 	private String firmQuote = "//*[@id='kind']";
 	private String indicativeQuote = "//*[@id='kind-2']";
 	private String raiseQuote = "Raise quote";
+	
+	
+	
 	
 	public void validateNewQuoteCreatedMsg(String Message) {
 		
@@ -322,6 +341,28 @@ public class BuyersUIQuotesPage extends Actions{
 		assertEquals(getText(getQuoteStatusRejectedI), "Reject");
 		
 	    log.info("Validated Manage Quotes refrence "+getFirstRowQuoteNoAdminUI+" details on Admin UI");
+		
+	}
+	
+	public void validateClearMyBasketAndAddThisItemButton() {
+		System.out.println(getText(clearMyBasketTextMsg));
+		assertEquals(getText(clearMyBasketTextMsg), configReaderObj.get("clearMyTextBtnTextMsg"));
+		assertTrue("Clear my basket and add these items button is present on firm quotes ", existsElement(clearMyTextBtnStr));
+		log.info("Validated 'Clear my basket and add these items' button and text message is present on buyers UI firm quotes");
+		
+	}
+	
+	public void validateAddToBasketButton() {
+		
+		assertTrue("Validated 'Add to basket' button is present on buyers UI indicative quotes ", existsElement(addtoBasketBtnOnIndicativeStr));
+		log.info("Validated 'Add to basket' button is present on buyers UI indicative quotes");
+		
+	}
+	
+	public void validateSuccessMessageInBasket(String successMessage) {
+		
+		assertEquals(getText(successMsg), successMessage);
+		log.info("Validated success message: "+ successMessage);
 		
 	}
 	
@@ -523,6 +564,15 @@ public class BuyersUIQuotesPage extends Actions{
 
 	public String getSupplierLinkAdminUI() {
 		return supplierLinkAdminPanel;
+	}
+	
+	public WebElement getClearMyTextBtnt() {
+		return clearMyTextBtn;
+	}
+	
+	
+	public WebElement addtoBasketBtnOnIndicative() {
+		return addtoBasketBtnOnIndicative;
 	}
 	
 }
