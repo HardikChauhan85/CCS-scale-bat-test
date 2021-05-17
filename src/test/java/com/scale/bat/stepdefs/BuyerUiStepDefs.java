@@ -183,6 +183,15 @@ public class BuyerUiStepDefs {
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getUpdateLinkAddToList());
 		break;
 		
+		case "Clear my basket and add these items":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIQuotespage().getClearMyTextBtnt());
+		break;
+		
+		case "Add to basket button on Indicative quote":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIQuotespage().addtoBasketBtnOnIndicative());
+		break;
+		
+		
 		
 		}
 	}

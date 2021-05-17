@@ -9,12 +9,12 @@
     "nextDayChargeBasket": "1",
     "MPN": "90H3571",
     "taxCategory": "Standard",
-    "Price": "974.0",
+    "Price": "966.0",
     "LastUpdatedTestCase": "",
     "StandardDeliveryTimeIndays": "1",
-    "UNSPSC": "TestAutomation21071011",
+    "UNSPSC": "TestAutomation21",
     "nextDayChargeProduct": "3.00",
-    "SKU": "SKU012071011",
+    "SKU": "SKU012",
     "PublishedFromDate": ""
   },
   "SKU": "SKU01",
@@ -30,12 +30,12 @@
       "nextDayChargeBasket": "1",
       "MPN": "90H3571",
       "taxCategory": "Standard",
-      "Price": "974.0",
+      "Price": "966.0",
       "LastUpdatedTestCase": "",
       "StandardDeliveryTimeIndays": "1",
-      "UNSPSC": "TestAutomation21071011",
+      "UNSPSC": "TestAutomation21",
       "nextDayChargeProduct": "3.00",
-      "SKU": "SKU012071011",
+      "SKU": "SKU012",
       "PublishedFromDate": ""
     }
   }

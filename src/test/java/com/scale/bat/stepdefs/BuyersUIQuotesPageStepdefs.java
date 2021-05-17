@@ -156,6 +156,24 @@ public class BuyersUIQuotesPageStepdefs {
 	    
 		objectManager.getBuyersUIQuotespage().validateNewQuoteDetailsOnAdminUI(quoteStatus);
 	}
+	
+	@Then("User validates the Clear my Basket and add these items button & a text message is visible on above that button")
+	public void user_validates_the_Clear_my_Basket_and_add_these_items_button_a_text_message_is_visible_on_above_that_button() {
+	    
+		objectManager.getBuyersUIQuotespage().validateClearMyBasketAndAddThisItemButton();
+	}
+	
+	@Then("User Validates the message {string}")
+	public void user_Validates_the_message(String successMessage) {
+	    
+		objectManager.getBuyersUIQuotespage().validateSuccessMessageInBasket(successMessage);
+	}
+	
+	@Then("User validates the Add to basket button")
+	public void user_validates_the_Add_to_basket_button() {
+	    
+		objectManager.getBuyersUIQuotespage().validateAddToBasketButton();
+	}
 
 	@Given("User validates the {string} page")
 	public void user_validates_the_page(String rejectQuotePageTitle) {
