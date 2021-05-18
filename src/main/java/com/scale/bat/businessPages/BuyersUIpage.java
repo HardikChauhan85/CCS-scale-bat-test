@@ -4,7 +4,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +16,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.scale.bat.framework.utility.Actions;
 import com.scale.bat.framework.utility.Log;
-import com.scale.bat.framework.utility.TakeScreenShotAndAddToWordDoc;
 
 import cucumber.api.Scenario;
 
@@ -29,6 +30,7 @@ public class BuyersUIpage extends Actions {
 	private String myAccountLink="account";
 	private String clearBasketLink="Clear basket";
 	private String viewListLink="View list";
+	private String addNewAddress="Add new address";
 	
 
 	private String continueShoppingLinkOnBasketPage = "Continue shopping";
@@ -108,6 +110,7 @@ public class BuyersUIpage extends Actions {
 	
 	@FindBy(xpath = "//button[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
 	private WebElement manageQuoteSearchButton;
+
 	
 	
 	private String mobileMenueStr = "//*[@class='bat-header__menu-button bat-js-header-toggle']";
@@ -124,7 +127,7 @@ public class BuyersUIpage extends Actions {
 	 
 	@FindBy(xpath = "//*[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
 	private WebElement searchQuoteButton;
-	
+
 
 	private Logger log = Log.getLogger(BuyersUIpage.class);
 
@@ -307,6 +310,13 @@ public class BuyersUIpage extends Actions {
 		}
 	}
 
+	public void headerText(String page){
+		String pageText = driver.findElement(By.tagName("h1")).getText();
+		Assert.assertTrue(pageText.equals(page));
+	}
+
+
+
 	public WebElement getContinueShoppingElement() {
 		return continueShopping;
 	}
@@ -403,7 +413,10 @@ public class BuyersUIpage extends Actions {
 	public String getUpdateLinkAddToList() {
 		return update;
 	}
-	
-	
+
+	public String getAddNewAddress() {
+		return addNewAddress;
+	}
+
 			 
 }

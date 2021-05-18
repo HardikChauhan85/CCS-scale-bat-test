@@ -3,12 +3,13 @@ package com.scale.bat.stepdefs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import io.cucumber.datatable.DataTable;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
-import org.openqa.selenium.WebElement;
 
 import com.scale.bat.businessPages.BuyersUIpage;
 import com.scale.bat.context.ScenarioContext;
@@ -16,7 +17,6 @@ import com.scale.bat.context.TestContext;
 import com.scale.bat.framework.utility.JsonParser;
 import com.scale.bat.framework.utility.Log;
 import com.scale.bat.framework.utility.PageObjectManager;
-import com.scale.bat.framework.utility.TakeScreenShotAndAddToWordDoc;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -190,9 +190,9 @@ public class BuyerUiStepDefs {
 		case "Add to basket button on Indicative quote":
 			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIQuotespage().addtoBasketBtnOnIndicative());
 		break;
-		
-		
-		
+
+		case "Add new address":
+			objectManager.getBuyersUIpage().clickElement(objectManager.getBuyersUIpage().getAddNewAddress());
 		}
 	}
 
@@ -544,6 +544,27 @@ public class BuyerUiStepDefs {
 	public void user_validated_the_warning_message_when_all_stocks_of_product_were_added_to_basket() {
 	    
 		objectManager.getBuyersUIMyListpage().validateReduceStockMessageWhenClickAddTheseItemsToCurrentBasketInMyList(scenarioContext.productDetails);
+	}
+
+	@Then("I am on the {string} page")
+	public void i_am_on_the_page(String page) {
+		// Write code here that turns the phrase above into concrete actions
+		objectManager.getBuyersUIpage().headerText(page);
+	}
+
+	@When("I enter the following data:")
+	public void i_enter_the_following_data(DataTable dataTable) throws Throwable {
+
+		List<List<String>> data = dataTable.asLists();
+		final String userFirstName = data.get(1).get(0);
+		final String userLastName = data.get(1).get(1);
+		final String userBuildingStreet = data.get(1).get(2);
+		final String userTown = data.get(1).get(3);
+		final String userPostcode = data.get(1).get(4);
+		final String userPhone = data.get(1).get(5);
+
+		objectManager.getAddAddressPage().customSendKeys(objectManager.getAddAddressPage().getFirstName(), userFirstName);
+
 	}
 
 }

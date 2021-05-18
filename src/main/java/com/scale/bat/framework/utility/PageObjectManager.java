@@ -1,18 +1,8 @@
 package com.scale.bat.framework.utility;
 
+import com.scale.bat.businessPages.*;
 import org.openqa.selenium.WebDriver;
 
-import com.scale.bat.businessPages.BuyersUIBasketPage;
-import com.scale.bat.businessPages.BuyersUIMyListPage;
-import com.scale.bat.businessPages.BuyersUIPDPPage;
-import com.scale.bat.businessPages.BuyersUIQuotesPage;
-import com.scale.bat.businessPages.BuyersUIpage;
-import com.scale.bat.businessPages.CCSHomePage;
-import com.scale.bat.businessPages.LogInAdminPanel;
-import com.scale.bat.businessPages.ProductCatalogueListPage;
-import com.scale.bat.businessPages.ProductCataloguePage;
-import com.scale.bat.businessPages.ProductDetailPage;
-import com.scale.bat.businessPages.SupplierPage;
 import com.scale.bat.context.TestContext;
 import com.scale.bat.framework.utility.API.Auth;
 
@@ -34,6 +24,7 @@ public class PageObjectManager {
 	private BuyersUIMyListPage buyersUIMyListPage;
 	private BuyersUIBasketPage buyersUIBasketPage;
 	private BuyersUIQuotesPage buyersUIQuotesPage;
+	private AddAddressPage addAddressPage;
 	private Auth auth;
 	
 	public PageObjectManager(WebDriver driver, Scenario scenario) {
@@ -91,8 +82,11 @@ public class PageObjectManager {
 	}*/
 	
 	public BuyersUIQuotesPage getBuyersUIQuotespage() {
-		
 		return buyersUIQuotesPage == null ? buyersUIQuotesPage = new BuyersUIQuotesPage(driver,scenario) : buyersUIQuotesPage;
+	}
+
+	public AddAddressPage getAddAddressPage() {
+		return addAddressPage == null ? addAddressPage = new AddAddressPage(driver, scenario) : addAddressPage;
 	}
 	
 }
