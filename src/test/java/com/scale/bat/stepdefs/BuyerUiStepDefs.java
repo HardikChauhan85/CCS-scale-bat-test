@@ -6,7 +6,8 @@ import static org.junit.Assert.assertTrue;
 import io.cucumber.datatable.DataTable;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -22,6 +23,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.testng.Assert;
 
 public class BuyerUiStepDefs {
 	private Logger log = Log.getLogger(BuyersUIpage.class);
@@ -552,19 +554,15 @@ public class BuyerUiStepDefs {
 		objectManager.getBuyersUIpage().headerText(page);
 	}
 
-	@When("I enter the following data:")
-	public void i_enter_the_following_data(DataTable dataTable) throws Throwable {
+	@And("User clicks on update account details button")
+	public void user_clicks_on_update_account_details_button() {
 
-		List<List<String>> data = dataTable.asLists();
-		final String userFirstName = data.get(1).get(0);
-		final String userLastName = data.get(1).get(1);
-		final String userBuildingStreet = data.get(1).get(2);
-		final String userTown = data.get(1).get(3);
-		final String userPostcode = data.get(1).get(4);
-		final String userPhone = data.get(1).get(5);
-
-		objectManager.getAddAddressPage().customSendKeys(objectManager.getAddAddressPage().getFirstName(), userFirstName);
-
+		objectManager.getBuyersUIpage().clickOnUpdateAccountDetailsLink();
 	}
 
-}
+	@And("User clicks on add address button on account details page")
+	public void user_clicks_on_add_address_button_on_account_details_page() {
+		objectManager.getBuyersUIpage().clickOnUpdateAccountAddAddressBtn();
+	}
+
+	}

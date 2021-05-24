@@ -128,6 +128,12 @@ public class BuyersUIpage extends Actions {
 	@FindBy(xpath = "//*[@class='govuk-button bat-quotes__search__ref-number-fieldset__button']")
 	private WebElement searchQuoteButton;
 
+	@FindBy(xpath = "//a[@href='/account/me']")
+	private WebElement updateAccountDetails;
+
+	@FindBy(xpath = "//a[@href='/account/addresses/new?_backLink=04d6Wz83FQA%253D']")
+	private WebElement UpdateAccountDetailsPageAddAddressBtn;
+
 
 	private Logger log = Log.getLogger(BuyersUIpage.class);
 
@@ -315,7 +321,13 @@ public class BuyersUIpage extends Actions {
 		Assert.assertTrue(pageText.equals(page));
 	}
 
+	public void clickOnUpdateAccountDetailsLink() {
+		clickElement(updateAccountDetails);
+	}
 
+	public void clickOnUpdateAccountAddAddressBtn() {
+		clickElement(UpdateAccountDetailsPageAddAddressBtn);
+	}
 
 	public WebElement getContinueShoppingElement() {
 		return continueShopping;

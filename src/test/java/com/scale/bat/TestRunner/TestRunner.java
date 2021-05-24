@@ -12,9 +12,9 @@ import cucumber.api.junit.Cucumber;
         monochrome = false,	
         plugin = { "pretty", "html:target/cucumber-html-reports", "json:target/cucumber-html-reports/cucumber.json"}
        // , tags = "@confidence, @testE2E",dryRun = false)
-        , tags = "@testE2EBasketItrTC02",dryRun = false)
+//        , tags = "@testE2EBasketItrTC02",dryRun = false)
+        , tags = "@demo",dryRun = false)
 
 //plugin = {"json:Reports/cucumber-html-reports/cucumber.json"}
 public class TestRunner {
-}					
- 
+}

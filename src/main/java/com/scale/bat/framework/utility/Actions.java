@@ -49,15 +49,15 @@ public class Actions {
 		log.info("Entered " + value + " into " + fieldName);
 
 	}
-
-	public void enterText(String fieldName, int value) {
-		waitForLoad();
-		String XPATH = ".//*[contains(text(),'" + fieldName + "')]//..//input";
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(XPATH)));
-		List<WebElement> elementList = driver.findElements(By.xpath(XPATH));
-		(elementList.get(elementList.size() - 1)).sendKeys(String.valueOf(value));
-		log.info("Entered " + value + " into " + fieldName);
-	}
+//
+//	public void enterText(String fieldName, int value) {
+//		waitForLoad();
+//		String XPATH = ".//*[contains(text(),'" + fieldName + "')]//..//input";
+//		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(XPATH)));
+//		List<WebElement> elementList = driver.findElements(By.xpath(XPATH));
+//		(elementList.get(elementList.size() - 1)).sendKeys(String.valueOf(value));
+//		log.info("Entered " + value + " into " + fieldName);
+//	}
 
 	public String getAttributeValue(WebElement element) {
 		//wait.until(ExpectedConditions.elementToBeClickable(element));
