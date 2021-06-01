@@ -7,7 +7,6 @@ Feature: validates that user can add address
     And User clicks on My List Visit button
 
     #[US-2036 TC01(SCA-2434)]
-  @demo
   Scenario:Verify that user can add Wales postal address
   #UI Steps
     And User navigates to BuyerUI
@@ -24,7 +23,6 @@ Feature: validates that user can add address
 
 
 #    #[US-2036 TC01(SCA-2435)]
-  @demo
   Scenario:Verify that user can add England postal address
   #UI Steps
     And User navigates to BuyerUI
@@ -40,7 +38,6 @@ Feature: validates that user can add address
     Then I am on the "Basket" page
 
 #  #[US-2036 TC01(SCA-2435)]
-  @demo
 #  Scenario:Verify that user can add a Scotland postal address
     And User navigates to BuyerUI
     And User login to buyerUI with API User
@@ -55,7 +52,6 @@ Feature: validates that user can add address
     Then I am on the "Basket" page
 
 #  #[US-2036 TC01(SCA-2437)]
-  @demo
   Scenario:Verify that user can add Northern Ireland postal address
     And User navigates to BuyerUI
     And User login to buyerUI with API User
@@ -70,7 +66,6 @@ Feature: validates that user can add address
     Then I am on the "Basket" page
 
   #[US-2036 TC01(SCA-2438)]
-  @demo
   Scenario:Verify that error message is displayed when mandatory fields are blank
     And User navigates to BuyerUI
     And User login to buyerUI with API User
@@ -82,7 +77,6 @@ Feature: validates that user can add address
 
 
 #  #[US-2036 TC01(SCA-2438)]
-  @demo
   Scenario:Verify user is redirected back to the basket when user clicks on cancel
     And User navigates to BuyerUI
     And User login to buyerUI with API User
